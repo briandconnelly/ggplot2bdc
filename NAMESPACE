@@ -1,5 +1,7 @@
 export(coord_golden)
 export(coord_square)
+export(ratio_golden)
+export(ratio_square)
 export(theme_bdc_black)
 export(theme_bdc_gray)
 export(theme_bdc_grey)

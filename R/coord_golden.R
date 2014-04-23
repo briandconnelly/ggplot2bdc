@@ -6,6 +6,9 @@
 #' @export
 #' @param xvals Vector containing the values plotted along the X axis
 #' @param yvals Vector containing the values plotted along the Y axis
+#' @param orientation Whether the golden ratio should be "horizontal" or
+#' "vertical" (default: horizontal)
+#' @seealso ratio_golden
 #' @examples
 #' library(ggplot2)
 #' 
@@ -13,11 +16,11 @@
 #'          coord_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' p 
 
-coord_golden <- function (xvals, yvals)
+coord_golden <- function (xvals, yvals, orientation="horizontal")
 {    
     if(missing(xvals)) stop("Must provide xvals")
     if(missing(yvals)) stop("Must provide yvals")
     
-    gr <- (1+sqrt(5))/2
-    return(coord_fixed(ratio=span(xvals)/span(yvals)/gr))
+    return(coord_fixed(ratio=ratio_golden(xvals=xvals, yvals=yvals,
+                                          orientation=orientation)))
 }

@@ -17,5 +17,5 @@ coord_square <- function (xvals, yvals)
 {
     if(missing(xvals)) stop("Must provide xvals")
     if(missing(yvals)) stop("Must provide yvals")
-    return(coord_fixed(ratio=span(xvals)/span(yvals)))
+    return(coord_fixed(ratio=ratio_square(xvals=xvals, yvals=yvals)))
 }

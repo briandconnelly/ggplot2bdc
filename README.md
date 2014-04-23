@@ -113,7 +113,9 @@ ggplot(movies, aes(x = year, y = length, color = rating, shape = mpaa)) + geom_p
 ## coord_golden
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
-For an introduction to how aspect ratio affects perception, see
+Whether the panel follows the golden ratio horizontally or vertically can be set
+using the `orientation` argument. For an introduction to how aspect ratio
+affects perception, see
 [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
 
 
@@ -124,7 +126,8 @@ pg_movies <- filter(movies, mpaa == "PG")
 
 ggplot(pg_movies, aes(x = year, y = budget/10^6, color = rating)) + geom_point() + 
     labs(x = "Year", y = "Budget ($ Millions)", title = "PG-13 Movie Budgets") + 
-    theme_bdc_grey() + coord_golden(xvals = pg_movies$year, yvals = pg_movies$budget/10^6)
+    theme_bdc_grey() + coord_golden(xvals = pg_movies$year, yvals = pg_movies$budget/10^6, 
+    orientation = "horizontal")
 ```
 
 ![plot of chunk coord_golden](figure/coord_golden.png) 

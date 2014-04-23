@@ -2,7 +2,7 @@
 \alias{coord_golden}
 \title{Set aspect ratio according to the golden ratio}
 \usage{
-coord_golden(xvals, yvals)
+coord_golden(xvals, yvals, orientation = "horizontal")
 }
 \arguments{
   \item{xvals}{Vector containing the values plotted along
@@ -10,6 +10,9 @@ coord_golden(xvals, yvals)
 
   \item{yvals}{Vector containing the values plotted along
   the Y axis}
+
+  \item{orientation}{Whether the golden ratio should be
+  "horizontal" or "vertical" (default: horizontal)}
 }
 \description{
 \code{coord_golden} sets the aspect ratio of the axes in
@@ -21,5 +24,8 @@ library(ggplot2)
 p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() +
          coord_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 p
+}
+\seealso{
+ratio_golden
 }
 
