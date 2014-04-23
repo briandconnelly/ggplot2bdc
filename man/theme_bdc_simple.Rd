@@ -27,6 +27,8 @@ background. Grid lines can be enabled using the
 \code{grid.x} and \code{grid.y} parameters.
 }
 \examples{
+library(ggplot2)
+
 p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_simple()
 p
 }

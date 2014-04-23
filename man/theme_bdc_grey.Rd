@@ -1,6 +1,7 @@
 \name{theme_bdc_grey}
+\alias{theme_bdc_gray}
 \alias{theme_bdc_grey}
-\title{Simple theme with grey box and axis ticks}
+\title{Clean theme with grey box and axis ticks}
 \usage{
 theme_bdc_grey(base_size = 12, base_family = "", grid.x = FALSE,
   grid.y = FALSE)
@@ -21,12 +22,14 @@ theme_bdc_grey(base_size = 12, base_family = "", grid.x = FALSE,
 A list of ggplot theme parameters
 }
 \description{
-`theme_bdc_grey` is a \code{\link{ggplot2}} theme that
+\code{theme_bdc_grey} is a \code{\link{ggplot2}} theme that
 produces a plot in a simple grey panel on a white
 background. Grid lines can be enabled using the
 \code{grid.x} and \code{grid.y} parameters.
 }
 \examples{
+library(ggplot2)
+
 p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_grey()
 p
 }

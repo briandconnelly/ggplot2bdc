@@ -4,9 +4,11 @@
 #' to the golden ratio.
 #' 
 #' @export
-#' @param xvalues Vector containing the values plotted along the X axis
-#' @param yvalues Vector containing the values plotted along the Y axis
+#' @param xvals Vector containing the values plotted along the X axis
+#' @param yvals Vector containing the values plotted along the Y axis
 #' @examples
+#' library(ggplot2)
+#' 
 #' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() +
 #'          coord_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' p 

@@ -1,6 +1,8 @@
 export(coord_golden)
 export(coord_square)
 export(theme_bdc_black)
+export(theme_bdc_gray)
 export(theme_bdc_grey)
 export(theme_bdc_simple)
 import(ggplot2)
+importFrom(grid,unit)

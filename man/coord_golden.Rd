@@ -5,10 +5,10 @@
 coord_golden(xvals, yvals)
 }
 \arguments{
-  \item{xvalues}{Vector containing the values plotted along
+  \item{xvals}{Vector containing the values plotted along
   the X axis}
 
-  \item{yvalues}{Vector containing the values plotted along
+  \item{yvals}{Vector containing the values plotted along
   the Y axis}
 }
 \description{
@@ -16,6 +16,8 @@ coord_golden(xvals, yvals)
 the plot according to the golden ratio.
 }
 \examples{
+library(ggplot2)
+
 p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() +
          coord_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 p

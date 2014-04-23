@@ -12,6 +12,8 @@
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
+#' library(ggplot2)
+#' 
 #' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_black()
 #' p
 #'

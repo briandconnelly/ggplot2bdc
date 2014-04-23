@@ -5,10 +5,10 @@
 coord_square(xvals, yvals)
 }
 \arguments{
-  \item{xvalues}{Vector containing the values plotted along
+  \item{xvals}{Vector containing the values plotted along
   the X axis}
 
-  \item{yvalues}{Vector containing the values plotted along
+  \item{yvals}{Vector containing the values plotted along
   the Y axis}
 }
 \description{
@@ -16,6 +16,8 @@ coord_square(xvals, yvals)
 the plot to 1:1 (a square)
 }
 \examples{
+library(ggplot2)
+
 p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() +
          coord_square(xvals=mtcars$hp, yvals=mtcars$mpg)
 p

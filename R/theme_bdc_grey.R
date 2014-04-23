@@ -1,10 +1,11 @@
 #' Clean theme with grey box and axis ticks
 #' 
-#' `theme_bdc_grey` is a \code{\link{ggplot2}} theme that produces a plot in
-#' a simple grey panel on a white background. Grid lines can be enabled using
+#' \code{theme_bdc_grey} is a \code{\link{ggplot2}} theme that produces a plot
+#' in a simple grey panel on a white background. Grid lines can be enabled using
 #' the \code{grid.x} and \code{grid.y} parameters.
 #' 
 #' @export
+#' @aliases theme_bdc_gray
 #' @param base_size The base size for all text (default: 12)
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
@@ -12,6 +13,8 @@
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
+#' library(ggplot2)
+#' 
 #' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_grey()
 #' p
 #' 
@@ -60,16 +63,19 @@ theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
           legend.background = element_rect(fill="transparent", colour=NA), 
           legend.margin = unit(0, "cm"),
           legend.key = element_rect(fill="transparent", color=NA),
-          legend.key.size = unit(1, "lines"), 
-          legend.key.height = unit(1, "lines"),
-          legend.key.width = unit(1, "lines"),
-          legend.text = element_text(size=rel(0.8)),
+          legend.key.size = unit(0.5, "lines"), 
+          legend.key.height = unit(0.5, "lines"),
+          legend.key.width = unit(0.7, "lines"),
+          legend.text = element_text(size=rel(0.6), colour="grey40"),
           legend.text.align = 0.5,
-          legend.title = element_text(),
+          legend.title = element_text(size=rel(0.7)),
           legend.title.align = 0,
-          legend.position = "right",
-          legend.direction = "vertical",
+          legend.position = "top",
+          legend.direction = "horizontal",
           legend.justification = "center",
-          legend.box = "vertical"     
+          legend.box = "horizontal"     
     )
 }
+
+#' @export
+theme_bdc_gray <- theme_bdc_grey

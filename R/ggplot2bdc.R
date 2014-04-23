@@ -6,4 +6,12 @@
 #' @docType package
 #' @name ggplot2bdc
 #' @import ggplot2
+#' @importFrom grid unit
 NULL
+
+
+span <- function(data)
+{
+    r <- range(data, na.rm=TRUE)
+    return(r[2] - r[1])
+}
