@@ -5,6 +5,9 @@ author: Brian Connelly
 
 # ggplot2bdc
 
+ggplot2bdc is a collection of themes and other things that can be used when
+creating plots with [ggplot2](http://ggplot2.org/).
+
 # Installation
 
 `ggplot2bdc` is not on [CRAN](http://cran.r-project.org/), but you can use
@@ -73,7 +76,8 @@ ggplot(movies, aes(x = year, y = budget/1e+06, color = rating)) + geom_point() +
 ## theme_bdc_simple
 
 `theme_bdc_simple` is a classic theme that displays plot axes as solid black
-lines on a white background.
+lines on a white background. This theme is probably best suited to single-panel
+plots.
 
 
 ```r
@@ -94,6 +98,22 @@ For an introduction to how aspect ratio affects perception, see
 
 ```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 
 pg_movies <- filter(movies, mpaa == "PG")
 
@@ -111,8 +131,3 @@ ggplot(pg_movies, aes(x = year, y = budget/10^6, color = rating)) + geom_point()
 
 ![plot of chunk coord_square](figure/coord_square.png) 
 
-
-# Misc
-* [ggplot2](http://ggplot2.org/)
-* [theme elements](http://docs.ggplot2.org/current/theme.html)
-* [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees)

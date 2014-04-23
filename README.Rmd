@@ -5,6 +5,9 @@ author: Brian Connelly
 
 # ggplot2bdc
 
+ggplot2bdc is a collection of themes and other things that can be used when
+creating plots with [ggplot2](http://ggplot2.org/).
+
 # Installation
 
 `ggplot2bdc` is not on [CRAN](http://cran.r-project.org/), but you can use
@@ -65,7 +68,8 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 ## theme_bdc_simple
 
 `theme_bdc_simple` is a classic theme that displays plot axes as solid black
-lines on a white background.
+lines on a white background. This theme is probably best suited to single-panel
+plots.
 
 ```{r theme_bdc_simple,warning=FALSE}
 ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
@@ -109,8 +113,3 @@ ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
     theme_bdc_grey() +
     coord_square(xvals=pg_movies$budget/10^6, yvals=movies$rating)
 ```
-
-# Misc
-* [ggplot2](http://ggplot2.org/)
-* [theme elements](http://docs.ggplot2.org/current/theme.html)
-* [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees)
