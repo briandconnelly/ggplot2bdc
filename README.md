@@ -98,22 +98,6 @@ For an introduction to how aspect ratio affects perception, see
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 
 pg_movies <- filter(movies, mpaa == "PG")
 
