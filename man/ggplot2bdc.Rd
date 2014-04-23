@@ -1,0 +1,11 @@
+\docType{package}
+\name{ggplot2bdc}
+\alias{ggplot2bdc}
+\alias{ggplot2bdc-package}
+\title{Themes and functions for creating plots with ggplot2}
+\description{
+\code{ggplot2bdc} is a package that contains themes and
+functions that can be used when creating plots with
+\code{\link{ggplot2}}.
+}
+
