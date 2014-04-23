@@ -9,8 +9,8 @@ Maintainer: Brian Connelly <bdc@bconnelly.net>
 Description: The ggplot2bdc package contains themes and other functions for
     creating plots using ggplot2.
 License: BSD_2_clause + file LICENSE
-URL: https://github.com/briandconnelly/TODO
-BugReports: https://github.com/briandconnelly/TODO/issues
+URL: https://github.com/briandconnelly/ggplot2bdc
+BugReports: https://github.com/briandconnelly/ggplot2bdc/issues
 ByteCompile: no
 NeedsCompilation: no
 Depends:
