@@ -93,7 +93,7 @@ ggplot(movies, aes(x = year, y = length, color = rating, shape = mpaa)) + geom_p
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
 For an introduction to how aspect ratio affects perception, see
-(Aspect Ratio and Banking to 45 Degrees)[http://eagereyes.org/basics/banking-45-degrees]
+[Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees)
 
 
 ```r
