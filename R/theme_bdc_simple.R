@@ -56,6 +56,63 @@ theme_bdc_simple <- function (base_size=12, base_family="", grid.x=FALSE, grid.y
           axis.ticks.length = unit(0.15, "cm"),
           axis.ticks.margin = unit(0.1, "cm"),
           
+          legend.background = element_rect(fill="grey90", colour=NA), 
+          legend.margin = unit(0, "cm"),
+          legend.key = element_rect(fill="transparent", color=NA),
+          legend.key.size = unit(0.5, "lines"), 
+          legend.key.height = unit(0.5, "lines"),
+          legend.key.width = unit(0.7, "lines"),
+          legend.text = element_text(size=rel(0.6), colour="grey40"),
+          legend.text.align = 0.5,
+          legend.title = element_text(size=rel(0.7)),
+          legend.title.align = 0,
+          legend.position = "top",
+          legend.direction = "horizontal",
+          legend.justification = "center",
+          legend.box = "horizontal"     
+    )
+}
+
+theme_bdc_simpleOLD <- function (base_size=12, base_family="", grid.x=FALSE, grid.y=FALSE)
+{
+    theme(complete=TRUE,
+          line = element_line(colour="black", size=0.5, linetype=1,
+                              lineend="square"),
+          rect = element_rect(fill="white", colour="black", size=0.5,
+                              linetype=1),
+          text = element_text(family=base_family, face="plain", colour="black",
+                              size=base_size, hjust=0.5, vjust=0.5, angle=0,
+                              lineheight=0.9),
+          title = element_text(family=base_family, face="bold", colour="black",
+                               vjust=0.0, hjust=0.5, angle=0),
+          
+          plot.background = element_rect(fill="transparent", colour=NA),
+          plot.title = element_text(size=rel(1.2), vjust=0.8),
+          plot.margin = unit(c(1, 1, 1, 1), "lines"),
+          
+          panel.background = element_rect(fill="white", colour=NA),
+          panel.border = element_rect(fill="transparent", colour=NA),
+          panel.grid.major = element_line(color=NA, size=0.1),
+          panel.grid.major.x = element_line(color=ifelse(grid.x, "grey90", NA)),
+          panel.grid.major.y = element_line(color=ifelse(grid.y, "grey90", NA)),
+          panel.grid.minor = element_line(color=NA), 
+          panel.margin = unit(0.5, "lines"),
+          
+          strip.background = element_rect(fill="grey80", colour=NA),
+          strip.text = element_text(size=rel(0.8)),
+          strip.text.x = element_text(),
+          strip.text.y = element_text(angle=-90),
+          
+          axis.text = element_text(size=rel(0.8)),
+          axis.line = element_line(),
+          axis.text.x = element_text(), 
+          axis.text.y = element_text(),
+          axis.title.x = element_text(),
+          axis.title.y = element_text(angle=90), 
+          axis.ticks = element_line(size=0.5), 
+          axis.ticks.length = unit(0.15, "cm"),
+          axis.ticks.margin = unit(0.1, "cm"),
+          
           legend.background = element_rect(fill="transparent", colour=NA), 
           legend.margin = unit(0, "cm"),
           legend.key = element_rect(fill="transparent", color=NA),

@@ -25,6 +25,8 @@ theme_bdc_black <- function (base_size=12, base_family="", grid.x=FALSE,
         theme(line = element_line(colour="black", size=0.5, linetype=1,
                                   lineend="square"),
               rect = element_rect(fill="white", colour="black", size=0.5,
-                                  linetype=1)
+                                  linetype=1),
+              panel.grid.major.x = element_line(color=ifelse(grid.x, "grey70", NA)),
+              panel.grid.major.y = element_line(color=ifelse(grid.y, "grey70", NA))
               )
 }
