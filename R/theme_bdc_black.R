@@ -1,7 +1,8 @@
 #' Clean theme with black box and axis ticks
 #' 
 #' `theme_bdc_black` is a \code{\link{ggplot2}} theme that produces a plot in
-#' a simple black panel on a white background. Grid lines can be enabled using
+#' a simple black panel on a white background. Facet labels are displayed as
+#' black text on a grey background. Grid lines can be enabled using
 #' the \code{grid.x} and \code{grid.y} parameters.
 #' 
 #' @export

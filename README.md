@@ -29,10 +29,29 @@ library(ggplot2bdc)
 ```
 
 
+## theme_bdc_simplefacets
+
+`theme_bdc_simplefacets` is a clean theme that uses thin black panels on a white
+background. Legends are placed above. Facets labels are displayed as black text.
+Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
+parameters.
+
+
+```r
+ggplot(movies, aes(x = year, y = budget/1e+06, color = rating)) + geom_point() + 
+    facet_grid(mpaa ~ .) + labs(x = "Year", y = "Budget ($ Millions)", title = "Hollywood Budgets Against Time") + 
+    theme_bdc_simplefacets(grid.y = TRUE, grid.x = FALSE)
+```
+
+![plot of chunk theme_bdc_simplefacets](figure/theme_bdc_simplefacets.png) 
+
+
+
 ## theme_bdc_grey
 
 `theme_bdc_grey` is a clean theme that uses thin grey panels on a white
-background. Legends are placed above.
+background. Legends are placed above. Facet labels are displayed as black text
+on a grey background.
 
 
 ```r
@@ -60,8 +79,9 @@ ggplot(movies, aes(x = year, y = budget/1e+06, color = rating)) + geom_point() +
 ## theme_bdc_black
 
 `theme_bdc_black` is a clean theme that uses thin black panels on a white
-background. Legends are placed above. Subtle grid lines can be added to the
-panels with the `grid.x` and `grid.y` parameters.
+background. Legends are placed above. Facet labels are displayed as black text
+on a grey background. Subtle grid lines can be added to the panels with the
+`grid.x` and `grid.y` parameters.
 
 
 ```r
@@ -71,6 +91,7 @@ ggplot(movies, aes(x = year, y = budget/1e+06, color = rating)) + geom_point() +
 ```
 
 ![plot of chunk theme_bdc_black](figure/theme_bdc_black.png) 
+
 
 
 ## theme_bdc_simple
@@ -93,7 +114,7 @@ ggplot(movies, aes(x = year, y = length, color = rating, shape = mpaa)) + geom_p
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
 For an introduction to how aspect ratio affects perception, see
-[Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees)
+[Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
 
 
 ```r

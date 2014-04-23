@@ -24,7 +24,8 @@ A list of ggplot theme parameters
 \description{
 \code{theme_bdc_grey} is a \code{\link{ggplot2}} theme that
 produces a plot in a simple grey panel on a white
-background. Grid lines can be enabled using the
+background. Facet labels are displayed as black text on a
+grey background. Grid lines can be enabled using the
 \code{grid.x} and \code{grid.y} parameters.
 }
 \examples{

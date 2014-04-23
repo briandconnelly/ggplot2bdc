@@ -23,7 +23,8 @@ A list of ggplot theme parameters
 \description{
 `theme_bdc_black` is a \code{\link{ggplot2}} theme that
 produces a plot in a simple black panel on a white
-background. Grid lines can be enabled using the
+background. Facet labels are displayed as black text on a
+grey background. Grid lines can be enabled using the
 \code{grid.x} and \code{grid.y} parameters.
 }
 \examples{

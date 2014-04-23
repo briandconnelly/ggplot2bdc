@@ -1,12 +1,11 @@
-#' Clean theme with grey box and axis ticks
-#' 
-#' \code{theme_bdc_grey} is a \code{\link{ggplot2}} theme that produces a plot
-#' in a simple grey panel on a white background. Facet labels are displayed as
-#' black text on a grey background. Grid lines can be enabled using
-#' the \code{grid.x} and \code{grid.y} parameters.
+#' Clean theme with black box and axis ticks
+#'
+#' \code{theme_bdc_simplefacets} is a \code{\link{ggplot2}} theme that produces
+#' a plot in a simple black panel on a white background. Facet labels are
+#' displayed as black text on a transparent background. Grid lines can be
+#' enabled using the \code{grid.x} and \code{grid.y} parameters.
 #' 
 #' @export
-#' @aliases theme_bdc_gray
 #' @param base_size The base size for all text (default: 12)
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
@@ -16,17 +15,17 @@
 #' @examples
 #' library(ggplot2)
 #' 
-#' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_grey()
+#' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_simplefacets()
 #' p
 #' 
 #' 
-theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
+theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
                             grid.y=FALSE)
 {
     theme(complete=TRUE,
-          line = element_line(colour="grey70", size=0.5, linetype=1,
+          line = element_line(colour="black", size=0.5, linetype=1,
                               lineend="square"),
-          rect = element_rect(fill="white", colour="grey70", size=0.5,
+          rect = element_rect(fill="white", colour="black", size=0.5,
                               linetype=1),
           text = element_text(family=base_family, face="plain", colour="black",
                               size=base_size, hjust=0.5, vjust=0.5, angle=0,
@@ -41,12 +40,12 @@ theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
           panel.background = element_rect(fill="white", colour=NA),
           panel.border = element_rect(fill="transparent"),
           panel.grid.major = element_line(color=NA, size=0.1),
-          panel.grid.major.x = element_line(color=ifelse(grid.x, "grey90", NA)),
-          panel.grid.major.y = element_line(color=ifelse(grid.y, "grey90", NA)),
+          panel.grid.major.x = element_line(color=ifelse(grid.x, "grey70", NA)),
+          panel.grid.major.y = element_line(color=ifelse(grid.y, "grey70", NA)),
           panel.grid.minor = element_line(color=NA), 
           panel.margin = unit(0.5, "lines"),
           
-          strip.background = element_rect(fill="grey70"),
+          strip.background = element_rect(fill="transparent", colour=NA),
           strip.text = element_text(size=rel(0.8)),
           strip.text.x = element_text(),
           strip.text.y = element_text(angle=-90),
@@ -77,6 +76,3 @@ theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
           legend.box = "horizontal"     
     )
 }
-
-#' @export
-theme_bdc_gray <- theme_bdc_grey
