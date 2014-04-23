@@ -134,5 +134,16 @@ ggplot(pg_movies, aes(x = year, y = budget/10^6, color = rating)) + geom_point()
 
 `coord_square` sets the aspect ratio of the axes according to a square.
 
+
+```r
+library(dplyr)
+
+pg_movies <- filter(movies, mpaa == "PG")
+
+ggplot(pg_movies, aes(x = budget/10^6, y = rating)) + geom_smooth() + geom_point(shape = 1) + 
+    labs(x = "Budget ($ Millions)", y = "Rating", title = "Does Budget Affect Movie Ratings?") + 
+    theme_bdc_grey() + coord_square(xvals = pg_movies$budget/10^6, yvals = movies$rating)
+```
+
 ![plot of chunk coord_square](figure/coord_square.png) 
 
