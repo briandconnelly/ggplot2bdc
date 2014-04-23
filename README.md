@@ -32,7 +32,7 @@ library(ggplot2bdc)
 ## theme_bdc_simplefacets
 
 `theme_bdc_simplefacets` is a clean theme that uses thin black panels on a white
-background. Legends are placed above. Facets labels are displayed as black text.
+background. Legends are placed above. Facet labels are displayed as black text.
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters.
 
