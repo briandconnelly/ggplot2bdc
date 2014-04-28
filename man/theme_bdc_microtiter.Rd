@@ -1,0 +1,26 @@
+\name{theme_bdc_microtiter}
+\alias{theme_bdc_microtiter}
+\title{Theme for displaying Microtiter plates}
+\usage{
+theme_bdc_microtiter(base_size = 14, base_family = "")
+}
+\arguments{
+  \item{base_size}{The base size for all text (default:
+  14)}
+
+  \item{base_family}{The base font family for all text}
+}
+\value{
+A list of ggplot theme parameters
+}
+\description{
+\code{theme_bdc_microtiter} is a \code{\link{ggplot2}}
+theme that produces a plot that resembles a 96-well
+microtiter plate. This is useful for displaying either data
+from the plate or information about the plate in a spatial
+context.
+}
+\seealso{
+\code{\link{theme}}
+}
+

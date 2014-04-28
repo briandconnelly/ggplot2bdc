@@ -14,6 +14,7 @@ creating plots with [ggplot2](http://ggplot2.org/).
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version. To do so:
 
+    install.packages('devtools')
     library(devtools)
     install_github('briandconnelly/ggplot2bdc')
 
@@ -97,6 +98,12 @@ ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
     scale_y_log10() +
     theme_bdc_simple()
 ```
+
+## theme_bdc_microtiter
+
+`theme_bdc_microtiter` is a specialized theme for use in creating figures that
+represent 96-well microtiter plates.
+
 
 ## coord_golden
 
