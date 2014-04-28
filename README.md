@@ -14,6 +14,7 @@ creating plots with [ggplot2](http://ggplot2.org/).
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version. To do so:
 
+    install.packages('devtools')
     library(devtools)
     install_github('briandconnelly/ggplot2bdc')
 
@@ -109,6 +110,29 @@ ggplot(movies, aes(x = year, y = length, color = rating, shape = mpaa)) + geom_p
 
 ![plot of chunk theme_bdc_simple](figure/theme_bdc_simple.png) 
 
+
+## theme_bdc_microtiter
+
+`theme_bdc_microtiter` is a specialized theme for use in creating figures that
+represent 96-well microtiter plates.
+
+
+
+
+
+```r
+ggplot(data = platemap, aes(x = Column, y = Row)) + geom_point(data = expand.grid(seq(1, 
+    12), seq(1, 8)), aes(x = Var1, y = Var2), color = "grey90", fill = "white", 
+    shape = 21, size = 6) + geom_point(aes(shape = Environment, colour = Strain), 
+    size = 10) + coord_fixed(ratio = (13/12)/(9/8), xlim = c(0.5, 12.5), ylim = c(0.5, 
+    8.5)) + scale_y_reverse(breaks = seq(1, 8), labels = LETTERS[1:8]) + scale_x_continuous(breaks = seq(1, 
+    12)) + labs(title = "Plate Layout for My Experiment") + theme_bdc_microtiter()
+```
+
+![plot of chunk theme_bdc_microtiter](figure/theme_bdc_microtiter.png) 
+
+
+For more information, see the "Plotting Plate Maps" vignette (coming soon)
 
 ## coord_golden
 
