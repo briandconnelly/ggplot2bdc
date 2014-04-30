@@ -1,44 +1,59 @@
-I recently wrote about my workflow for [Analyzing Microbial Growth with R](http://bconnelly.net/2014/04/analyzing-microbial-growth-with-r/). Perhaps the most important part of that process was the plate map, which
-describes the different experimental variables and where they occur. In the
-example case, the plate map described which strain was growing and in which
-medium for each of the wells used in a 96-well microtiter plate. Until recently,
-I've created two plate maps. The first one is hand-drawn using pens and markers
-and sat on the bench with me when I started the experiment. By marking the wells
-with different colors, line types, and whatever other hieroglyphics I decide on,
-I can keep track of where everything is and how to inoculate the wells.
+I recently wrote about my workflow for [Analyzing Microbial Growth with
+R](http://bconnelly.net/2014/04/analyzing-microbial-growth-with-r/). Perhaps
+the most important part of that process is the **plate map**, which describes
+the different experimental variables and where they occur. In the example case,
+the plate map described which strain was growing and in which environment for
+each of the wells used in a 96-well microtiter plate. Until recently, I've
+always created two plate maps. The first one is hand-drawn using pens and
+markers and sat on the bench with me when I started an experiment. By marking
+the wells with different colors, line types, and whatever other hieroglyphics I
+decide on, I can keep track of where everything is and how to inoculate the
+wells.
 
-TODO pic of plate map
+![A Plate Map](http://bconnelly.net/wp-content/uploads/2014/04/platemap-300x208.jpg "A plate map for our example data. In this case, strain A is colored blue, strain B is red, and strain C is colored black.")
 
-The second is a CSV file that contains a row for each well, and columns
-describing the values of each of my experimental variables. This file contains
-all of the information that I had on my hand-drawn plate map, but in a version
-that I can later merge with my resulting data to produce a fully-annotated
+The second is a CSV file that contains a row for each well that I use and
+columns describing the values of each of my experimental variables. This file
+contains all of the information that I had on my hand-drawn plate map, but in a
+format that I can later merge with my result data to produce a fully-annotated
 data set. The fully-annotated data set is the perfect format for plotting with
-tools like [ggplot2](http://ggplot2.org/) or for sharing with others.
+tools like [`ggplot2`](http://ggplot2.org/) or for sharing with others.
 
-TODO example plate map csv, 10 lines or so
+<pre>
+    Well Strain Environment
+ 1    B2      A           1
+ 2    B3      B           1
+ 3    B4      C           1
+ 4    B5     &lt;NA&gt;         1
+ 5    B6      A           2
+ 6    B7      B           2
+ 7    B8      C           2
+ 8    B9     &lt;NA&gt;         2
+ 9   B10      A           3
+ 10  B11      B           3
+</pre>
 
-But when talking with [Carrie Glenney](http://kerrlab.org/Public/CarrieGlenney), whom I've been selling on the
-awesomeness of the CSV/dplyr/ggplot workflow, I realized that there's no need
-to have two separate plate maps. Since we have all the data in the CSV platemap,
-why bother drawing one out on paper, especially since we've already got a great
-tool in there for drawing? This post describes how I've started using
-ggplot2 to create a nice platemap image that I can easily print and take
-with me to the bench or save in my lab notebook.
+But when talking with [Carrie
+Glenney](http://kerrlab.org/Public/CarrieGlenney), whom I've been convincing of
+the awesomeness of the CSV/dplyr/ggplot workflow, I realized that there's
+really no need to have two separate plate maps. Since all the information is in
+the CSV plate map, why bother drawing one out on paper? This post describes how
+I've started using ggplot2 to create a nice plate map image that I can print and
+take with me to the bench or paste in my lab notebook.
 
 
 ## Reading in the Plate Map
 
-Once you have a plate map CSV file, you'll first need to load it into R. Note
-that you may need to first change your working directory with `setwd` or give
-`read.csv` the full path of the plate map file.
+First, load load your plate map file into R. You may need to first change your
+working directory with `setwd` or give `read.csv` the full path of the plate
+map file.
 
 ```{r read plate map}
-platemap <- read.csv("~/Dropbox/Research/Documents/Blog Post-Analyzing Bacterial Growth/data/platemap.csv")
+platemap <- read.csv("platemap.csv")
 ```
 
-If you don't yet have your own plate map, you can use my 
-[sample plate map](http://bconnelly.net/wp-content/uploads/2014/04/platemap.csv).
+If you don't yet have a plate map of your own, you can use this [sample plate
+map](http://bconnelly.net/wp-content/uploads/2014/04/platemap.csv).
 
 
 ## Extracting Row and Column Numbers
@@ -47,7 +62,7 @@ In my plate maps, I refer to each well by its row-column pair, like "C6". To
 make things easier to draw, we're going to be splitting those well IDs into
 their row and column numbers. So for "C6", we'll get row 3 and column 6. This
 process is easy with dplyr's `mutate` function. If you haven't installed dplyr,
-you can do so by running `install.packages('dplyr')`.
+you can get it by running `install.packages('dplyr')`.
 
 ```{r split well into rows and columns}
 library(dplyr)
@@ -55,16 +70,16 @@ library(dplyr)
 platemap <- mutate(platemap, Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)), Column=as.numeric(substr(Well,2,5)))
 ```
 
-Once this is done, the `platemap` data frame will now have two new columns,
-**Row** and **Column**, which contain the row and column numbers, repsectively,
-associated with the well in the **Well** column.
+Once this is done, the `platemap` data frame will now have two additional
+columns, **Row** and **Column**, which contain the row and column numbers
+associated with the well in the **Well** column, respectively.
 
 ## Drawing the Plate
 
-Microtiter plates are arranged in a grid, so it wouldn't be a huge leap to think
-about a well's row as its value along the Y axis and its column along the X
-axis. So let's use ggplot2 to create a plot of all of the wells in the plate map,
-and to represent each well as a point. We'll also give it a title.
+Microtiter plates are arranged in a grid, so it's not a big leap to think about
+a plate as a plot containing the row values along the Y axis and the column
+values along the X axis. So let's use ggplot2 to create a scatter plot of all
+of the wells in the plate map. We'll also give it a title.
 
 ```{r plot part 1}
 library(ggplot2)
@@ -77,14 +92,15 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 As you can see, this plot doesn't tell us anything about our experiment other
 than the wells it uses and their location.
 
-## Showing All Wells
 
-I often don't use all 96 wells in my experiments. It is useful, however, to show
-all 96 wells. We can then make it obvious which wells are used and which aren't.
-So below the points that we've created for each well in the plate map, we'll
-create some white circles with a light grey border for all 96 wells. We'll also
-change the aspect ratio of the plot so that it matches those of a 96-well plate
-more closely.
+## Showing Empty Wells
+
+I often don't use all 96 wells in my experiments. It is useful, however, to
+show all of them. This makes it obvious which wells are used and helps orient
+your eyes when shifting between the plate map and the plate.  Because of this,
+we'll create some white circles with a light grey border for all 96 wells
+*below* the points that we've already created. We'll also change the aspect
+ratio of the plot so that it better matches the proportions of a 96-well plate.
 
 ```{r plot2 blank wells and aspect ratio}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
@@ -97,12 +113,12 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 
 ## Flipping the Axis
 
-Now that we have all 96 wells, one thing becomes clear---plots arrange the rows
-from 1 on the bottom to 8 at the top. However, a microtiter plate puts row 1
-on the top and 8 on the bottom. Fortunately, we can quickly flip the Y axis.
+Now that we are showing all 96 wells, one thing becomes clear---the plot
+arranges the rows from 1 on the bottom to 8 at the top, which is opposite of
+how microtiter plates are labeled. Fortunately, we can easily flip the Y axis.
 While we're at it, we'll also tell the Y axis to use letters instead of numbers
-for labels and to draw these labels for each value. Similarly, we'll add labels
-for each column value along the X axis.
+and to draw these labels for each value. Similarly, we'll label each column
+value along the X axis.
 
 ```{r plot 3 flip y axis}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
@@ -114,73 +130,24 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
     labs(title="Plate Layout for My Experiment")
 ```
 
+For those who would like to mimic the look of a microtiter plate even more
+closely, I have some bad news. It's not possible to place the X axis labels
+above the plot. Not without some complicated tricks, at least.
+
 
 ## Removing Grids and other Plot Elements
 
-It's beginning to look a lot like a microtiter plate, but we've still got some
-unnecessary grids and tick marks. To create a more straightforward plate map,
-we can apply a theme that will strip these elements out. I've made my theme
-(`theme_bdc_microtiter`) available as part of the
+Although the plot is starting to look a lot like a microtiter plate, there's
+still some unnecessary "chart junk", such as grids and tick marks along the
+axes. To create a more straightforward plate map, we can apply a theme that
+will strip these elements out. My theme for doing this (`theme_bdc_microtiter`)
+is available as part of the
 [ggplot2bdc](https://github.com/briandconnelly/ggplot2bdc) package. Follow that
 link for installation instructions. Once installed, we can now apply the theme:
 
-```{r,echo=FALSE}
-theme_bdc_microtiter <- function (base_size=14, base_family="")
-{
-    theme(complete=TRUE,
-          line = element_line(colour="grey70", size=0.5, linetype=1,
-                              lineend="square"),
-          rect = element_rect(fill="white", colour="grey70", size=0.5,
-                              linetype=1),
-          text = element_text(family=base_family, face="plain", colour="black",
-                              size=base_size, hjust=0.5, vjust=0.5, angle=0,
-                              lineheight=0.9),
-          title = element_text(family=base_family, face="bold", colour="black",
-                               vjust=0.0, hjust=0.5, angle=0),
-          
-          plot.background = element_rect(fill="transparent", colour=NA),
-          plot.title = element_text(size=rel(1.2), vjust=0.8),
-          plot.margin = unit(c(1, 1, 1, 1), "lines"),
-          
-          panel.background = element_rect(color='grey20', fill='white'),
-          panel.border = element_rect(fill="transparent", color='grey20'),
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(), 
-          panel.margin = unit(0, "lines"),
-          
-          strip.background = element_rect(fill="grey70"),
-          strip.text = element_text(size=rel(0.8)),
-          strip.text.x = element_text(),
-          strip.text.y = element_text(angle=-90),
-          
-          axis.text = element_text(face="bold"),
-          axis.line = element_blank(),
-          axis.text.x = element_text(), 
-          axis.text.y = element_text(),
-          axis.title=element_blank(),
-          axis.ticks = element_blank(), 
-          axis.ticks.length = unit(0, "cm"),
-          axis.ticks.margin = unit(0.2, "cm"),
-          
-          legend.background = element_rect(fill="transparent", colour=NA), 
-          legend.margin = unit(0, "cm"),
-          legend.key = element_rect(fill="transparent", color=NA),
-          legend.key.size = unit(0.3, "lines"), 
-          legend.key.height = unit(0.5, "lines"),
-          legend.key.width = unit(0.7, "lines"),
-          legend.text = element_text(size=rel(0.6), colour="grey40"),
-          legend.text.align = 0.5,
-          legend.title = element_text(size=rel(0.7)),
-          legend.title.align = 0,
-          legend.position = "bottom",
-          legend.direction = "vertical",
-          legend.justification = "center",
-          legend.box = "horizontal"     
-    )
-}
-```
-
 ```{r theme}
+library(ggplot2bdc)
+
 ggplot(data=platemap, aes(x=Column, y=Row)) +
     geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
     geom_point(size=10) +
@@ -194,24 +161,26 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 
 ## Highlighting Experimental Variables
 
-Now that our plot is formatted nicely, it's time to get back to the main point
-of all of this---displaying the values of our different experimental variables.
+Now that our plot is nicely formatted, it's time to get back to the main point
+of all of this---displaying the values of the different experimental variables.
 
-For this step, you'll first need to think about how to best *encode* each of
-these values. We'll be using this to map the information to ggplot2's
-aesthetics. For this, we can use things like color, shape, size, and opacity. 
-There are no clear-cut rules for this, but after a little experimentation you
-should be able to get an idea of which encodings are best for your data. These
-encodings are given as arguments to `geom_point` using `aes`.
+You'll first need to think about how to best *encode* each of these values. For
+this, ggplot provides a number of *aesthetics*, such as color, shape, size, and
+opacity.  There are no one-size-fits-all rules for this (although Jacques
+Bertin's classic *Semiology of Graphics* has some great information).  After a
+little experimentation you should be able to figure out which encodings best
+represent your data.
 
-You'll also need to consider the types of the values for experimental variables,
+You'll also need to consider the data types of the experimental variables,
 because it's not possible to map a shape or some other discrete property to
 continuous values.
 
-Here, we'll show the different environments using shapes and the different
-strains using color. When we read the CSV file, R interpreted the Environment
-variable as continuous (because it has values 1, 2, and 3). We're first going
-to be transforming it to a categorical variable so that we can map it to a shape.
+Here, we'll show the different environments using shapes, and the different
+strains using color. When R imported the plate map, it interpreted the
+Environment variable as continuous (not a crazy assumption, since it has values
+1, 2, and 3). We're first going to be transforming it to a categorical variable
+(*factor* in R speak) so that we can map it to a shape. We'll then pass our
+encodings to ggplot as the `aes` argument to `geom_point`.
 
 ```{r full plot}
 platemap$Environment <- as.factor(platemap$Environment)
@@ -229,13 +198,16 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 
 ## Changing Colors, Shapes, Etc.
 
-By default, ggplot will show experimental variables using a default ordering of
-shapes or colors. If you'd prefer to use a different set, either because they
-make the data more easy to interpret (see Sharon Lin and Jeffrey Heer's
-fascinating post about [The Right Colors Make Data Easier To Read](http://blogs.hbr.org/2014/04/the-right-colors-make-data-easier-to-read/) ) or for some other reason, we can adjust them. I'll change the colors
-used based on the ones I normally associate with these strains. Although these
-colors aren't quite as aesthetically pleasing as ggplot2's defaults, I use them
-because they are the colors of markers I have at my bench.
+By default, ggplot will use a default ordering of shapes and colors. If you'd
+prefer to use a different set, either because they make the data more easy to
+interpret (see [Sharon Lin](http://graphics.stanford.edu/~sharonl/) and
+[Jeffrey Heer](http://homes.cs.washington.edu/~jheer/)'s fascinating [*The
+Right Colors Make Data Easier To
+Read*](http://blogs.hbr.org/2014/04/the-right-colors-make-data-easier-to-read/))
+or for some other reason, we can adjust them. I'll change the colors used to
+blue, red, and black, which I normally associate with these strains.  Although
+these colors aren't quite as aesthetically pleasing as ggplot2's defaults, I
+use them because they are the colors of markers I have at my bench.
 
 ```{r scale colors}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
@@ -253,5 +225,10 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 ## Wrap-Up
 
 And that's all it takes! You can now save the plot using `ggsave`, print it,
-add it to some slides, or anything else. In the future, I'll describe a few nice
-things that can be done with the annotated data.
+add it to some slides, or anything else. In the future, I'll describe a similar
+visualizations that can be made that allow exploration of the annotated data
+set, which contains the plate map information along with the actual data.
+
+Many thanks to [Sarah Hammarlund](http://kerrlab.org/Public/SarahHammarlund) for
+her comments on this post!
+
