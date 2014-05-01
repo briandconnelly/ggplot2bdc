@@ -13,7 +13,10 @@ URL: https://github.com/briandconnelly/ggplot2bdc
 BugReports: https://github.com/briandconnelly/ggplot2bdc/issues
 ByteCompile: no
 NeedsCompilation: no
+VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0),
 Imports:
     ggplot2
+Suggests:
+    knitr

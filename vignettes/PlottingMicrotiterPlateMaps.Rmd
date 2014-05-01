@@ -1,3 +1,14 @@
+---
+title: "Plotting Microtiter Plate Maps"
+author: "Brian Connelly"
+output: html_document
+---
+
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Plotting Microtiter Plate Maps}
+-->
+
 I recently wrote about my workflow for [Analyzing Microbial Growth with
 R](http://bconnelly.net/2014/04/analyzing-microbial-growth-with-r/). Perhaps
 the most important part of that process is the **plate map**, which describes
@@ -10,7 +21,7 @@ the wells with different colors, line types, and whatever other hieroglyphics I
 decide on, I can keep track of where everything is and how to inoculate the
 wells.
 
-![A Plate Map](http://bconnelly.net/wp-content/uploads/2014/04/platemap-300x208.jpg "A plate map for our example data. In this case, strain A is colored blue, strain B is red, and strain C is colored black.")
+![A Plate Map](figure/platemap.jpg)
 
 The second is a CSV file that contains a row for each well that I use and
 columns describing the values of each of my experimental variables. This file
@@ -166,8 +177,10 @@ of all of this---displaying the values of the different experimental variables.
 
 You'll first need to think about how to best *encode* each of these values. For
 this, ggplot provides a number of *aesthetics*, such as color, shape, size, and
-opacity.  There are no one-size-fits-all rules for this (although Jacques
-Bertin's classic *Semiology of Graphics* has some great information).  After a
+opacity.  There are no one-size-fits-all rules for this. If you're interested in
+this topic, Jacques Bertin's classic *Semiology of Graphics* has some great
+information, and [Jeff Heer](http://homes.cs.washington.edu/~jheer/) and [Mike
+Bostock](http://bost.ocks.org/mike/)'s [*Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design*](http://idl.cs.washington.edu/papers/crowdsourcing-graphical-perception/) is very interesting. After a
 little experimentation you should be able to figure out which encodings best
 represent your data.
 
@@ -230,5 +243,5 @@ visualizations that can be made that allow exploration of the annotated data
 set, which contains the plate map information along with the actual data.
 
 Many thanks to [Sarah Hammarlund](http://kerrlab.org/Public/SarahHammarlund) for
-her comments on this post!
+her comments on a draft of this post!
 
