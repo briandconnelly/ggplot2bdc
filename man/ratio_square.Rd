@@ -2,7 +2,7 @@
 \alias{ratio_square}
 \title{Calculate the aspect ratio of data that would create a square}
 \usage{
-ratio_square(xvals, yvals, orientation = "horizontal")
+ratio_square(xvals, yvals)
 }
 \arguments{
   \item{xvals}{Vector containing the values plotted along
