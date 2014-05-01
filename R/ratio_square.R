@@ -15,7 +15,7 @@
 #' ratio <- ratio_square(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' 
 
-ratio_square <- function (xvals, yvals, orientation="horizontal")
+ratio_square <- function (xvals, yvals)
 {
     if(missing(xvals)) stop("Must provide xvals")
     if(missing(yvals)) stop("Must provide yvals")

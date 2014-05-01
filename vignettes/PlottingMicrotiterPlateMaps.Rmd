@@ -1,13 +1,12 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Plotting Microtiter Plate Maps}
+-->
+
 ---
 title: "Plotting Microtiter Plate Maps"
 author: "Brian Connelly"
-output: html_document
 ---
-
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Plotting Microtiter Plate Maps}
--->
 
 I recently wrote about my workflow for [Analyzing Microbial Growth with
 R](http://bconnelly.net/2014/04/analyzing-microbial-growth-with-r/). Perhaps
