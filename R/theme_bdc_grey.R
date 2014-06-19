@@ -3,7 +3,8 @@
 #' \code{theme_bdc_grey} is a \code{\link{ggplot2}} theme that produces a plot
 #' in a simple grey panel on a white background. Facet labels are displayed as
 #' black text on a grey background. Grid lines can be enabled using
-#' the \code{grid.x} and \code{grid.y} parameters.
+#' the \code{grid.x} and \code{grid.y} parameters. Tick marks can be disabled
+#' using the \code{ticks.x} and \code{ticks.y} parameters.
 #' 
 #' @export
 #' @aliases theme_bdc_gray
@@ -11,6 +12,8 @@
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
 #' @param grid.y Show grid lines along the Y axis (default: FALSE)
+#' @param ticks.x Show tick marks along the X axis (default: TRUE)
+#' @param ticks.y Show tick marks along th Y axis (default: TRUE)
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
@@ -21,7 +24,7 @@
 #' 
 #' 
 theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
-                            grid.y=FALSE)
+                            grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
 {
     theme(complete=TRUE,
           line = element_line(colour="grey70", size=0.5, linetype=1,
@@ -57,7 +60,8 @@ theme_bdc_grey <- function (base_size=12, base_family="", grid.x=FALSE,
           axis.text.y = element_text(),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle=90), 
-          axis.ticks = element_line(size=0.3), 
+          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.3, 0)), 
+          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.3, 0)), 
           axis.ticks.length = unit(0.15, "cm"),
           axis.ticks.margin = unit(0.1, "cm"),
           

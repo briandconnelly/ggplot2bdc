@@ -14,7 +14,7 @@ creating plots with [ggplot2](http://ggplot2.org/).
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version. To do so:
 
-    install.packages('devtools')
+    if(!require('devtools')) install.packages('devtools')
     library(devtools)
     install_github('briandconnelly/ggplot2bdc')
 

@@ -10,6 +10,8 @@
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
 #' @param grid.y Show grid lines along the Y axis (default: FALSE)
+#' @param ticks.x Show tick marks along the X axis (default: TRUE)
+#' @param ticks.y Show tick marks along th Y axis (default: TRUE)
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
@@ -20,7 +22,7 @@
 #' 
 #' 
 theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
-                            grid.y=FALSE)
+                            grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
 {
     theme(complete=TRUE,
           line = element_line(colour="black", size=0.5, linetype=1,
@@ -56,7 +58,8 @@ theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
           axis.text.y = element_text(),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle=90), 
-          axis.ticks = element_line(size=0.3), 
+          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.3, 0)), 
+          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.3, 0)), 
           axis.ticks.length = unit(0.15, "cm"),
           axis.ticks.margin = unit(0.1, "cm"),
           

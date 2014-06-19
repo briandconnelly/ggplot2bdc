@@ -1,6 +1,16 @@
 ---
 title: "Plotting Microtiter Plate Maps"
 author: "Brian Connelly"
+geometry: margin=1in
+header-includes:
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \lhead{Plotting Microtiter Plate Maps}
+    - \chead{}
+    - \rhead{\footnotesize{doi:10.6084/m9.figshare.1015773}}
+    - \lfoot{}
+    - \cfoot{\thepage}
+    - \rfoot{}
 ---
 
 <!--
@@ -58,7 +68,7 @@ First, load load your plate map file into R. You may need to first change your
 working directory with `setwd` or give `read.csv` the full path of the plate
 map file.
 
-```{r read plate map}
+```{r read plate map,tidy=FALSE}
 platemap <- read.csv("platemap.csv")
 ```
 
@@ -74,10 +84,12 @@ their row and column numbers. So for "C6", we'll get row 3 and column 6. This
 process is easy with dplyr's `mutate` function. If you haven't installed dplyr,
 you can get it by running `install.packages('dplyr')`.
 
-```{r split well into rows and columns}
+```{r split well into rows and columns,tidy=FALSE}
 library(dplyr)
 
-platemap <- mutate(platemap, Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)), Column=as.numeric(substr(Well,2,5)))
+platemap <- mutate(platemap,
+                   Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)),
+                   Column=as.numeric(substr(Well,2,5)))
 ```
 
 Once this is done, the `platemap` data frame will now have two additional
@@ -91,7 +103,7 @@ a plate as a plot containing the row values along the Y axis and the column
 values along the X axis. So let's use ggplot2 to create a scatter plot of all
 of the wells in the plate map. We'll also give it a title.
 
-```{r plot part 1}
+```{r plot part 1,tidy=FALSE}
 library(ggplot2)
 
 ggplot(data=platemap, aes(x=Column, y=Row)) +
@@ -112,9 +124,10 @@ we'll create some white circles with a light grey border for all 96 wells
 *below* the points that we've already created. We'll also change the aspect
 ratio of the plot so that it better matches the proportions of a 96-well plate.
 
-```{r plot2 blank wells and aspect ratio}
+```{r plot2 blank wells and aspect ratio,tidy=FALSE}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
+    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2),
+               color='grey90', fill='white', shape=21, size=6) +
     geom_point(size=10) +
     coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +
     labs(title="Plate Layout for My Experiment")
@@ -130,9 +143,10 @@ While we're at it, we'll also tell the Y axis to use letters instead of numbers
 and to draw these labels for each value. Similarly, we'll label each column
 value along the X axis.
 
-```{r plot 3 flip y axis}
+```{r plot 3 flip y axis,tidy=FALSE}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
+    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2),
+               color='grey90', fill='white', shape=21, size=6) +
     geom_point(size=10) +
     coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +
     scale_y_reverse(breaks=seq(1,8), labels=LETTERS[1:8]) +
@@ -155,11 +169,12 @@ is available as part of the
 [ggplot2bdc](https://github.com/briandconnelly/ggplot2bdc) package. Follow that
 link for installation instructions. Once installed, we can now apply the theme:
 
-```{r theme}
+```{r theme,tidy=FALSE}
 library(ggplot2bdc)
 
 ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
+    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2),
+               color='grey90', fill='white', shape=21, size=6) +
     geom_point(size=10) +
     coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +
     scale_y_reverse(breaks=seq(1,8), labels=LETTERS[1:8]) +
@@ -194,11 +209,12 @@ Environment variable as continuous (not a crazy assumption, since it has values
 (*factor* in R speak) so that we can map it to a shape. We'll then pass our
 encodings to ggplot as the `aes` argument to `geom_point`.
 
-```{r full plot}
+```{r full plot,tidy=FALSE}
 platemap$Environment <- as.factor(platemap$Environment)
 
 ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
+    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2),
+               color='grey90', fill='white', shape=21, size=6) +
     geom_point(aes(shape=Environment, colour=Strain), size=10) +
     coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +
     scale_y_reverse(breaks=seq(1,8), labels=LETTERS[1:8]) +
@@ -221,9 +237,10 @@ blue, red, and black, which I normally associate with these strains.  Although
 these colors aren't quite as aesthetically pleasing as ggplot2's defaults, I
 use them because they are the colors of markers I have at my bench.
 
-```{r scale colors}
+```{r scale colors,tidy=FALSE}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
+    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2),
+               color='grey90', fill='white', shape=21, size=6) +
     geom_point(aes(shape=Environment, colour=Strain), size=10) +
     scale_color_manual(values=c("A"="blue", "B"="red", "C"="black")) +
     coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +

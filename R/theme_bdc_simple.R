@@ -9,6 +9,8 @@
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
 #' @param grid.y Show grid lines along the Y axis (default: FALSE)
+#' @param ticks.x Show tick marks along the X axis (default: TRUE)
+#' @param ticks.y Show tick marks along th Y axis (default: TRUE)
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
@@ -16,7 +18,8 @@
 #' 
 #' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_simple()
 #' p
-theme_bdc_simple <- function (base_size=12, base_family="", grid.x=FALSE, grid.y=FALSE)
+theme_bdc_simple <- function (base_size=12, base_family="", grid.x=FALSE,
+                              grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
 {
     theme(complete=TRUE,
           line = element_line(colour="black", size=0.5, linetype=1,
@@ -52,7 +55,8 @@ theme_bdc_simple <- function (base_size=12, base_family="", grid.x=FALSE, grid.y
           axis.text.y = element_text(),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle=90), 
-          axis.ticks = element_line(size=0.5), 
+          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.5, 0)), 
+          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.5, 0)), 
           axis.ticks.length = unit(0.15, "cm"),
           axis.ticks.margin = unit(0.1, "cm"),
           
@@ -70,62 +74,5 @@ theme_bdc_simple <- function (base_size=12, base_family="", grid.x=FALSE, grid.y
           legend.direction = "horizontal",
           legend.justification = "center",
           legend.box = "horizontal"     
-    )
-}
-
-theme_bdc_simpleOLD <- function (base_size=12, base_family="", grid.x=FALSE, grid.y=FALSE)
-{
-    theme(complete=TRUE,
-          line = element_line(colour="black", size=0.5, linetype=1,
-                              lineend="square"),
-          rect = element_rect(fill="white", colour="black", size=0.5,
-                              linetype=1),
-          text = element_text(family=base_family, face="plain", colour="black",
-                              size=base_size, hjust=0.5, vjust=0.5, angle=0,
-                              lineheight=0.9),
-          title = element_text(family=base_family, face="bold", colour="black",
-                               vjust=0.0, hjust=0.5, angle=0),
-          
-          plot.background = element_rect(fill="transparent", colour=NA),
-          plot.title = element_text(size=rel(1.2), vjust=0.8),
-          plot.margin = unit(c(1, 1, 1, 1), "lines"),
-          
-          panel.background = element_rect(fill="white", colour=NA),
-          panel.border = element_rect(fill="transparent", colour=NA),
-          panel.grid.major = element_line(color=NA, size=0.1),
-          panel.grid.major.x = element_line(color=ifelse(grid.x, "grey90", NA)),
-          panel.grid.major.y = element_line(color=ifelse(grid.y, "grey90", NA)),
-          panel.grid.minor = element_line(color=NA), 
-          panel.margin = unit(0.5, "lines"),
-          
-          strip.background = element_rect(fill="grey80", colour=NA),
-          strip.text = element_text(size=rel(0.8)),
-          strip.text.x = element_text(),
-          strip.text.y = element_text(angle=-90),
-          
-          axis.text = element_text(size=rel(0.8)),
-          axis.line = element_line(),
-          axis.text.x = element_text(), 
-          axis.text.y = element_text(),
-          axis.title.x = element_text(),
-          axis.title.y = element_text(angle=90), 
-          axis.ticks = element_line(size=0.5), 
-          axis.ticks.length = unit(0.15, "cm"),
-          axis.ticks.margin = unit(0.1, "cm"),
-          
-          legend.background = element_rect(fill="transparent", colour=NA), 
-          legend.margin = unit(0, "cm"),
-          legend.key = element_rect(fill="transparent", color=NA),
-          legend.key.size = unit(1, "lines"), 
-          legend.key.height = unit(1, "lines"),
-          legend.key.width = unit(1, "lines"),
-          legend.text = element_text(size=rel(0.8)),
-          legend.text.align = 0.5,
-          legend.title = element_text(),
-          legend.title.align = 0,
-          legend.position = "right",
-          legend.direction = "vertical",
-          legend.justification = "center",
-          legend.box = "vertical"     
     )
 }
