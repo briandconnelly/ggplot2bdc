@@ -22,10 +22,11 @@ install the latest and greatest version. To do so:
 # Examples
 
 To gain access to the following themes, etc. provided, first load the
-`gplot2bdc` package
+`gplot2bdc` package. We'll also load `ggplot`.
 
 ```{r}
 library(ggplot2bdc)
+library(ggplot2)
 ```
 
 ## theme_bdc_simplefacets
@@ -69,12 +70,24 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
 ```
 
+Some people prefer to display categorical data without tick marks along the
+axis. These are included by default, but can be removed by setting either the
+`ticks.x` or `ticks.y` parameters to `FALSE`.
+
+```{r theme_bdc_grey ticks,warning=FALSE}
+ggplot(msleep, aes(x=vore, y=sleep_total)) +
+    geom_point(shape=1, alpha=0.2) +
+    stat_summary(fun.data='mean_cl_boot') +
+    theme_bdc_grey(ticks.x=FALSE)
+```
+
 ## theme_bdc_black
 
 `theme_bdc_black` is a clean theme that uses thin black panels on a white
 background. Legends are placed above. Facet labels are displayed as black text
 on a grey background. Subtle grid lines can be added to the panels with the
-`grid.x` and `grid.y` parameters.
+`grid.x` and `grid.y` parameters, and tick markscan be managed with `ticks.x`
+and `ticks.y`.
 
 ```{r theme_bdc_black,warning=FALSE}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
@@ -106,7 +119,7 @@ represent 96-well microtiter plates.
 
 ```{r loadplatemap,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
 library(dplyr)
-platemap <- read.csv("~/Dropbox/Research/Documents/Blog Post-Analyzing Bacterial Growth/data/platemap.csv")
+platemap <- read.csv("~/Dropbox/Research/Documents/Blog/Blog Post-Analyzing Bacterial Growth/data/platemap.csv")
 platemap <- mutate(platemap, Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)), Column=as.numeric(substr(Well,2,5)))
 platemap$Environment <- as.factor(platemap$Environment)
 ```
