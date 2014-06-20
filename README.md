@@ -40,7 +40,7 @@ as black text. Subtle grid lines can be added to the panels with the
         theme_bdc_simplefacets(grid.y=TRUE, grid.x=FALSE)
 
 ![plot of chunk
-theme\_bdc\_simplefacets](./README_files/figure-markdown_strict/theme_bdc_simplefacets.png)
+theme\_bdc\_simplefacets](figure/theme_bdc_simplefacets.png)
 
 theme\_bdc\_grey
 ----------------
@@ -56,7 +56,7 @@ black text on a grey background.
         theme_bdc_grey()
 
 ![plot of chunk
-theme\_bdc\_grey](./README_files/figure-markdown_strict/theme_bdc_grey.png)
+theme\_bdc\_grey](figure/theme_bdc_grey.png)
 
 Subtle grid lines can be added to the panels with the `grid.x` and
 `grid.y` parameters:
@@ -68,7 +68,7 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
 
 ![plot of chunk theme\_bdc\_grey
-grid](./README_files/figure-markdown_strict/theme_bdc_grey%20grid.png)
+grid](figure/theme_bdc_grey%20grid.png)
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -80,7 +80,7 @@ either the `ticks.x` or `ticks.y` parameters to `FALSE`.
         theme_bdc_grey(ticks.x=FALSE)
 
 ![plot of chunk theme\_bdc\_grey
-ticks](./README_files/figure-markdown_strict/theme_bdc_grey%20ticks.png)
+ticks](figure/theme_bdc_grey%20ticks.png)
 
 theme\_bdc\_black
 -----------------
@@ -98,7 +98,7 @@ be managed with `ticks.x` and `ticks.y`.
         theme_bdc_black(grid.y=TRUE, grid.x=FALSE)
 
 ![plot of chunk
-theme\_bdc\_black](./README_files/figure-markdown_strict/theme_bdc_black.png)
+theme\_bdc\_black](figure/theme_bdc_black.png)
 
 theme\_bdc\_simple
 ------------------
@@ -114,7 +114,7 @@ single-panel plots.
         theme_bdc_simple()
 
 ![plot of chunk
-theme\_bdc\_simple](./README_files/figure-markdown_strict/theme_bdc_simple.png)
+theme\_bdc\_simple](figure/theme_bdc_simple.png)
 
 theme\_bdc\_microtiter
 ----------------------
@@ -132,7 +132,7 @@ figures that represent 96-well microtiter plates.
         theme_bdc_microtiter()
 
 ![plot of chunk
-theme\_bdc\_microtiter](./README_files/figure-markdown_strict/theme_bdc_microtiter.png)
+theme\_bdc\_microtiter](figure/theme_bdc_microtiter.png)
 
 For more information, see the "Plotting Plate Maps" vignette (coming
 soon)
@@ -159,7 +159,7 @@ Degrees](http://eagereyes.org/basics/banking-45-degrees).
                      orientation='horizontal')
 
 ![plot of chunk
-coord\_golden](./README_files/figure-markdown_strict/coord_golden.png)
+coord\_golden](figure/coord_golden.png)
 
 coord\_square
 -------------
@@ -178,4 +178,4 @@ coord\_square
         coord_square(xvals=pg_movies$budget/10^6, yvals=movies$rating)
 
 ![plot of chunk
-coord\_square](./README_files/figure-markdown_strict/coord_square.png)
+coord\_square](figure/coord_square.png)
