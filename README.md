@@ -67,8 +67,8 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
 
-![plot of chunk theme\_bdc\_grey
-grid](figure/theme_bdc_grey%20grid.png)
+![plot of chunk
+theme\_bdc\_grey\_grid](figure/theme_bdc_grey_grid.png)
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -79,8 +79,8 @@ either the `ticks.x` or `ticks.y` parameters to `FALSE`.
         stat_summary(fun.data='mean_cl_boot') +
         theme_bdc_grey(ticks.x=FALSE)
 
-![plot of chunk theme\_bdc\_grey
-ticks](figure/theme_bdc_grey%20ticks.png)
+![plot of chunk
+theme\_bdc\_grey\_ticks](figure/theme_bdc_grey_ticks.png)
 
 theme\_bdc\_black
 -----------------

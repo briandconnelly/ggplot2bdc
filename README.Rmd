@@ -62,7 +62,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters:
 
-```{r theme_bdc_grey grid,warning=FALSE}
+```{r theme_bdc_grey_grid,warning=FALSE}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -74,7 +74,7 @@ Some people prefer to display categorical data without tick marks along the
 axis. These are included by default, but can be removed by setting either the
 `ticks.x` or `ticks.y` parameters to `FALSE`.
 
-```{r theme_bdc_grey ticks,warning=FALSE}
+```{r theme_bdc_grey_ticks,warning=FALSE}
 ggplot(msleep, aes(x=vore, y=sleep_total)) +
     geom_point(shape=1, alpha=0.2) +
     stat_summary(fun.data='mean_cl_boot') +
