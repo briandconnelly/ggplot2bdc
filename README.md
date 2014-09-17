@@ -169,13 +169,9 @@ rescale\_golden
 object so that follow the golden ratio (horizontally). If no plot is
 provided, the last plot that was displayed is used.
 
-    library(dplyr)
-
-    pg_movies <- filter(movies, mpaa=='PG')
-
-    ggplot(pg_movies, aes(x=year, y=budget/10^6, color=rating)) +
-        geom_point() +
-        labs(x='Year', y='Budget ($ Millions)', title='PG-13 Movie Budgets') +
+    ggplot(mtcars, aes(x=hp, y=mpg)) +
+        geom_point(shape=1) +
+        labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
         theme_bdc_grey()
 
 ![plot of chunk rescale\_golden](figure/rescale_golden.png)
