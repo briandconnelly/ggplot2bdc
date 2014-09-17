@@ -17,7 +17,7 @@ theme_bdc_microtiter <- function (base_size=14, base_family="")
     theme(complete=TRUE,
           line = element_line(colour="grey70", size=0.5, linetype=1,
                               lineend="square"),
-          rect = element_rect(fill="white", colour="grey70", size=0.5,
+          rect = element_rect(fill="white", colour="grey70", size=0.5, 
                               linetype=1),
           text = element_text(family=base_family, face="plain", colour="black",
                               size=base_size, hjust=0.5, vjust=0.5, angle=0,
@@ -62,8 +62,8 @@ theme_bdc_microtiter <- function (base_size=14, base_family="")
           legend.position = "bottom",
           legend.direction = "vertical",
           legend.justification = "center",
-          legend.box = "horizontal"     
-    )
+          legend.box = "horizontal"
+          )
 }
 
 #' Label ggplot2 facets with row letters and column numbers

@@ -22,18 +22,20 @@
 #' 
 #' 
 theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
-                            grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
+                                    grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
 {
     theme(complete=TRUE,
           line = element_line(colour="black", size=0.5, linetype=1,
                               lineend="square"),
           rect = element_rect(fill="white", colour="black", size=0.5,
                               linetype=1),
-          text = element_text(family=base_family, face="plain", colour="black",
-                              size=base_size, hjust=0.5, vjust=0.5, angle=0,
+          text = element_text(family=base_family, face="plain",
+                              colour="black", size=base_size,
+                              hjust=0.5, vjust=0.5, angle=0,
                               lineheight=0.9),
-          title = element_text(family=base_family, face="bold", colour="black",
-                               vjust=0.0, hjust=0.5, angle=0),
+          title = element_text(family=base_family, face="bold",
+                               colour="black", vjust=0.0, hjust=0.5,
+                               angle=0),
           
           plot.background = element_rect(fill="transparent", colour=NA),
           plot.title = element_text(size=rel(1.2), vjust=0.8),
@@ -47,7 +49,8 @@ theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
           panel.grid.minor = element_line(color=NA), 
           panel.margin = unit(0.5, "lines"),
           
-          strip.background = element_rect(fill="transparent", colour=NA),
+          strip.background = element_rect(fill="transparent",
+                                          colour=NA),
           strip.text = element_text(size=rel(0.8)),
           strip.text.x = element_text(),
           strip.text.y = element_text(angle=-90),
@@ -76,6 +79,6 @@ theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
           legend.position = "top",
           legend.direction = "horizontal",
           legend.justification = "center",
-          legend.box = "horizontal"     
-    )
+          legend.box = "horizontal"
+          )
 }

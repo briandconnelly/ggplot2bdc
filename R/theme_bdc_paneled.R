@@ -28,12 +28,12 @@ theme_bdc_paneled <- function (base_size=12, base_family="", grid.x=FALSE,
                             grid.y=TRUE, ticks.x=TRUE, ticks.y=TRUE)
 {
     theme(complete=TRUE,
-          line = element_line(colour="grey80", size=0.5, linetype=1,
+          line = element_line(colour="grey80", size=0.5, linetype=1, 
                               lineend="square"),
           rect = element_rect(fill="white", colour="grey80", size=0.5,
                               linetype=1),
           text = element_text(family=base_family, face="plain", colour="black",
-                              size=base_size, hjust=0.5, vjust=0.5, angle=0,
+                              size=base_size,  hjust=0.5, vjust=0.5, angle=0,
                               lineheight=0.9),
           title = element_text(family=base_family, face="bold", colour="black",
                                vjust=0.0, hjust=0.5, angle=0),
@@ -61,8 +61,10 @@ theme_bdc_paneled <- function (base_size=12, base_family="", grid.x=FALSE,
           axis.text.y = element_text(hjust=1),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle=90, vjust=1), 
-          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.1, 0), colour="grey80"), 
-          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.1, 0), colour="grey80"), 
+          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.1, 0),
+                                      colour="grey80"), 
+          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.1, 0),
+                                      colour="grey80"), 
           axis.ticks.length = unit(0.1, "cm"),
           axis.ticks.margin = unit(0.1, "cm"),
           
@@ -79,6 +81,6 @@ theme_bdc_paneled <- function (base_size=12, base_family="", grid.x=FALSE,
           legend.position = "top",
           legend.direction = "horizontal",
           legend.justification = "center",
-          legend.box = "horizontal"     
-    )
+          legend.box = "horizontal"
+          )
 }

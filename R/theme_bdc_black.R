@@ -26,11 +26,13 @@ theme_bdc_black <- function (base_size=12, base_family="", grid.x=FALSE,
 {
     theme_bdc_grey(base_size=base_size, base_family=base_family, grid.x=grid.x,
                    grid.y=grid.y, ticks.x=ticks.x, ticks.y=ticks.y) + 
-        theme(line = element_line(colour="black", size=0.5, linetype=1,
-                                  lineend="square"),
-              rect = element_rect(fill="white", colour="black", size=0.5,
-                                  linetype=1),
-              panel.grid.major.x = element_line(color=ifelse(grid.x, "grey70", NA)),
-              panel.grid.major.y = element_line(color=ifelse(grid.y, "grey70", NA))
+        theme(line=element_line(colour="black", size=0.5, 
+                                                  linetype=1, lineend="square"), 
+                       rect=element_rect(fill="white", colour="black",
+                                                  size=0.5, linetype=1),
+                       panel.grid.major.x=element_line(color=ifelse(grid.x,
+                                                                    "grey70", NA)),
+                       panel.grid.major.y=element_line(color=ifelse(grid.y,
+                                                                    "grey70", NA))
               )
 }

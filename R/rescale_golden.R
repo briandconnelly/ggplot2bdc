@@ -10,6 +10,7 @@
 #' p <- ggplot(mtcars, aes(x=cyl, y=mpg)) +
 #'     geom_point(shape=1)
 #' rescale_golden()
+
 rescale_golden <- function(plot=last_plot())
 {
     gr <- (1 + sqrt(5))/2
