@@ -4,6 +4,10 @@ author: Brian Connelly
 output: md_document
 ---
 
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.path='figure/', warning=FALSE, message=FALSE, error=FALSE)
+```
+
 # ggplot2bdc
 
 ggplot2bdc is a collection of themes and other things that can be used when
@@ -37,7 +41,7 @@ background. Legends are placed above. Facet labels are displayed as black text.
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters.
 
-```{r theme_bdc_simplefacets,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_simplefacets}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -52,7 +56,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 background. Legends are placed above. Facet labels are displayed as black text
 on a grey background.
 
-```{r theme_bdc_grey,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_grey}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -63,7 +67,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters:
 
-```{r theme_bdc_grey_grid,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_grey_grid}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -75,7 +79,7 @@ Some people prefer to display categorical data without tick marks along the
 axis. These are included by default, but can be removed by setting either the
 `ticks.x` or `ticks.y` parameters to `FALSE`.
 
-```{r theme_bdc_grey_ticks,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_grey_ticks}
 ggplot(msleep, aes(x=vore, y=sleep_total)) +
     geom_point(shape=1, alpha=0.2) +
     stat_summary(fun.data='mean_cl_boot') +
@@ -90,7 +94,7 @@ on a grey background. Subtle grid lines can be added to the panels with the
 `grid.x` and `grid.y` parameters, and tick markscan be managed with `ticks.x`
 and `ticks.y`.
 
-```{r theme_bdc_black,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_black}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -108,7 +112,7 @@ parameters, and tick markscan be managed with `ticks.x` and `ticks.y`. By
 default, grid lines are used along the Y axis. This theme is best suited for
 plots with multiple facets.
 
-```{r theme_bdc_paneled,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_paneled}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -119,7 +123,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 To more clearly distinguish the individual panels, thick lines can be added on
 the far right of each panel. For example:
 
-```{r theme_bdc_paneled2,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_paneled2}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -134,7 +138,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 lines on a white background. This theme is probably best suited to single-panel
 plots.
 
-```{r theme_bdc_simple,warning=FALSE,fig.path='figure/'}
+```{r theme_bdc_simple}
 ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
     geom_point() +
     labs(x='Year', y='Length (Minutes)', title='Movie Lengths Against Time') +
@@ -147,14 +151,14 @@ ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
 `theme_bdc_microtiter` is a specialized theme for use in creating figures that
 represent 96-well microtiter plates.
 
-```{r loadplatemap,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.path='figure/'}
+```{r loadplatemap,echo=FALSE}
 library(dplyr)
 platemap <- read.csv("~/Dropbox/Research/Documents/Blog/Blog Post-Analyzing Bacterial Growth/data/platemap.csv")
 platemap <- mutate(platemap, Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)), Column=as.numeric(substr(Well,2,5)))
 platemap$Environment <- as.factor(platemap$Environment)
 ```
 
-```{r theme_bdc_microtiter,fig.path='figure/'}
+```{r theme_bdc_microtiter}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
     geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
     geom_point(aes(shape=Environment, colour=Strain), size=10) +
@@ -173,7 +177,7 @@ For more information, see the "Plotting Plate Maps" vignette (coming soon)
 so that follow the golden ratio (horizontally). If no plot is provided, the last
 plot that was displayed is used.
 
-```{r rescale_golden,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+```{r rescale_golden}
 ggplot(mtcars, aes(x=hp, y=mpg)) +
     geom_smooth() +
     geom_point(shape=1) +
@@ -181,7 +185,7 @@ ggplot(mtcars, aes(x=hp, y=mpg)) +
     theme_bdc_grey()
 ```
 
-```{r rescale_golden2,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+```{r rescale_golden2}
 rescale_golden()
 ```
 
@@ -192,7 +196,7 @@ rescale_golden()
 so that they are equal. If no plot is provided, the last plot that was displayed
 is used.
 
-```{r rescale_square,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+```{r rescale_square}
 library(dplyr)
 
 pg_movies <- filter(movies, mpaa=='PG')
@@ -204,7 +208,7 @@ ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
     theme_bdc_grey()
 ```
 
-```{r rescale_square2,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+```{r rescale_square2}
 rescale_square()
 ```
 
@@ -217,7 +221,7 @@ using the `orientation` argument. For an introduction to how aspect ratio
 affects perception, see
 [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
 
-```{r coord_golden,warning=FALSE,fig.path='figure/'}
+```{r coord_golden}
 library(dplyr)
 
 pg_movies <- filter(movies, mpaa=='PG')
@@ -234,7 +238,7 @@ ggplot(pg_movies, aes(x=year, y=budget/10^6, color=rating)) +
 
 `coord_square` sets the aspect ratio of the axes according to a square.
 
-```{r coord_square,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+```{r coord_square}
 library(dplyr)
 
 pg_movies <- filter(movies, mpaa=='PG')
@@ -251,4 +255,16 @@ ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
 ## ggsave_golden
 
 `ggsave_golden` saves the given plot to the given filename. If no plot is
-specified, the most recently displayed plot is used.
+specified, the most recently displayed plot is used. The proportions of the
+plot's axes should first be set to the golden ratio using `rescale_golden` or
+`coord_golden`.
+
+```{r ggsave_golden}
+ggplot(mtcars, aes(x=hp, y=mpg)) +
+    geom_smooth() +
+    geom_point(shape=1) +
+    labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
+    theme_bdc_grey()
+rescale_golden()
+ggsave_golden('mpg against horsepower.pdf')
+```

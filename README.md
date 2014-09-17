@@ -249,4 +249,20 @@ ggsave\_golden
 --------------
 
 `ggsave_golden` saves the given plot to the given filename. If no plot
-is specified, the most recently displayed plot is used.
+is specified, the most recently displayed plot is used. The proportions
+of the plot's axes should first be set to the golden ratio using
+`rescale_golden` or `coord_golden`.
+
+    ggplot(mtcars, aes(x=hp, y=mpg)) +
+        geom_smooth() +
+        geom_point(shape=1) +
+        labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
+        theme_bdc_grey()
+
+![plot of chunk ggsave\_golden](figure/ggsave_golden1.png)
+
+    rescale_golden()
+
+![plot of chunk ggsave\_golden](figure/ggsave_golden2.png)
+
+    ggsave_golden('mpg against horsepower.pdf')
