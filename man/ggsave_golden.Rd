@@ -3,10 +3,12 @@
 \alias{ggsave_golden}
 \title{Save a plot with proportions equal to the golden ratio}
 \usage{
-ggsave_golden(filename, ...)
+ggsave_golden(filename, plot = last_plot(), ...)
 }
 \arguments{
 \item{filename}{The name of the file to be written to}
+
+\item{plot}{The plot object to save. Defaults to last plot displayed.}
 
 \item{...}{Additional parameters to be passed to \code{\link{ggsave}}}
 

@@ -43,7 +43,7 @@ theme_bdc_microtiter <- function (base_size=14, base_family="")
           axis.text = element_text(face="bold"),
           axis.line = element_blank(),
           axis.text.x = element_text(), 
-          axis.text.y = element_text(),
+          axis.text.y = element_text(hjust=1),
           axis.title = element_blank(),
           axis.ticks = element_blank(), 
           axis.ticks.length = unit(0, "cm"),

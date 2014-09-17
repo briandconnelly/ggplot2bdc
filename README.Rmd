@@ -99,6 +99,35 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 ```
 
 
+## theme_bdc_paneled
+
+`theme_bdc_paneled` is a clean theme that displays plots without borders on grey
+panels. Legends are placed above. Facet labels are displayed as plan black text.
+Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
+parameters, and tick markscan be managed with `ticks.x` and `ticks.y`. By
+default, grid lines are used along the Y axis. This theme is best suited for
+plots with multiple facets.
+
+```{r theme_bdc_paneled,warning=FALSE,fig.path='figure/'}
+ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
+    geom_point() +
+    facet_grid(mpaa ~ .) +
+    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
+    theme_bdc_paneled()
+```
+
+To more clearly distinguish the individual panels, thick lines can be added on
+the far right of each panel. For example:
+
+```{r theme_bdc_paneled2,warning=FALSE,fig.path='figure/'}
+ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
+    geom_point() +
+    facet_grid(mpaa ~ .) +
+    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
+    geom_vline(aes(xintercept=Inf), color='grey40', size=3) +
+    theme_bdc_paneled()
+```
+
 ## theme_bdc_simple
 
 `theme_bdc_simple` is a classic theme that displays plot axes as solid black
