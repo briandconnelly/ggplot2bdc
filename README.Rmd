@@ -175,6 +175,7 @@ plot that was displayed is used.
 
 ```{r rescale_golden,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
 ggplot(mtcars, aes(x=hp, y=mpg)) +
+    geom_smooth() +
     geom_point(shape=1) +
     labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
     theme_bdc_grey()

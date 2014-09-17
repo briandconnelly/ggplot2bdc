@@ -170,6 +170,7 @@ object so that follow the golden ratio (horizontally). If no plot is
 provided, the last plot that was displayed is used.
 
     ggplot(mtcars, aes(x=hp, y=mpg)) +
+        geom_smooth() +
         geom_point(shape=1) +
         labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
         theme_bdc_grey()
