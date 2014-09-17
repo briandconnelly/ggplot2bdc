@@ -55,8 +55,7 @@ black text on a grey background.
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_grey()
 
-![plot of chunk
-theme\_bdc\_grey](figure/theme_bdc_grey.png)
+![plot of chunk theme\_bdc\_grey](figure/theme_bdc_grey.png)
 
 Subtle grid lines can be added to the panels with the `grid.x` and
 `grid.y` parameters:
@@ -67,8 +66,7 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
 
-![plot of chunk
-theme\_bdc\_grey\_grid](figure/theme_bdc_grey_grid.png)
+![plot of chunk theme\_bdc\_grey\_grid](figure/theme_bdc_grey_grid.png)
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -97,8 +95,7 @@ be managed with `ticks.x` and `ticks.y`.
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_black(grid.y=TRUE, grid.x=FALSE)
 
-![plot of chunk
-theme\_bdc\_black](figure/theme_bdc_black.png)
+![plot of chunk theme\_bdc\_black](figure/theme_bdc_black.png)
 
 theme\_bdc\_simple
 ------------------
@@ -113,8 +110,7 @@ single-panel plots.
         scale_y_log10() +
         theme_bdc_simple()
 
-![plot of chunk
-theme\_bdc\_simple](figure/theme_bdc_simple.png)
+![plot of chunk theme\_bdc\_simple](figure/theme_bdc_simple.png)
 
 theme\_bdc\_microtiter
 ----------------------
@@ -131,11 +127,55 @@ figures that represent 96-well microtiter plates.
         labs(title="Plate Layout for My Experiment") +
         theme_bdc_microtiter()
 
-![plot of chunk
-theme\_bdc\_microtiter](figure/theme_bdc_microtiter.png)
+![plot of chunk theme\_bdc\_microtiter](figure/theme_bdc_microtiter.png)
 
 For more information, see the "Plotting Plate Maps" vignette (coming
 soon)
+
+rescale\_golden
+---------------
+
+`rescale_golden` adjusts the proportions of the axes of the given plot
+object so that follow the golden ratio (horizontally). If no plot is
+provided, the last plot that was displayed is used.
+
+    library(dplyr)
+
+    pg_movies <- filter(movies, mpaa=='PG')
+
+    ggplot(pg_movies, aes(x=year, y=budget/10^6, color=rating)) +
+        geom_point() +
+        labs(x='Year', y='Budget ($ Millions)', title='PG-13 Movie Budgets') +
+        theme_bdc_grey()
+
+![plot of chunk rescale\_golden](figure/rescale_golden.png)
+
+    rescale_golden()
+
+![plot of chunk rescale\_golden2](figure/rescale_golden2.png)
+
+rescale\_square
+---------------
+
+`rescale_square` adjusts the proportions of the axes of the given plot
+object so that they are equal. If no plot is provided, the last plot
+that was displayed is used.
+
+    library(dplyr)
+
+    pg_movies <- filter(movies, mpaa=='PG')
+
+    ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
+        geom_smooth() +
+        geom_point(shape=1) +
+        labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
+        theme_bdc_grey()
+
+![plot of chunk rescale\_square](figure/rescale_square.png)
+
+    rescale_square()
+
+![plot of chunk rescale\_square2](figure/rescale_square2.png)
 
 coord\_golden
 -------------
@@ -158,8 +198,7 @@ Degrees](http://eagereyes.org/basics/banking-45-degrees).
         coord_golden(xvals=pg_movies$year, yvals=pg_movies$budget/10^6,
                      orientation='horizontal')
 
-![plot of chunk
-coord\_golden](figure/coord_golden.png)
+![plot of chunk coord\_golden](figure/coord_golden.png)
 
 coord\_square
 -------------
@@ -177,5 +216,10 @@ coord\_square
         theme_bdc_grey() +
         coord_square(xvals=pg_movies$budget/10^6, yvals=movies$rating)
 
-![plot of chunk
-coord\_square](figure/coord_square.png)
+![plot of chunk coord\_square](figure/coord_square.png)
+
+ggsave\_golden
+--------------
+
+`ggsave_golden` saves the given plot to the given filename. If no plot
+is specified, the most recently displayed plot is used.

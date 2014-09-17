@@ -1,6 +1,7 @@
 ---
 title: ggplot2bdc README
 author: Brian Connelly
+output: md_document
 ---
 
 # ggplot2bdc
@@ -36,7 +37,7 @@ background. Legends are placed above. Facet labels are displayed as black text.
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters.
 
-```{r theme_bdc_simplefacets,warning=FALSE}
+```{r theme_bdc_simplefacets,warning=FALSE,fig.path='figure/'}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -51,7 +52,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 background. Legends are placed above. Facet labels are displayed as black text
 on a grey background.
 
-```{r theme_bdc_grey,warning=FALSE}
+```{r theme_bdc_grey,warning=FALSE,fig.path='figure/'}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -62,7 +63,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
 parameters:
 
-```{r theme_bdc_grey_grid,warning=FALSE}
+```{r theme_bdc_grey_grid,warning=FALSE,fig.path='figure/'}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -74,7 +75,7 @@ Some people prefer to display categorical data without tick marks along the
 axis. These are included by default, but can be removed by setting either the
 `ticks.x` or `ticks.y` parameters to `FALSE`.
 
-```{r theme_bdc_grey_ticks,warning=FALSE}
+```{r theme_bdc_grey_ticks,warning=FALSE,fig.path='figure/'}
 ggplot(msleep, aes(x=vore, y=sleep_total)) +
     geom_point(shape=1, alpha=0.2) +
     stat_summary(fun.data='mean_cl_boot') +
@@ -89,7 +90,7 @@ on a grey background. Subtle grid lines can be added to the panels with the
 `grid.x` and `grid.y` parameters, and tick markscan be managed with `ticks.x`
 and `ticks.y`.
 
-```{r theme_bdc_black,warning=FALSE}
+```{r theme_bdc_black,warning=FALSE,fig.path='figure/'}
 ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     geom_point() +
     facet_grid(mpaa ~ .) +
@@ -104,7 +105,7 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
 lines on a white background. This theme is probably best suited to single-panel
 plots.
 
-```{r theme_bdc_simple,warning=FALSE}
+```{r theme_bdc_simple,warning=FALSE,fig.path='figure/'}
 ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
     geom_point() +
     labs(x='Year', y='Length (Minutes)', title='Movie Lengths Against Time') +
@@ -117,14 +118,14 @@ ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
 `theme_bdc_microtiter` is a specialized theme for use in creating figures that
 represent 96-well microtiter plates.
 
-```{r loadplatemap,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
+```{r loadplatemap,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.path='figure/'}
 library(dplyr)
 platemap <- read.csv("~/Dropbox/Research/Documents/Blog/Blog Post-Analyzing Bacterial Growth/data/platemap.csv")
 platemap <- mutate(platemap, Row=as.numeric(match(toupper(substr(Well,1,1)), LETTERS)), Column=as.numeric(substr(Well,2,5)))
 platemap$Environment <- as.factor(platemap$Environment)
 ```
 
-```{r theme_bdc_microtiter}
+```{r theme_bdc_microtiter,fig.path='figure/'}
 ggplot(data=platemap, aes(x=Column, y=Row)) +
     geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
     geom_point(aes(shape=Environment, colour=Strain), size=10) +
@@ -137,6 +138,51 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
 
 For more information, see the "Plotting Plate Maps" vignette (coming soon)
 
+## rescale_golden
+
+`rescale_golden` adjusts the proportions of the axes of the given plot object
+so that follow the golden ratio (horizontally). If no plot is provided, the last
+plot that was displayed is used.
+
+```{r rescale_golden,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+library(dplyr)
+
+pg_movies <- filter(movies, mpaa=='PG')
+
+ggplot(pg_movies, aes(x=year, y=budget/10^6, color=rating)) +
+    geom_point() +
+    labs(x='Year', y='Budget ($ Millions)', title='PG-13 Movie Budgets') +
+    theme_bdc_grey()
+```
+
+```{r rescale_golden2,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+rescale_golden()
+```
+
+
+## rescale_square
+
+`rescale_square` adjusts the proportions of the axes of the given plot object
+so that they are equal. If no plot is provided, the last plot that was displayed
+is used.
+
+```{r rescale_square,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+library(dplyr)
+
+pg_movies <- filter(movies, mpaa=='PG')
+
+ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
+    geom_smooth() +
+    geom_point(shape=1) +
+    labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
+    theme_bdc_grey()
+```
+
+```{r rescale_square2,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
+rescale_square()
+```
+
+
 ## coord_golden
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
@@ -145,7 +191,7 @@ using the `orientation` argument. For an introduction to how aspect ratio
 affects perception, see
 [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
 
-```{r coord_golden,warning=FALSE}
+```{r coord_golden,warning=FALSE,fig.path='figure/'}
 library(dplyr)
 
 pg_movies <- filter(movies, mpaa=='PG')
@@ -162,7 +208,7 @@ ggplot(pg_movies, aes(x=year, y=budget/10^6, color=rating)) +
 
 `coord_square` sets the aspect ratio of the axes according to a square.
 
-```{r coord_square,warning=FALSE,message=FALSE,error=FALSE}
+```{r coord_square,warning=FALSE,message=FALSE,error=FALSE,fig.path='figure/'}
 library(dplyr)
 
 pg_movies <- filter(movies, mpaa=='PG')
@@ -174,3 +220,9 @@ ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
     theme_bdc_grey() +
     coord_square(xvals=pg_movies$budget/10^6, yvals=movies$rating)
 ```
+
+
+## ggsave_golden
+
+`ggsave_golden` saves the given plot to the given filename. If no plot is
+specified, the most recently displayed plot is used.
