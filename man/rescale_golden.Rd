@@ -6,7 +6,7 @@
 rescale_golden(plot = last_plot())
 }
 \arguments{
-\item{plot}{A ggplot2 plot object. By defauly, the last plot displayed is
+\item{plot}{A ggplot2 plot object. By default, the last plot displayed is
 used.}
 }
 \description{

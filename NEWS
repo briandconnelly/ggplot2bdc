@@ -2,4 +2,5 @@
 
 * Added rescale_plot function, which re-scales a plot to a given ratio
 * rescale_golden and rescale_square now call rescale_plot
+* Created NEWS file
 
