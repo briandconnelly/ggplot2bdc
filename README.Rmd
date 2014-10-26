@@ -229,7 +229,7 @@ ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
     geom_point(shape=1) +
     labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
     theme_bdc_grey()
-rescale_plot(ratio=1)
+rescale_plot(ratio=16/9)
 ```
 
 ## coord_golden

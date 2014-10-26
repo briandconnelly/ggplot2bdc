@@ -221,7 +221,7 @@ was displayed is used.
 
 ![](figure/rescale_plot-1.png)
 
-    rescale_plot(ratio=1)
+    rescale_plot(ratio=16/9)
 
 ![](figure/rescale_plot-2.png)
 
