@@ -39,8 +39,7 @@ as black text. Subtle grid lines can be added to the panels with the
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_simplefacets(grid.y=TRUE, grid.x=FALSE)
 
-![plot of chunk
-theme\_bdc\_simplefacets](figure/theme_bdc_simplefacets.png)
+![](figure/theme_bdc_simplefacets-1.png)
 
 theme\_bdc\_grey
 ----------------
@@ -55,7 +54,7 @@ black text on a grey background.
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_grey()
 
-![plot of chunk theme\_bdc\_grey](figure/theme_bdc_grey.png)
+![](figure/theme_bdc_grey-1.png)
 
 Subtle grid lines can be added to the panels with the `grid.x` and
 `grid.y` parameters:
@@ -66,7 +65,7 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
 
-![plot of chunk theme\_bdc\_grey\_grid](figure/theme_bdc_grey_grid.png)
+![](figure/theme_bdc_grey_grid-1.png)
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -77,8 +76,7 @@ either the `ticks.x` or `ticks.y` parameters to `FALSE`.
         stat_summary(fun.data='mean_cl_boot') +
         theme_bdc_grey(ticks.x=FALSE)
 
-![plot of chunk
-theme\_bdc\_grey\_ticks](figure/theme_bdc_grey_ticks.png)
+![](figure/theme_bdc_grey_ticks-1.png)
 
 theme\_bdc\_black
 -----------------
@@ -95,7 +93,7 @@ be managed with `ticks.x` and `ticks.y`.
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_black(grid.y=TRUE, grid.x=FALSE)
 
-![plot of chunk theme\_bdc\_black](figure/theme_bdc_black.png)
+![](figure/theme_bdc_black-1.png)
 
 theme\_bdc\_paneled
 -------------------
@@ -113,7 +111,7 @@ axis. This theme is best suited for plots with multiple facets.
         labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
         theme_bdc_paneled()
 
-![plot of chunk theme\_bdc\_paneled](figure/theme_bdc_paneled.png)
+![](figure/theme_bdc_paneled-1.png)
 
 To more clearly distinguish the individual panels, thick lines can be
 added on the far right of each panel. For example:
@@ -125,7 +123,7 @@ added on the far right of each panel. For example:
         geom_vline(aes(xintercept=Inf), color='grey40', size=3) +
         theme_bdc_paneled()
 
-![plot of chunk theme\_bdc\_paneled2](figure/theme_bdc_paneled2.png)
+![](figure/theme_bdc_paneled2-1.png)
 
 theme\_bdc\_simple
 ------------------
@@ -140,7 +138,7 @@ single-panel plots.
         scale_y_log10() +
         theme_bdc_simple()
 
-![plot of chunk theme\_bdc\_simple](figure/theme_bdc_simple.png)
+![](figure/theme_bdc_simple-1.png)
 
 theme\_bdc\_microtiter
 ----------------------
@@ -157,7 +155,7 @@ figures that represent 96-well microtiter plates.
         labs(title="Plate Layout for My Experiment") +
         theme_bdc_microtiter()
 
-![plot of chunk theme\_bdc\_microtiter](figure/theme_bdc_microtiter.png)
+![](figure/theme_bdc_microtiter-1.png)
 
 For more information, see the "Plotting Plate Maps" vignette (coming
 soon)
@@ -175,11 +173,11 @@ provided, the last plot that was displayed is used.
         labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
         theme_bdc_grey()
 
-![plot of chunk rescale\_golden](figure/rescale_golden.png)
+![](figure/rescale_golden-1.png)
 
     rescale_golden()
 
-![plot of chunk rescale\_golden2](figure/rescale_golden2.png)
+![](figure/rescale_golden2-1.png)
 
 rescale\_square
 ---------------
@@ -198,11 +196,34 @@ that was displayed is used.
         labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
         theme_bdc_grey()
 
-![plot of chunk rescale\_square](figure/rescale_square.png)
+![](figure/rescale_square-1.png)
 
     rescale_square()
 
-![plot of chunk rescale\_square2](figure/rescale_square2.png)
+![](figure/rescale_square2-1.png)
+
+rescale\_plot
+-------------
+
+`rescale_plot` adjusts the proportions of the axes of the given plot
+object to the given ratio. If no plot is provided, the last plot that
+was displayed is used.
+
+    library(dplyr)
+
+    pg_movies <- filter(movies, mpaa=='PG')
+
+    ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
+        geom_smooth() +
+        geom_point(shape=1) +
+        labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
+        theme_bdc_grey()
+
+![](figure/rescale_plot-1.png)
+
+    rescale_plot(ratio=1)
+
+![](figure/rescale_plot-2.png)
 
 coord\_golden
 -------------
@@ -225,7 +246,7 @@ Degrees](http://eagereyes.org/basics/banking-45-degrees).
         coord_golden(xvals=pg_movies$year, yvals=pg_movies$budget/10^6,
                      orientation='horizontal')
 
-![plot of chunk coord\_golden](figure/coord_golden.png)
+![](figure/coord_golden-1.png)
 
 coord\_square
 -------------
@@ -243,7 +264,7 @@ coord\_square
         theme_bdc_grey() +
         coord_square(xvals=pg_movies$budget/10^6, yvals=movies$rating)
 
-![plot of chunk coord\_square](figure/coord_square.png)
+![](figure/coord_square-1.png)
 
 ggsave\_golden
 --------------
@@ -259,10 +280,10 @@ of the plot's axes should first be set to the golden ratio using
         labs(x='Horsepower', y='Fuel Efficiency (mpg)') +
         theme_bdc_grey()
 
-![plot of chunk ggsave\_golden](figure/ggsave_golden1.png)
+![](figure/ggsave_golden-1.png)
 
     rescale_golden()
 
-![plot of chunk ggsave\_golden](figure/ggsave_golden2.png)
+![](figure/ggsave_golden-2.png)
 
     ggsave_golden('mpg against horsepower.pdf')

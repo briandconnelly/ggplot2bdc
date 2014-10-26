@@ -213,6 +213,25 @@ rescale_square()
 ```
 
 
+## rescale_plot
+
+`rescale_plot` adjusts the proportions of the axes of the given plot object to
+the given ratio. If no plot is provided, the last plot that was displayed is
+used.
+
+```{r rescale_plot}
+library(dplyr)
+
+pg_movies <- filter(movies, mpaa=='PG')
+
+ggplot(pg_movies, aes(x=budget/10^6, y=rating)) +
+    geom_smooth() +
+    geom_point(shape=1) +
+    labs(x='Budget ($ Millions)', y='Rating', title='Does Budget Affect Movie Ratings?') +
+    theme_bdc_grey()
+rescale_plot(ratio=1)
+```
+
 ## coord_golden
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
