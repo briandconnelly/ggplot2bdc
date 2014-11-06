@@ -18,8 +18,10 @@
 rescale_plot <- function(plot=last_plot(), ratio)
 {
     built <- ggplot_build(plot)
-    xvals <- unique(unlist(lapply(built$data, function(l) l$x)))
-    yvals <- unique(unlist(lapply(built$data, function(l) l$y)))
+
+    # This assumes that all of the panels have the same axis ranges
+    xrange <- unique(unlist(lapply(built$panel$ranges, function(i) i$x.range)))
+    yrange <- unique(unlist(lapply(built$panel$ranges, function(i) i$y.range)))
     
-    return(plot + coord_fixed(ratio=span(xvals)/span(yvals)/ratio))  
+    return(plot + coord_fixed(ratio=span(xrange)/span(yrange)/ratio))  
 }
