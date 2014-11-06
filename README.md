@@ -13,8 +13,7 @@ use
 to install the latest and greatest version. To do so:
 
     if(!require('devtools')) install.packages('devtools')
-    library(devtools)
-    install_github('briandconnelly/ggplot2bdc')
+    devtools::install_github('briandconnelly/ggplot2bdc')
 
 Examples
 ========
