@@ -169,7 +169,23 @@ ggplot(data=platemap, aes(x=Column, y=Row)) +
     theme_bdc_microtiter()
 ```
 
-For more information, see the "Plotting Plate Maps" vignette (coming soon)
+For more information, see the [Plotting Microtiter Plate Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
+
+## theme_bdc_lattice_population
+
+`theme_bdc_lattice_population` is a specialized theme intended to display
+populations of individuals structured spatially in a lattice.
+
+```{r theme_bdc_lattice_population}
+popdata <- read.csv('sample_population_data.csv')
+head(popdata)
+
+ggplot(popdata, aes(x=Column, y=Row, color=Genotype)) +
+        geom_point(shape=15) +
+        coord_equal(ratio=1) +
+        scale_color_hue(guide=FALSE) +
+        theme_bdc_lattice_population()
+```
 
 ## rescale_golden
 

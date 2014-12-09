@@ -13,7 +13,8 @@ use
 to install the latest and greatest version. To do so:
 
     if(!require('devtools')) install.packages('devtools')
-    devtools::install_github('briandconnelly/ggplot2bdc')
+    library(devtools)
+    install_github('briandconnelly/ggplot2bdc')
 
 Examples
 ========
@@ -156,8 +157,33 @@ figures that represent 96-well microtiter plates.
 
 ![](figure/theme_bdc_microtiter-1.png)
 
-For more information, see the "Plotting Plate Maps" vignette (coming
-soon)
+For more information, see the [Plotting Microtiter Plate
+Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
+
+theme\_bdc\_lattice\_population
+-------------------------------
+
+`theme_bdc_lattice_population` is a specialized theme intended to
+display populations of individuals structured spatially in a lattice.
+
+    popdata <- read.csv('sample_population_data.csv')
+    head(popdata)
+
+    ##   X    Time Row Column Genotype
+    ## 1 1 1350000   1      1    empty
+    ## 2 2 1350000   1      2     abCD
+    ## 3 3 1350000   1      3    empty
+    ## 4 4 1350000   1      4     abCD
+    ## 5 5 1350000   1      5     abCD
+    ## 6 6 1350000   1      6     abCD
+
+    ggplot(popdata, aes(x=Column, y=Row, color=Genotype)) +
+            geom_point(shape=15) +
+            coord_equal(ratio=1) +
+            scale_color_hue(guide=FALSE) +
+            theme_bdc_lattice_population()
+
+![](figure/theme_bdc_lattice_population-1.png)
 
 rescale\_golden
 ---------------
