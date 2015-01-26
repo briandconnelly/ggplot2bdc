@@ -20,3 +20,5 @@ Imports:
     ggplot2
 Suggests:
     knitr
+Enhances:
+    ggplot2
