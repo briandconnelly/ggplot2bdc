@@ -37,7 +37,7 @@ theme_bdc_simplefacets <- function(base_size = 12, base_family = "",
                    ticks.x = ticks.x, ticks.y = ticks.y,
                    pmargin = pmargin) %+replace%
         theme(
-            strip.background = element_rect(fill = "transparent", colour = NA),
+            strip.background = element_rect(fill = "transparent", color = NA),
             strip.text = element_text(
                 color = "grey50",
                 size = rel(0.8)

@@ -14,7 +14,6 @@
 #'          coord_square(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' p
 
-coord_square <- function (xvals, yvals)
-{
+coord_square <- function (xvals, yvals) {
     coord_fixed(ratio = ratio_square(xvals = xvals, yvals = yvals))
 }

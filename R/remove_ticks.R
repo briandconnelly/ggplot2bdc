@@ -64,4 +64,6 @@ theme_no_ticks_y <- function() theme(axis.ticks.y = element_blank())
 #' axis tick marks being displayed.
 #' @importFrom ggplot2 theme
 #' @importFrom grid unit
-theme_no_ticks <- function() theme_no_ticks_x() + theme_no_ticks_y() + theme(axis.ticks.margin = unit(0.0, 'cm'))
+theme_no_ticks <- function() {
+    theme_no_ticks_x() + theme_no_ticks_y() + theme(axis.ticks.margin = unit(0.0, "cm"))
+}

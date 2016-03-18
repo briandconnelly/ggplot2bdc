@@ -42,17 +42,17 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
         medgrey <- "grey50"
 
         theme(
-            line = element_line(colour = base_grey, size = line_size,
+            line = element_line(color = base_grey, size = line_size,
                                 linetype = 1, lineend = "square"),
-            rect = element_rect(fill = "white", colour = base_grey,
+            rect = element_rect(fill = "white", color = base_grey,
                                 size = line_size, linetype = 1),
             text = element_text(family = base_family, face = "plain",
-                                colour = "black", size = base_size,
+                                color = "black", size = base_size,
                                 lineheight = 0.9, hjust = 0.5, vjust = 0.5,
                                 angle = 0, margin = margin(), debug = FALSE),
 
             axis.line = element_blank(),
-            axis.text = element_text(size = rel(0.8), colour = medgrey),
+            axis.text = element_text(size = rel(0.8), color = medgrey),
             axis.text.x = element_text(
                 margin = margin(t = 0.8 * quarter_line),
                 vjust = 1
@@ -77,9 +77,9 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
                 margin = margin(r = 0.8 * half_line, l = 0.8 * quarter_line)
             ),
 
-            legend.background = element_rect(fill = "transparent", colour = NA),
+            legend.background = element_rect(fill = "transparent", color = NA),
             legend.margin = unit(0, units = "cm"),
-            legend.key = element_rect(fill = "transparent", colour = NA),
+            legend.key = element_rect(fill = "transparent", color = NA),
             legend.key.size = unit(0.5, units = "lines"),
             legend.key.height = unit(0.5, units = "lines"),
             legend.key.width = unit(1.0, units = "lines"),
@@ -94,21 +94,21 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             legend.justification = "left",
             legend.box = "vertical",
 
-            panel.background = element_rect(fill = "white", colour = base_grey),
+            panel.background = element_rect(fill = "white", color = base_grey),
             panel.border = element_blank(),
-            panel.grid.major = element_line(colour = NA, size = line_size / 5),
+            panel.grid.major = element_line(color = NA, size = line_size / 5),
             panel.grid.major.x = element_line(
-                colour = ifelse(grid.x, base_grey, NA)
+                color = ifelse(grid.x, base_grey, NA)
             ),
             panel.grid.major.y = element_line(
-                colour = ifelse(grid.y, base_grey, NA)
+                color = ifelse(grid.y, base_grey, NA)
             ),
-            panel.grid.minor = element_line(colour = NA, size = line_size / 10),
+            panel.grid.minor = element_line(color = NA, size = line_size / 10),
             panel.grid.minor.x = element_line(
-                colour = ifelse(gridmin.x, base_grey, NA)
+                color = ifelse(gridmin.x, base_grey, NA)
             ),
             panel.grid.minor.y = element_line(
-                colour = ifelse(gridmin.y, base_grey, NA)
+                color = ifelse(gridmin.y, base_grey, NA)
             ),
             panel.margin = unit(quarter_line, units = "pt"),
             panel.margin.x = NULL,
@@ -116,7 +116,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             panel.ontop = FALSE,
 
             strip.background = element_rect(fill = base_grey,
-                                            colour = base_grey),
+                                            color = base_grey),
             strip.text = element_text(size = rel(0.8)),
             strip.text.x = element_text(
                 margin = margin(t = quarter_line, b = quarter_line)
@@ -128,7 +128,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             strip.switch.pad.grid = unit(0.1, units = "cm"),
             strip.switch.pad.wrap = unit(0.1, units = "cm"),
 
-            plot.background = element_rect(colour = "transparent"),
+            plot.background = element_rect(color = "transparent"),
             plot.title = element_text(
                 size = rel(1.2),
                 face = "bold",

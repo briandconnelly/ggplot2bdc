@@ -17,8 +17,7 @@
 #'          coord_golden(xvals = mtcars$hp, yvals = mtcars$mpg)
 #' p 
 
-coord_golden <- function (xvals, yvals, orientation = "horizontal")
-{
+coord_golden <- function (xvals, yvals, orientation = "horizontal") {
     coord_fixed(ratio = ratio_golden(xvals = xvals, yvals = yvals,
                                      orientation = orientation))
 }

@@ -15,20 +15,16 @@
 #' ratio <- ratio_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' 
 
-ratio_golden <- function (xvals, yvals, orientation = "horizontal")
-{
-    gr <- (1+sqrt(5))/2
+ratio_golden <- function (xvals, yvals, orientation = "horizontal") {
+    gr <- (1 + sqrt(5)) / 2
     
-    if(orientation=="horizontal")
-    {
+    if(orientation=="horizontal") {
         return(span(xvals)/span(yvals)/gr)
     }
-    else if(orientation=="vertical")
-    {
+    else if(orientation=="vertical") {
         return(span(yvals)/span(xvals)/gr)
     }
-    else
-    {
+    else {
         stop("Orientation must be either 'horizontal' or 'vertical'")
     }
 }

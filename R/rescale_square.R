@@ -11,7 +11,6 @@
 #'     geom_point(shape = 1)
 #' rescale_square()
 
-rescale_square <- function(plot = last_plot())
-{
-    rescale_plot(plot = plot, ratio = 1) 
+rescale_square <- function(plot = last_plot()) {
+    rescale_plot(plot = plot, ratio = 1)
 }

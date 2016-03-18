@@ -11,7 +11,7 @@
 #' @param ... Additional parameters to be passed to \code{\link{ggsave}}
 #' @importFrom ggplot2 ggsave
 
-ggsave_golden <- function(filename, plot=last_plot(), ...) 
-{
-    ggsave(filename=filename, plot=plot, width=8, height=8/1.61803398875, ...)
+ggsave_golden <- function(filename, plot=last_plot(), ...) {
+    ggsave(filename = filename, plot = plot, width = 8,
+           height = 8/1.61803398875, ...)
 }

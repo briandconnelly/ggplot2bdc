@@ -41,20 +41,20 @@ theme_bdc_paneled <- function(base_size = 12, base_family = "",
                    ticks.x = ticks.x, ticks.y = ticks.y,
                    pmargin = pmargin) %+replace%
         theme(
-            line = element_line(colour = line_color, size = line_size / 4,
+            line = element_line(color = line_color, size = line_size / 4,
                                 linetype = 1, lineend = "square"),
-            rect = element_rect(fill = "white", colour = line_color,
+            rect = element_rect(fill = "white", color = line_color,
                                 size = line_size, linetype = 1),
             panel.background = element_rect(fill = panel_color, color = NA),
             axis.ticks.x = element_line(
-                colour = ifelse(ticks.x, "grey75", NA),
+                color = ifelse(ticks.x, "grey75", NA),
                 size = ifelse(ticks.x, line_size / 4, 0)
             ),
             axis.ticks.y = element_line(
-                colour = ifelse(ticks.y, "grey75", NA),
+                color = ifelse(ticks.y, "grey75", NA),
                 size = ifelse(ticks.y, line_size / 4, 0)
             ),
             strip.background = element_rect(fill = line_color,
-                                            colour = line_color)
+                                            color = line_color)
         )
 }

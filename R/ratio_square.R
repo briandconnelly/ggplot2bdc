@@ -15,7 +15,6 @@
 #' ratio <- ratio_square(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' 
 
-ratio_square <- function (xvals, yvals)
-{
+ratio_square <- function (xvals, yvals) {
     span(xvals) / span(yvals)
 }
