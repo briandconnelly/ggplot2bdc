@@ -23,6 +23,9 @@ total size of the Y axis.}
 \item{orient}{Whether the golden ratio should be horizontal
 (\code{h}; default) or vertical (\code{v})}
 }
+\value{
+A modified ggplot2 plot
+}
 \description{
 \code{gg_rescale} rescales the given ggplot2 so that the axes follow the
 given ratio (horizontally). If a plot is not specified, the last plot

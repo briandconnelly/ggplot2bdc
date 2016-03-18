@@ -10,6 +10,7 @@
 #' @param ratio The aspect ratio to use for the axes. This is independent of
 #' units used in the plot, so the size of the X axis will be ratio times the
 #' total size of the Y axis.
+#' @return A modified ggplot2 plot
 #' @examples
 #' p <- ggplot(mtcars, aes(x = cyl, y = mpg)) +
 #'     geom_point(shape = 1)

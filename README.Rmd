@@ -13,6 +13,23 @@ knitr::opts_chunk$set(fig.path="figure/", warning=FALSE, message=FALSE,
 
 ggplot2bdc is a collection of themes and other things that can be used when creating plots with [ggplot2](http://ggplot2.org/).
 
+- Themes
+    - `theme_bdc_grey`
+    - `theme_bdc_paneled`
+    - `theme_bdc_microtiter`
+    - `theme_bdc_lattice_population`
+- Modifying Plots
+    - Rescaling
+        - `gg_rescale`
+        - `gg_rescale_golden`
+        - `gg_rescale_square`
+    - Removing Plot Elements
+        - `gg_remove_titles`, `gg_remove_title`, `gg_remove_subtitle`, `gg_remove_caption`, `gg_remove_title.x`, `gg_remove_title.y`
+        - `gg_remove_ticks`, `gg_remove_ticks_x`, `gg_remove_ticks_y`
+- Misc
+    - `ggsave_golden`
+    - `span`
+
 
 ## Installation
 

@@ -16,6 +16,10 @@
     * Works properly with ggplot2
     * Added support for subtitle and caption
 * Added `rockpaperscissors` data set, a spatial simulation of rock, paper, scissors
+* Added `gg_remove_ticks` functions
+    * Removed `remove_ticks`
+* Added `gg_remove_titles` functions
+    * Removed `remove_titles`
 * Simplified `span` implementation
     * Added unit tests for span
 * Renamed `rescale_plot`, `rescale_golden`, and `rescale_square` as `gg_rescale`, `gg_rescale_golden`, and `gg_rescale_square`, respectively
