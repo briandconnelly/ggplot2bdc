@@ -27,19 +27,22 @@ for these examples.
     library(dplyr)
     library(magrittr)
 
-### theme\_bdc\_grey
+### Themes
+
+#### theme\_bdc\_grey
 
 `theme_bdc_grey` is a clean theme that uses thin grey panels on a white
 background. Legends are placed above. Facet labels are displayed as
 black text on a grey background.
 
-    ggplot(data = economics, aes(x = date, y = unemploy)) +
+    pUnemploy <- ggplot(data = economics, aes(x = date, y = unemploy)) +
         geom_line() +
         scale_x_date() +
         labs(x = "Year", y = "Thousands of Persons",
              title = "Monthly Unemployment", subtitle = "Seasonally Adjusted",
              caption = "Source: Federal Reserve Bank of St. Louis") +
         theme_bdc_grey()
+    pUnemploy
 
 ![](figure/theme_bdc_grey-1.png)
 
@@ -102,12 +105,12 @@ We can also use facets to divide the data by state:
 
 ![](figure/theme_bdc_grey-facets2-1.png)
 
-### theme\_bdc\_paneled
+#### theme\_bdc\_paneled
 
 `theme_bdc_paneled` is a clean theme that displays plots without borders
 on grey panels. Legends are placed above. Facet labels are displayed as
 plan black text. Subtle grid lines can be added to the panels with the
-`grid.x` and `grid.y` parameters, and tick markscan be managed with
+`grid.x` and `grid.y` parameters, and tick marks can be managed with
 `ticks.x` and `ticks.y`. By default, grid lines are used along the Y
 axis. This theme is best suited for plots with multiple facets.
 
@@ -115,7 +118,7 @@ axis. This theme is best suited for plots with multiple facets.
 
 ![](figure/theme_bdc_paneled-1.png)
 
-### theme\_bdc\_microtiter
+#### theme\_bdc\_microtiter
 
 `theme_bdc_microtiter` is a specialized theme for use in creating
 figures that represent 96-well microtiter plates.
@@ -135,7 +138,7 @@ figures that represent 96-well microtiter plates.
 For more information, see the [Plotting Microtiter Plate
 Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
 
-### theme\_bdc\_lattice\_population
+#### theme\_bdc\_lattice\_population
 
 `theme_bdc_lattice_population` is a specialized theme intended to
 display populations of individuals structured spatially in a lattice.
@@ -182,11 +185,13 @@ GIF showing the population for the first 10 time steps.
 
 ![](figure/lattice-anim.gif)
 
-### rescale\_golden
+### Modifying Plots
 
-`rescale_golden` adjusts the proportions of the axes of the given plot
-object so that follow the golden ratio (horizontally). If no plot is
-provided, the last plot that was displayed is used.
+#### gg\_rescale\_golden
+
+`gg_rescale_golden` adjusts the proportions of the axes of the given
+plot object so that follow the golden ratio (horizontally). If no plot
+is provided, the last plot that was displayed is used.
 
     ggplot(mtcars, aes(x = hp, y = mpg)) +
         geom_smooth() +
@@ -194,32 +199,32 @@ provided, the last plot that was displayed is used.
         labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
         theme_bdc_grey()
 
-![](figure/rescale_golden-1.png)
+![](figure/gg_rescale_golden-1.png)
 
-    rescale_golden()
+    gg_rescale_golden()
 
-![](figure/rescale_golden2-1.png)
+![](figure/gg_rescale_golden2-1.png)
 
-### rescale\_square
+#### gg\_rescale\_square
 
-`rescale_square` adjusts the proportions of the axes of the given plot
-object so that they are equal. If no plot is provided, the last plot
-that was displayed is used.
+`gg_rescale_square` adjusts the proportions of the axes of the given
+plot object so that they are equal. If no plot is provided, the last
+plot that was displayed is used.
 
     ggplot(data = economics, aes(x = date, y = unemploy)) +
         geom_line() +
         labs(x = "Date", y = "Thousands of Unemployed Persons") +
         theme_bdc_grey()
 
-![](figure/rescale_square-1.png)
+![](figure/gg_rescale_square-1.png)
 
-    rescale_square()
+    gg_rescale_square()
 
-![](figure/rescale_square2-1.png)
+![](figure/gg_rescale_square2-1.png)
 
-### rescale\_plot
+#### gg\_rescale
 
-`rescale_plot` adjusts the proportions of the axes of the given plot
+`gg_rescale` adjusts the proportions of the axes of the given plot
 object to the given ratio. If no plot is provided, the last plot that
 was displayed is used.
 
@@ -228,57 +233,18 @@ was displayed is used.
         labs(x = "Date", y = "Unemployed Persons (x1000)") +
         theme_bdc_grey()
 
-![](figure/rescale_plot-1.png)
+![](figure/gg_rescale-1.png)
 
-    rescale_plot(ratio = 16 / 9)
+    gg_rescale(ratio = 16 / 9)
 
-![](figure/rescale_plot-2.png)
+![](figure/gg_rescale-2.png)
 
-### coord\_golden
+#### ggsave\_golden
 
-`coord_golden` sets the aspect ratio of the axes according to the golden
-ratio. Whether the panel follows the golden ratio horizontally or
-vertically can be set using the `orientation` argument. For an
-introduction to how aspect ratio affects perception, see [Aspect Ratio
-and Banking to 45
-Degrees](http://eagereyes.org/basics/banking-45-degrees).
+`ggsave_golden` saves the given plot to the given filename. The
+dimensions of the resulting image file's canvas will follow the golden
+ratio, which is useful in conjunction with `gg_rescale_golden`. If no
+plot is specified, the most recently displayed plot is used.
 
-    # TODO: update this
-    pg_movies <- filter(movies, mpaa == "PG")
-
-    ggplot(pg_movies, aes(x=year, y=budget / 10^6, color = rating)) +
-        geom_point() +
-        labs(x="Year", y="Budget ($ Millions)", title="PG-13 Movie Budgets") +
-        theme_bdc_grey() +
-        coord_golden(xvals=pg_movies$year, yvals=pg_movies$budget / 10^6,
-                     orientation="horizontal")
-
-### coord\_square
-
-`coord_square` sets the aspect ratio of the axes according to a square.
-
-    # TODO update this
-    pg_movies <- filter(movies, mpaa == "PG")
-
-    ggplot(pg_movies, aes(x = budget / 10^6, y = rating)) +
-        geom_smooth() +
-        geom_point(shape = 1) +
-        labs(x="Budget ($ Millions)", y="Rating",
-             title="Does Budget Affect Movie Ratings?") +
-        theme_bdc_grey() +
-        coord_square(xvals = pg_movies$budget / 10^6, yvals = movies$rating)
-
-### ggsave\_golden
-
-`ggsave_golden` saves the given plot to the given filename. If no plot
-is specified, the most recently displayed plot is used. The proportions
-of the plot's axes should first be set to the golden ratio using
-`rescale_golden` or `coord_golden`.
-
-    p <- ggplot(mtcars, aes(x = hp, y = mpg)) +
-        geom_smooth() +
-        geom_point(shape = 1) +
-        labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
-        theme_bdc_grey()
-    p <- rescale_golden(plot = p)
-    ggsave_golden(filename = "mpg_against_horsepower.pdf", plot = p)
+    # Save our plot of unemployment from earlier
+    ggsave_golden(filename = "monthly_unemployment.pdf", plot = pUnemploy)

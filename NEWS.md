@@ -16,12 +16,14 @@
     * Works properly with ggplot2
     * Added support for subtitle and caption
 * Added `rockpaperscissors` data set, a spatial simulation of rock, paper, scissors
+* Simplified `span` implementation
+    * Added unit tests for span
+* Renamed `rescale_plot`, `rescale_golden`, and `rescale_square` as `gg_rescale`, `gg_rescale_golden`, and `gg_rescale_square`, respectively
+    * All now share the same man page
 * Removed `theme_bdc_black`
 * Removed `theme_bdc_simple`
 * Removed `theme_bdc_simplefacets`
-* Simplified `span` implementation
-    * Added unit tests for span
-* TODO: remove movies data set from README examples
+* Removed `coord_golden`, `coord_square`, `ratio_golden`, and `ratio_square`
 * TODO: add data sets for microtiter? - use data set from growth post?
 
 # ggplot2bdc 0.1.7

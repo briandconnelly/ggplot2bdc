@@ -18,7 +18,7 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0)
 Imports:
-    ggplot2,
+    ggplot2 (>= 2.1.0),
     grid
 Suggests:
     knitr,
