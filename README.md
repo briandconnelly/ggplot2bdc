@@ -129,7 +129,7 @@ figures that represent 96-well microtiter plates.
     ggplot(data = platemap, aes(x = Column, y = Row)) +
         geom_point(data = expand.grid(Column = seq(1,12), Row = seq(1,8)),
                    color = "grey90", fill = "white", shape = 21, size = 8) +
-        geom_point(aes(shape = Environment, colour = Strain), size = 10) +
+        geom_point(aes(shape = Environment, colour = Strain), size = 9) +
         coord_fixed(ratio = (13/12)/(9/8), xlim = c(0.5, 12.5), ylim = c(0.6, 8.4)) +
         scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
         scale_x_continuous(breaks = seq(1,12)) +
