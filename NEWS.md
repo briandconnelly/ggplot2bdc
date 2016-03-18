@@ -3,6 +3,7 @@
 * Updated `theme_bdc_grey`
     * Works properly with ggplot2
     * Added support for subtitle and caption
+    * Merged in facet strip formatting from `theme_bdc_simplefacets`
 * Updated `theme_bdc_microtiter`
     * Works properly with ggplot2
     * Added support for subtitle and caption
@@ -11,15 +12,13 @@
     * Added support for subtitle and caption
     * Added gganimate example
     * Now based on `ggplot2::theme_void`
-* Updated `theme_bdc_simplefacets`
-    * Works properly with ggplot2
-    * Added support for subtitle and caption
 * Updated `theme_bdc_paneled`
     * Works properly with ggplot2
     * Added support for subtitle and caption
 * Added `rockpaperscissors` data set, a spatial simulation of rock, paper, scissors
 * Removed `theme_bdc_black`
 * Removed `theme_bdc_simple`
+* Removed `theme_bdc_simplefacets`
 * Simplified `span` implementation
     * Added unit tests for span
 * TODO: remove movies data set from README examples

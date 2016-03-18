@@ -115,9 +115,12 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             panel.margin.y = NULL,
             panel.ontop = FALSE,
 
-            strip.background = element_rect(fill = base_grey,
-                                            color = base_grey),
-            strip.text = element_text(size = rel(0.8)),
+            strip.background = element_rect(fill = "transparent", color = NA),
+            strip.text = element_text(
+                color = "grey50",
+                size = rel(0.8),
+                face = "bold"
+            ),
             strip.text.x = element_text(
                 margin = margin(t = quarter_line, b = quarter_line)
             ),

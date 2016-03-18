@@ -56,8 +56,8 @@ ggplot(data = economics, aes(x = date, y = unemploy)) +
     theme_bdc_grey()
 ```
 
-Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
-parameters.
+Subtle grid lines can be added to the panels with the `grid.x` and `grid.y` parameters.
+These also affect minor grid lines, which can further be controlled with the `gridmin.x` and `gridmin.y` parameters.
 
 ```{r theme_bdc_grey_grid}
 midwest$inmetro <- factor(midwest$inmetro, levels = c(0, 1),
@@ -69,8 +69,9 @@ ggplot(data = midwest,
     stat_summary(fun.y = "mean", geom = "point") +
     scale_color_hue(name = "State") +
     scale_shape_discrete(name = "State") +
-    labs(x = NULL, y = "Percent of Population",
-         title = "Poverty in the Midwest") +
+    labs(x = NULL, y = "Percent",
+         title = "Poverty in the Midwest",
+         subtitle = "Poverty rates in rural and metro communities") +
     coord_equal(ratio = 0.5) +
     theme_bdc_grey(ticks.x = FALSE, grid.y = TRUE)
 ```
@@ -79,27 +80,39 @@ Some people prefer to display categorical data without tick marks along the
 axis. These are included by default, but can be removed by setting either the
 `ticks.x` or `ticks.y` parameters to `FALSE`.
 
+We can also use facets to divide the data by state:
 
-### theme_bdc_simplefacets
+```{r theme_bdc_grey-facets1}
+ggplot(data = midwest, aes(x = inmetro, y = percbelowpoverty)) +
+    facet_grid(. ~ state) +
+    stat_summary(fun.y = "mean", geom = "line", aes(group = state)) +
+    stat_summary(fun.y = "mean", geom = "point") +
+    scale_color_hue(name = "State") +
+    scale_shape_discrete(name = "State") +
+    labs(x = NULL, y = "Percent",
+         title = "Poverty in the Midwest",
+         subtitle = "Poverty rates in rural and metro communities") +
+    coord_equal(ratio = 0.5) +
+    theme_bdc_grey(grid.y = TRUE)
+```
 
-`theme_bdc_simplefacets` is a modification of `theme_bdc_grey` where facet
-labels are displayed as grey text on a white background.
 
-```{r theme_bdc_simplefacets}
+```{r theme_bdc_grey-facets2}
 txcities <- txhousing %>%
     filter(city %in% c("Austin", "Dallas", "El Paso", "Fort Worth", "Houston",
                        "San Antonio"))
 
-ggplot(data = txcities, aes(x = year, y = median / 1000)) +
+pTX <- ggplot(data = txcities, aes(x = year, y = median / 1000)) +
     facet_grid(city ~ .) +
     stat_summary(fun.data = "mean_cl_boot", geom = "ribbon",
                  color = NA, alpha = 0.3) +
     stat_summary(fun.y = "mean", geom = "line") +
     labs(x = "Year", y = "Thousands of Dollars",
-         title = "Home Prices on the Rise",
-         subtitle = "Median Home Prices in Texas' Six Largest Cities",
-         caption = "Source: TAMU Real Estate Center") +
-    theme_bdc_simplefacets()
+         title = "Home Prices are Getting Bigger in Texas",
+         subtitle = "Median Home Prices in Texas' Largest Cities",
+         caption = "Source: TAMU Real Estate Center")
+
+pTX + theme_bdc_grey()
 ```
 
 
@@ -113,36 +126,13 @@ default, grid lines are used along the Y axis. This theme is best suited for
 plots with multiple facets.
 
 ```{r theme_bdc_paneled}
-ggplot(data = txcities, aes(x = year, y = median / 1000)) +
-    facet_grid(city ~ .) +
-    stat_summary(fun.data = "mean_cl_boot", geom = "ribbon",
-                 color = NA, alpha = 0.3) +
-    stat_summary(fun.y = "mean", geom = "line") +
-    labs(x = "Year", y = "Thousands of Dollars",
-         title = "Home Prices are Getting Bigger in Texas",
-         subtitle = "Median Home Prices in Texas' Six Largest Cities") +
-    theme_bdc_paneled()
-```
-
-To more clearly distinguish the individual panels, thick lines can be added on
-the far right of each panel. For example:
-
-```{r theme_bdc_paneled2, eval=FALSE}
-# TODO: update me
-ggplot(movies, aes(x = year, y = budget / 1000000, color = rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x="Year", y="Budget ($ Millions)",
-         title="Hollywood Budgets Against Time") +
-    geom_vline(aes(xintercept = Inf), color = "grey40", size = 3) +
-    theme_bdc_paneled()
+pTX + theme_bdc_paneled()
 ```
 
 
 ### theme_bdc_microtiter
 
-`theme_bdc_microtiter` is a specialized theme for use in creating figures that
-represent 96-well microtiter plates.
+`theme_bdc_microtiter` is a specialized theme for use in creating figures that represent 96-well microtiter plates.
 
 ```{r loadplatemap,echo=FALSE}
 library(dplyr)
@@ -167,8 +157,7 @@ For more information, see the [Plotting Microtiter Plate Maps](http://bconnelly.
 
 ### theme_bdc_lattice_population
 
-`theme_bdc_lattice_population` is a specialized theme intended to display
-populations of individuals structured spatially in a lattice.
+`theme_bdc_lattice_population` is a specialized theme intended to display populations of individuals structured spatially in a lattice.
 
 ```{r theme_bdc_lattice_population}
 ggplot(data = filter(rockpaperscissors, Time == 10),
@@ -195,9 +184,8 @@ ggplot(data = filter(rockpaperscissors, Time %in% c(0, 200, 400, 600)),
 ```
 
 
-Alternatively, this is a great opportunity to create an animation. We can use
-[gganimate](https://github.com/dgrtwo/gganimate) to create an animated GIF
-showing the population for the first 10 time steps.
+This is also a great opportunity to create an animation.
+We can use [gganimate](https://github.com/dgrtwo/gganimate) to create an animated GIF showing the population for the first 10 time steps.
 
 
 ```{r lattice-animation, eval=FALSE}
@@ -212,10 +200,8 @@ p <- ggplot(data = filter(rockpaperscissors, Time < 10),
     theme_bdc_lattice_population()
 
 gg_animate(p = p, saver = "gif", interval = 0.2)
-
 ```
 
-![](figure/lattice-anim.gif)
 
 ```{r lattice-animation-save, echo=FALSE}
 library(gganimate)
@@ -230,12 +216,13 @@ p <- ggplot(data = filter(rockpaperscissors, Time < 10),
 gg_animate(p = p, filename = "figure/lattice-anim.gif", interval = 0.2)
 ```
 
+![](figure/lattice-anim.gif)
+
 
 ### rescale_golden
 
-`rescale_golden` adjusts the proportions of the axes of the given plot object
-so that follow the golden ratio (horizontally). If no plot is provided, the last
-plot that was displayed is used.
+`rescale_golden` adjusts the proportions of the axes of the given plot object so that follow the golden ratio (horizontally).
+If no plot is provided, the last plot that was displayed is used.
 
 ```{r rescale_golden}
 ggplot(mtcars, aes(x = hp, y = mpg)) +
@@ -252,9 +239,8 @@ rescale_golden()
 
 ### rescale_square
 
-`rescale_square` adjusts the proportions of the axes of the given plot object
-so that they are equal. If no plot is provided, the last plot that was displayed
-is used.
+`rescale_square` adjusts the proportions of the axes of the given plot object so that they are equal.
+If no plot is provided, the last plot that was displayed is used.
 
 ```{r rescale_square}
 ggplot(data = economics, aes(x = date, y = unemploy)) +
@@ -270,9 +256,8 @@ rescale_square()
 
 ### rescale_plot
 
-`rescale_plot` adjusts the proportions of the axes of the given plot object to
-the given ratio. If no plot is provided, the last plot that was displayed is
-used.
+`rescale_plot` adjusts the proportions of the axes of the given plot object to the given ratio.
+If no plot is provided, the last plot that was displayed is used.
 
 ```{r rescale_plot}
 ggplot(data = economics, aes(x = date, y = unemploy)) +
@@ -285,10 +270,8 @@ rescale_plot(ratio = 16 / 9)
 ### coord_golden
 
 `coord_golden` sets the aspect ratio of the axes according to the golden ratio.
-Whether the panel follows the golden ratio horizontally or vertically can be set
-using the `orientation` argument. For an introduction to how aspect ratio
-affects perception, see
-[Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
+Whether the panel follows the golden ratio horizontally or vertically can be set using the `orientation` argument.
+For an introduction to how aspect ratio affects perception, see [Aspect Ratio and Banking to 45 Degrees](http://eagereyes.org/basics/banking-45-degrees).
 
 ```{r coord_golden, eval=FALSE}
 # TODO: update this

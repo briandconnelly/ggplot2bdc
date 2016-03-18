@@ -44,7 +44,8 @@ black text on a grey background.
 ![](figure/theme_bdc_grey-1.png)
 
 Subtle grid lines can be added to the panels with the `grid.x` and
-`grid.y` parameters.
+`grid.y` parameters. These also affect minor grid lines, which can
+further be controlled with the `gridmin.x` and `gridmin.y` parameters.
 
     midwest$inmetro <- factor(midwest$inmetro, levels = c(0, 1),
                               labels = c("Rural", "Metro"))
@@ -55,8 +56,9 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         stat_summary(fun.y = "mean", geom = "point") +
         scale_color_hue(name = "State") +
         scale_shape_discrete(name = "State") +
-        labs(x = NULL, y = "Percent of Population",
-             title = "Poverty in the Midwest") +
+        labs(x = NULL, y = "Percent",
+             title = "Poverty in the Midwest",
+             subtitle = "Poverty rates in rural and metro communities") +
         coord_equal(ratio = 0.5) +
         theme_bdc_grey(ticks.x = FALSE, grid.y = TRUE)
 
@@ -66,27 +68,39 @@ Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
 either the `ticks.x` or `ticks.y` parameters to `FALSE`.
 
-### theme\_bdc\_simplefacets
+We can also use facets to divide the data by state:
 
-`theme_bdc_simplefacets` is a modification of `theme_bdc_grey` where
-facet labels are displayed as grey text on a white background.
+    ggplot(data = midwest, aes(x = inmetro, y = percbelowpoverty)) +
+        facet_grid(. ~ state) +
+        stat_summary(fun.y = "mean", geom = "line", aes(group = state)) +
+        stat_summary(fun.y = "mean", geom = "point") +
+        scale_color_hue(name = "State") +
+        scale_shape_discrete(name = "State") +
+        labs(x = NULL, y = "Percent",
+             title = "Poverty in the Midwest",
+             subtitle = "Poverty rates in rural and metro communities") +
+        coord_equal(ratio = 0.5) +
+        theme_bdc_grey(grid.y = TRUE)
+
+![](figure/theme_bdc_grey-facets1-1.png)
 
     txcities <- txhousing %>%
         filter(city %in% c("Austin", "Dallas", "El Paso", "Fort Worth", "Houston",
                            "San Antonio"))
 
-    ggplot(data = txcities, aes(x = year, y = median / 1000)) +
+    pTX <- ggplot(data = txcities, aes(x = year, y = median / 1000)) +
         facet_grid(city ~ .) +
         stat_summary(fun.data = "mean_cl_boot", geom = "ribbon",
                      color = NA, alpha = 0.3) +
         stat_summary(fun.y = "mean", geom = "line") +
         labs(x = "Year", y = "Thousands of Dollars",
-             title = "Home Prices on the Rise",
-             subtitle = "Median Home Prices in Texas' Six Largest Cities",
-             caption = "Source: TAMU Real Estate Center") +
-        theme_bdc_simplefacets()
+             title = "Home Prices are Getting Bigger in Texas",
+             subtitle = "Median Home Prices in Texas' Largest Cities",
+             caption = "Source: TAMU Real Estate Center")
 
-![](figure/theme_bdc_simplefacets-1.png)
+    pTX + theme_bdc_grey()
+
+![](figure/theme_bdc_grey-facets2-1.png)
 
 ### theme\_bdc\_paneled
 
@@ -97,29 +111,9 @@ plan black text. Subtle grid lines can be added to the panels with the
 `ticks.x` and `ticks.y`. By default, grid lines are used along the Y
 axis. This theme is best suited for plots with multiple facets.
 
-    ggplot(data = txcities, aes(x = year, y = median / 1000)) +
-        facet_grid(city ~ .) +
-        stat_summary(fun.data = "mean_cl_boot", geom = "ribbon",
-                     color = NA, alpha = 0.3) +
-        stat_summary(fun.y = "mean", geom = "line") +
-        labs(x = "Year", y = "Thousands of Dollars",
-             title = "Home Prices are Getting Bigger in Texas",
-             subtitle = "Median Home Prices in Texas' Six Largest Cities") +
-        theme_bdc_paneled()
+    pTX + theme_bdc_paneled()
 
 ![](figure/theme_bdc_paneled-1.png)
-
-To more clearly distinguish the individual panels, thick lines can be
-added on the far right of each panel. For example:
-
-    # TODO: update me
-    ggplot(movies, aes(x = year, y = budget / 1000000, color = rating)) +
-        geom_point() +
-        facet_grid(mpaa ~ .) +
-        labs(x="Year", y="Budget ($ Millions)",
-             title="Hollywood Budgets Against Time") +
-        geom_vline(aes(xintercept = Inf), color = "grey40", size = 3) +
-        theme_bdc_paneled()
 
 ### theme\_bdc\_microtiter
 
@@ -170,9 +164,9 @@ We can also show multiple population states:
 
 ![](figure/theme_bdc_lattice_population-facets-1.png)
 
-Alternatively, this is a great opportunity to create an animation. We
-can use [gganimate](https://github.com/dgrtwo/gganimate) to create an
-animated GIF showing the population for the first 10 time steps.
+This is also a great opportunity to create an animation. We can use
+[gganimate](https://github.com/dgrtwo/gganimate) to create an animated
+GIF showing the population for the first 10 time steps.
 
     library(gganimate)
 
