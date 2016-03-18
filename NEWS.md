@@ -21,13 +21,9 @@
 * Removed `theme_bdc_simple`
 * Simplified `span` implementation
     * Added unit tests for span
-
-
+* TODO: Updated data sets used in README
 * TODO: use ... for all arguments that get passed to _grey. Could also use inheritparams in the doc.
-* TODO: lint everything
-* TODO: added tests for span
 * TODO: add data sets for microtiter?
-* TODO: Update datasets used in README
 * TODO: gganimage example for rockpaperscissors
 
 # ggplot2bdc 0.1.7

@@ -33,8 +33,7 @@ for these examples.
 background. Legends are placed above. Facet labels are displayed as
 black text on a grey background.
 
-    ggplot(data = economics_long %>% filter(variable == "unemploy"),
-           aes(x = date, y = value)) +
+    ggplot(data = economics, aes(x = date, y = unemploy)) +
         geom_line() +
         scale_x_date() +
         labs(x = "Year", y = "Thousands of Persons",
@@ -42,7 +41,7 @@ black text on a grey background.
              caption = "Source: Federal Reserve Bank of St. Louis") +
         theme_bdc_grey()
 
-![](figure/theme_bdc_grey-1.png)<!-- -->
+![](figure/theme_bdc_grey-1.png)
 
 Subtle grid lines can be added to the panels with the `grid.x` and
 `grid.y` parameters.
@@ -61,7 +60,7 @@ Subtle grid lines can be added to the panels with the `grid.x` and
         coord_equal(ratio = 0.5) +
         theme_bdc_grey(ticks.x = FALSE, grid.y = TRUE)
 
-![](figure/theme_bdc_grey_grid-1.png)<!-- -->
+![](figure/theme_bdc_grey_grid-1.png)
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -87,7 +86,7 @@ facet labels are displayed as grey text on a white background.
              caption = "Source: TAMU Real Estate Center") +
         theme_bdc_simplefacets()
 
-![](figure/theme_bdc_simplefacets-1.png)<!-- -->
+![](figure/theme_bdc_simplefacets-1.png)
 
 ### theme\_bdc\_paneled
 
@@ -108,7 +107,7 @@ axis. This theme is best suited for plots with multiple facets.
              subtitle = "Median Home Prices in Texas' Six Largest Cities") +
         theme_bdc_paneled()
 
-![](figure/theme_bdc_paneled-1.png)<!-- -->
+![](figure/theme_bdc_paneled-1.png)
 
 To more clearly distinguish the individual panels, thick lines can be
 added on the far right of each panel. For example:
@@ -137,7 +136,7 @@ figures that represent 96-well microtiter plates.
         labs(title = "Plate Layout for My Experiment", subtitle = "25 March 2016") +
         theme_bdc_microtiter()
 
-![](figure/theme_bdc_microtiter-1.png)<!-- -->
+![](figure/theme_bdc_microtiter-1.png)
 
 For more information, see the [Plotting Microtiter Plate
 Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
@@ -147,14 +146,14 @@ Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
 `theme_bdc_lattice_population` is a specialized theme intended to
 display populations of individuals structured spatially in a lattice.
 
-    ggplot(data = filter(rockpaperscissors, Time == 10), aes(x = X, y = Y,
-                                                             color = Type)) +
+    ggplot(data = filter(rockpaperscissors, Time == 10),
+           aes(x = X, y = Y, color = Type)) +
             geom_point(shape=15) +
             coord_equal(ratio=1) +
             scale_color_hue() +
             theme_bdc_lattice_population()
 
-![](figure/theme_bdc_lattice_population-1.png)<!-- -->
+![](figure/theme_bdc_lattice_population-1.png)
 
 We can also show multiple population states:
 
@@ -169,7 +168,7 @@ We can also show multiple population states:
              caption = "Data from simulation on a 50x50 lattice") +
         theme_bdc_lattice_population()
 
-![](figure/theme_bdc_lattice_population-facets-1.png)<!-- -->
+![](figure/theme_bdc_lattice_population-facets-1.png)
 
 ### rescale\_golden
 
@@ -183,11 +182,11 @@ provided, the last plot that was displayed is used.
         labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
         theme_bdc_grey()
 
-![](figure/rescale_golden-1.png)<!-- -->
+![](figure/rescale_golden-1.png)
 
     rescale_golden()
 
-![](figure/rescale_golden2-1.png)<!-- -->
+![](figure/rescale_golden2-1.png)
 
 ### rescale\_square
 
@@ -200,11 +199,11 @@ that was displayed is used.
         labs(x = "Date", y = "Thousands of Unemployed Persons") +
         theme_bdc_grey()
 
-![](figure/rescale_square-1.png)<!-- -->
+![](figure/rescale_square-1.png)
 
     rescale_square()
 
-![](figure/rescale_square2-1.png)<!-- -->
+![](figure/rescale_square2-1.png)
 
 ### rescale\_plot
 
@@ -217,11 +216,11 @@ was displayed is used.
         labs(x = "Date", y = "Unemployed Persons (x1000)") +
         theme_bdc_grey()
 
-![](figure/rescale_plot-1.png)<!-- -->
+![](figure/rescale_plot-1.png)
 
     rescale_plot(ratio = 16 / 9)
 
-![](figure/rescale_plot-2.png)<!-- -->
+![](figure/rescale_plot-2.png)
 
 ### coord\_golden
 
@@ -264,16 +263,10 @@ is specified, the most recently displayed plot is used. The proportions
 of the plot's axes should first be set to the golden ratio using
 `rescale_golden` or `coord_golden`.
 
-    ggplot(mtcars, aes(x = hp, y = mpg)) +
+    p <- ggplot(mtcars, aes(x = hp, y = mpg)) +
         geom_smooth() +
         geom_point(shape = 1) +
         labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
         theme_bdc_grey()
-
-![](figure/ggsave_golden-1.png)<!-- -->
-
-    rescale_golden()
-
-![](figure/ggsave_golden-2.png)<!-- -->
-
-    ggsave_golden("mpg against horsepower.pdf")
+    p <- rescale_golden(plot = p)
+    ggsave_golden(filename = "mpg_against_horsepower.pdf", plot = p)
