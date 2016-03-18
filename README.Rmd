@@ -194,6 +194,43 @@ ggplot(data = filter(rockpaperscissors, Time %in% c(0, 200, 400, 600)),
     theme_bdc_lattice_population()
 ```
 
+
+Alternatively, this is a great opportunity to create an animation. We can use
+[gganimate](https://github.com/dgrtwo/gganimate) to create an animated GIF
+showing the population for the first 10 time steps.
+
+
+```{r lattice-animation, eval=FALSE}
+library(gganimate)
+
+p <- ggplot(data = filter(rockpaperscissors, Time < 10),
+       aes(x = X, y = Y, color = Type, frame = Time)) +
+    geom_point(shape = 15, size = 3) +
+    coord_equal(ratio = 1) +
+    scale_color_hue(guide = FALSE) +
+    labs(title = "Rock, Paper, Scissors at t=") +
+    theme_bdc_lattice_population()
+
+gg_animate(p = p, saver = "gif", interval = 0.2)
+
+```
+
+![](figure/lattice-anim.gif)
+
+```{r lattice-animation-save, echo=FALSE}
+library(gganimate)
+
+p <- ggplot(data = filter(rockpaperscissors, Time < 10),
+       aes(x = X, y = Y, color = Type, frame = Time)) +
+    geom_point(shape = 15, size = 3) +
+    coord_equal(ratio = 1) +
+    scale_color_hue(guide = FALSE) +
+    labs(title = "Rock, Paper, Scissors at t=") +
+    theme_bdc_lattice_population()
+gg_animate(p = p, filename = "figure/lattice-anim.gif", interval = 0.2)
+```
+
+
 ### rescale_golden
 
 `rescale_golden` adjusts the proportions of the axes of the given plot object

@@ -9,6 +9,7 @@
 * Updated `theme_bdc_lattice_population`
     * Works properly with ggplot2
     * Added support for subtitle and caption
+    * Added gganimate example
     * Now based on `ggplot2::theme_void`
 * Updated `theme_bdc_simplefacets`
     * Works properly with ggplot2
@@ -21,10 +22,8 @@
 * Removed `theme_bdc_simple`
 * Simplified `span` implementation
     * Added unit tests for span
-* TODO: Updated data sets used in README
-* TODO: use ... for all arguments that get passed to _grey. Could also use inheritparams in the doc.
-* TODO: add data sets for microtiter?
-* TODO: gganimage example for rockpaperscissors
+* TODO: remove movies data set from README examples
+* TODO: add data sets for microtiter? - use data set from growth post?
 
 # ggplot2bdc 0.1.7
 

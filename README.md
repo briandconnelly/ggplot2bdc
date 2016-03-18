@@ -129,7 +129,7 @@ figures that represent 96-well microtiter plates.
     ggplot(data = platemap, aes(x = Column, y = Row)) +
         geom_point(data = expand.grid(Column = seq(1,12), Row = seq(1,8)),
                    color = "grey90", fill = "white", shape = 21, size = 8) +
-        geom_point(aes(shape = Environment, colour = Strain), size = 9) +
+        geom_point(aes(shape = Environment, color = Strain), size = 9) +
         coord_fixed(ratio = (13/12)/(9/8), xlim = c(0.5, 12.5), ylim = c(0.6, 8.4)) +
         scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
         scale_x_continuous(breaks = seq(1,12)) +
@@ -169,6 +169,24 @@ We can also show multiple population states:
         theme_bdc_lattice_population()
 
 ![](figure/theme_bdc_lattice_population-facets-1.png)
+
+Alternatively, this is a great opportunity to create an animation. We
+can use [gganimate](https://github.com/dgrtwo/gganimate) to create an
+animated GIF showing the population for the first 10 time steps.
+
+    library(gganimate)
+
+    p <- ggplot(data = filter(rockpaperscissors, Time < 10),
+           aes(x = X, y = Y, color = Type, frame = Time)) +
+        geom_point(shape = 15, size = 3) +
+        coord_equal(ratio = 1) +
+        scale_color_hue(guide = FALSE) +
+        labs(title = "Rock, Paper, Scissors at t=") +
+        theme_bdc_lattice_population()
+
+    gg_animate(p = p, saver = "gif", interval = 0.2)
+
+![](figure/lattice-anim.gif)
 
 ### rescale\_golden
 
@@ -234,7 +252,7 @@ Degrees](http://eagereyes.org/basics/banking-45-degrees).
     # TODO: update this
     pg_movies <- filter(movies, mpaa == "PG")
 
-    ggplot(pg_movies, aes(x=year, y=budget / 10^6, color=rating)) +
+    ggplot(pg_movies, aes(x=year, y=budget / 10^6, color = rating)) +
         geom_point() +
         labs(x="Year", y="Budget ($ Millions)", title="PG-13 Movie Budgets") +
         theme_bdc_grey() +
