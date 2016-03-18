@@ -17,8 +17,5 @@
 
 ratio_square <- function (xvals, yvals)
 {
-    if(missing(xvals)) stop("Must provide xvals")
-    if(missing(yvals)) stop("Must provide yvals")
-        
-    return(span(xvals)/span(yvals))
+    span(xvals) / span(yvals)
 }

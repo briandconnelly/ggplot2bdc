@@ -10,8 +10,11 @@
 #' @param base_family The base font family for all text
 #' @param grid.x Show grid lines along the X axis (default: FALSE)
 #' @param grid.y Show grid lines along the Y axis (default: FALSE)
+#' @param gridmin.x Show minor grid lines along the X axis (default: FALSE)
+#' @param gridmin.y Show minor grid lines along the Y axis (default: FALSE)
 #' @param ticks.x Show tick marks along the X axis (default: TRUE)
 #' @param ticks.y Show tick marks along th Y axis (default: TRUE)
+#' @param pmargin Margin around the plot (default: 1/2 line)
 #' @return A list of ggplot theme parameters
 #' @seealso \code{\link{theme}}
 #' @examples
@@ -19,66 +22,32 @@
 #' 
 #' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bdc_simplefacets()
 #' p
-#' 
-#' 
-theme_bdc_simplefacets <- function (base_size=12, base_family="", grid.x=FALSE,
-                                    grid.y=FALSE, ticks.x=TRUE, ticks.y=TRUE)
-{
-    theme(complete=TRUE,
-          line = element_line(colour="black", size=0.5, linetype=1,
-                              lineend="square"),
-          rect = element_rect(fill="white", colour="black", size=0.5,
-                              linetype=1),
-          text = element_text(family=base_family, face="plain",
-                              colour="black", size=base_size,
-                              hjust=0.5, vjust=0.5, angle=0,
-                              lineheight=0.9),
-          title = element_text(family=base_family, face="bold",
-                               colour="black", vjust=0.0, hjust=0.5,
-                               angle=0),
-          
-          plot.background = element_rect(fill="transparent", colour=NA),
-          plot.title = element_text(size=rel(1.2), vjust=0.8),
-          plot.margin = unit(c(1, 1, 1, 1), "lines"),
-          
-          panel.background = element_rect(fill="white", colour=NA),
-          panel.border = element_rect(fill="transparent"),
-          panel.grid.major = element_line(color=NA, size=0.1),
-          panel.grid.major.x = element_line(color=ifelse(grid.x, "grey70", NA)),
-          panel.grid.major.y = element_line(color=ifelse(grid.y, "grey70", NA)),
-          panel.grid.minor = element_line(color=NA), 
-          panel.margin = unit(0.5, "lines"),
-          
-          strip.background = element_rect(fill="transparent",
-                                          colour=NA),
-          strip.text = element_text(size=rel(0.8)),
-          strip.text.x = element_text(),
-          strip.text.y = element_text(angle=-90),
-          
-          axis.text = element_text(size=rel(0.8)),
-          axis.line = element_line(color=NA),
-          axis.text.x = element_text(), 
-          axis.text.y = element_text(hjust=1),
-          axis.title.x = element_text(),
-          axis.title.y = element_text(angle=90, vjust=1),
-          axis.ticks.x = element_line(size=ifelse(ticks.x, 0.3, 0)), 
-          axis.ticks.y = element_line(size=ifelse(ticks.y, 0.3, 0)), 
-          axis.ticks.length = unit(0.15, "cm"),
-          axis.ticks.margin = unit(0.1, "cm"),
-          
-          legend.background = element_rect(fill="transparent", colour=NA), 
-          legend.margin = unit(0, "cm"),
-          legend.key = element_rect(fill="transparent", color=NA),
-          legend.key.size = unit(0.5, "lines"), 
-          legend.key.height = unit(0.5, "lines"),
-          legend.key.width = unit(0.7, "lines"),
-          legend.text = element_text(size=rel(0.6), colour="grey40"),
-          legend.text.align = 0.5,
-          legend.title = element_text(size=rel(0.7)),
-          legend.title.align = 0,
-          legend.position = "top",
-          legend.direction = "horizontal",
-          legend.justification = "center",
-          legend.box = "horizontal"
-          )
+
+theme_bdc_simplefacets <- function(base_size = 12, base_family = "",
+                           grid.x = FALSE, grid.y = FALSE,
+                           gridmin.x = grid.x, gridmin.y = grid.y,
+                           ticks.x = TRUE, ticks.y = TRUE,
+                           pmargin = base_size / 2) {
+    
+    quarter_line = base_size / 4
+    
+    theme_bdc_grey(base_size = base_size, base_family = base_family,
+                   grid.x = grid.x, grid.y = grid.y,
+                   gridmin.x = gridmin.x, gridmin.y = gridmin.y,
+                   ticks.x = ticks.x, ticks.y = ticks.y,
+                   pmargin = pmargin) %+replace%
+        theme(
+            strip.background = element_rect(fill = "transparent", colour = NA),
+            strip.text = element_text(
+                color = "grey50",
+                size = rel(0.8)
+            ),
+            strip.text.x = element_text(
+                margin = margin(t = quarter_line, b = quarter_line)
+            ),
+            strip.text.y = element_text(
+                angle = -90,
+                margin = margin(l = quarter_line, r = quarter_line)
+            )
+        )
 }

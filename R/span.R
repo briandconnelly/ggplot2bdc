@@ -10,6 +10,5 @@
 
 span <- function(n)
 {
-    r <- range(n, na.rm=TRUE, finite=TRUE)
-    return(r[2] - r[1])
+    diff(range(n, na.rm = TRUE, finite = TRUE))
 }

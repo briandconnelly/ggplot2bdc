@@ -19,34 +19,21 @@ creating plots with [ggplot2](http://ggplot2.org/).
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version. To do so:
 
-    if(!require('devtools')) install.packages('devtools')
-    library(devtools)
-    install_github('briandconnelly/ggplot2bdc')
-
+```{r Installation}
+if(!require('devtools')) install.packages('devtools')
+devtools::install_github('briandconnelly/ggplot2bdc')
+```
 
 # Examples
 
 To gain access to the following themes, etc. provided, first load the
-`gplot2bdc` package. We'll also load `ggplot`.
+`gplot2bdc` package. We'll also load `ggplot`, `dplyr`, and `magrittr`:
 
 ```{r}
 library(ggplot2bdc)
 library(ggplot2)
-```
-
-## theme_bdc_simplefacets
-
-`theme_bdc_simplefacets` is a clean theme that uses thin black panels on a white
-background. Legends are placed above. Facet labels are displayed as black text.
-Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
-parameters.
-
-```{r theme_bdc_simplefacets}
-ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
-    theme_bdc_simplefacets(grid.y=TRUE, grid.x=FALSE)
+library(dplyr)
+library(magrittr)
 ```
 
 
@@ -57,49 +44,56 @@ background. Legends are placed above. Facet labels are displayed as black text
 on a grey background.
 
 ```{r theme_bdc_grey}
-ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
+ggplot(data = economics_long %>% filter(variable == "unemploy"),
+       aes(x = date, y = value)) +
+    geom_line() +
+    scale_x_date() +
+    labs(x = "Year", y = "Thousands of Persons",
+         title = "Monthly Unemployment", subtitle = "Seasonally Adjusted",
+         caption = "Source: Federal Reserve Bank of St. Louis") +
     theme_bdc_grey()
 ```
 
 Subtle grid lines can be added to the panels with the `grid.x` and `grid.y`
-parameters:
+parameters.
 
 ```{r theme_bdc_grey_grid}
-ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
-    theme_bdc_grey(grid.x=FALSE, grid.y=TRUE)
+midwest$inmetro <- factor(midwest$inmetro, levels = c(0, 1), labels = c("Rural", "Metro"))
+
+ggplot(data = midwest, aes(x = inmetro, y = percbelowpoverty, color = state, shape = state, group = state)) +
+    stat_summary(fun.y = "mean", geom = "line") +
+    stat_summary(fun.y = "mean", geom = "point") +
+    scale_color_hue(name = "State") +
+    scale_shape_discrete(name = "State") +
+    labs(x = "Environment", y = "Percent of Population",
+         title = "Poverty in the Midwest") +
+    coord_equal(ratio = 0.5) +
+    theme_bdc_grey(ticks.x = FALSE, grid.y = TRUE)
 ```
 
 Some people prefer to display categorical data without tick marks along the
 axis. These are included by default, but can be removed by setting either the
 `ticks.x` or `ticks.y` parameters to `FALSE`.
 
-```{r theme_bdc_grey_ticks}
-ggplot(msleep, aes(x=vore, y=sleep_total)) +
-    geom_point(shape=1, alpha=0.2) +
-    stat_summary(fun.data='mean_cl_boot') +
-    theme_bdc_grey(ticks.x=FALSE)
-```
 
-## theme_bdc_black
+## theme_bdc_simplefacets
 
-`theme_bdc_black` is a clean theme that uses thin black panels on a white
-background. Legends are placed above. Facet labels are displayed as black text
-on a grey background. Subtle grid lines can be added to the panels with the
-`grid.x` and `grid.y` parameters, and tick markscan be managed with `ticks.x`
-and `ticks.y`.
+`theme_bdc_simplefacets` is a modification of `theme_bdc_grey` where facet
+labels are displayed as grey text on a white background.
 
-```{r theme_bdc_black}
-ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
-    theme_bdc_black(grid.y=TRUE, grid.x=FALSE)
+```{r theme_bdc_simplefacets}
+txcities <- txhousing %>%
+    filter(city %in% c("Austin", "Dallas", "El Paso", "Fort Worth", "Houston", "San Antonio"))
+
+ggplot(data = txcities, aes(x = year, y = median / 1000)) +
+    facet_grid(city ~ .) +
+    stat_summary(fun.data = "mean_cl_boot", geom = "ribbon", color = NA, alpha = 0.3) +
+    stat_summary(fun.y = "mean", geom = "line") +
+    labs(x = "Year", y = "Thousands of Dollars",
+         title = "Home Prices on the Rise",
+         subtitle = "Median Home Prices in Texas' Six Largest Cities",
+         caption = "Source: TAMU Real Estate Center") +
+    theme_bdc_simplefacets()
 ```
 
 
@@ -113,10 +107,16 @@ default, grid lines are used along the Y axis. This theme is best suited for
 plots with multiple facets.
 
 ```{r theme_bdc_paneled}
-ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
-    geom_point() +
-    facet_grid(mpaa ~ .) +
-    labs(x='Year', y='Budget ($ Millions)', title='Hollywood Budgets Against Time') +
+txcities <- txhousing %>%
+    filter(city %in% c("Austin", "Dallas", "El Paso", "Fort Worth", "Houston", "San Antonio"))
+
+ggplot(data = txcities, aes(x = year, y = median / 1000)) +
+    facet_grid(city ~ .) +
+    stat_summary(fun.data = "mean_cl_boot", geom = "ribbon", color = NA, alpha = 0.3) +
+    stat_summary(fun.y = "mean", geom = "line") +
+    labs(x = "Year", y = "Thousands of Dollars",
+         title = "Home Prices are Getting Bigger in Texas",
+         subtitle = "Median Home Prices in Texas' Six Largest Cities") +
     theme_bdc_paneled()
 ```
 
@@ -132,19 +132,6 @@ ggplot(movies, aes(x=year, y=budget/1000000, color=rating)) +
     theme_bdc_paneled()
 ```
 
-## theme_bdc_simple
-
-`theme_bdc_simple` is a classic theme that displays plot axes as solid black
-lines on a white background. This theme is probably best suited to single-panel
-plots.
-
-```{r theme_bdc_simple}
-ggplot(movies, aes(x=year, y=length, color=rating, shape=mpaa)) +
-    geom_point() +
-    labs(x='Year', y='Length (Minutes)', title='Movie Lengths Against Time') +
-    scale_y_log10() +
-    theme_bdc_simple()
-```
 
 ## theme_bdc_microtiter
 
@@ -159,13 +146,14 @@ platemap$Environment <- as.factor(platemap$Environment)
 ```
 
 ```{r theme_bdc_microtiter}
-ggplot(data=platemap, aes(x=Column, y=Row)) +
-    geom_point(data=expand.grid(seq(1,12), seq(1,8)), aes(x=Var1, y=Var2), color='grey90', fill='white', shape=21, size=6) +
-    geom_point(aes(shape=Environment, colour=Strain), size=10) +
-    coord_fixed(ratio=(13/12)/(9/8), xlim=c(0.5,12.5), ylim=c(0.5,8.5)) +
-    scale_y_reverse(breaks=seq(1,8), labels=LETTERS[1:8]) +
-    scale_x_continuous(breaks=seq(1,12)) +
-    labs(title="Plate Layout for My Experiment") +
+ggplot(data = platemap, aes(x = Column, y = Row)) +
+    geom_point(data = expand.grid(Column = seq(1,12), Row = seq(1,8)),
+               color = "grey90", fill = "white", shape = 21, size = 8) +
+    geom_point(aes(shape = Environment, colour = Strain), size = 10) +
+    coord_fixed(ratio = (13/12)/(9/8), xlim = c(0.5, 12.5), ylim = c(0.5, 8.5)) +
+    scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
+    scale_x_continuous(breaks = seq(1,12)) +
+    labs(title = "Plate Layout for My Experiment", subtitle = "25 March 2016") +
     theme_bdc_microtiter()
 ```
 
@@ -177,14 +165,29 @@ For more information, see the [Plotting Microtiter Plate Maps](http://bconnelly.
 populations of individuals structured spatially in a lattice.
 
 ```{r theme_bdc_lattice_population}
-popdata <- read.csv('sample_population_data.csv')
-head(popdata)
+library(dplyr)
 
-ggplot(popdata, aes(x=Column, y=Row, color=Genotype)) +
+ggplot(data = filter(rockpaperscissors, Time == 10), aes(x = X, y = Y,
+                                                         color = Type)) +
         geom_point(shape=15) +
         coord_equal(ratio=1) +
-        scale_color_hue(guide=FALSE) +
+        scale_color_hue() +
         theme_bdc_lattice_population()
+```
+
+We can also show multiple population states:
+
+```{r theme_bdc_lattice_population with facets}
+library(dplyr)
+ggplot(data = filter(rockpaperscissors, Time %in% c(0,200,400,600)),
+       aes(x = X, y = Y, color = Type)) +
+    facet_wrap(~Time, nrow = 1, ncol = 4) +
+    geom_point(shape=15) +
+    coord_equal(ratio=1) +
+    scale_color_hue(guide=FALSE) +
+    labs(title = "Rock, Paper, Scissors",
+         subtitle = "Wait, is it ON three or AFTER three?") +
+    theme_bdc_lattice_population()
 ```
 
 ## rescale_golden

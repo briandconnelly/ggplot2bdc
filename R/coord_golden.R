@@ -9,18 +9,16 @@
 #' @param orientation Whether the golden ratio should be "horizontal" or
 #' "vertical" (default: horizontal)
 #' @seealso ratio_golden
+#' @importFrom ggplot2 coord_fixed
 #' @examples
 #' library(ggplot2)
 #' 
-#' p <- ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() +
-#'          coord_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
+#' p <- ggplot(mtcars, aes(x = hp, y = mpg)) + geom_point() +
+#'          coord_golden(xvals = mtcars$hp, yvals = mtcars$mpg)
 #' p 
 
-coord_golden <- function (xvals, yvals, orientation="horizontal")
-{    
-    if(missing(xvals)) stop("Must provide xvals")
-    if(missing(yvals)) stop("Must provide yvals")
-    
-    return(coord_fixed(ratio=ratio_golden(xvals=xvals, yvals=yvals,
-                                          orientation=orientation)))
+coord_golden <- function (xvals, yvals, orientation = "horizontal")
+{
+    coord_fixed(ratio = ratio_golden(xvals = xvals, yvals = yvals,
+                                     orientation = orientation))
 }

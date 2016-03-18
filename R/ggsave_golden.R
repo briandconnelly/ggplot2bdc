@@ -9,6 +9,7 @@
 #' @param width The width of the resulting image (default: 8)
 #' @param height The height of the resulting image (default: 4.94)
 #' @param ... Additional parameters to be passed to \code{\link{ggsave}}
+#' @importFrom ggplot2 ggsave
 
 ggsave_golden <- function(filename, plot=last_plot(), ...) 
 {

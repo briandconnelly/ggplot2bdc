@@ -6,6 +6,7 @@
 #' @export
 #' @param xvals Vector containing the values plotted along the X axis
 #' @param yvals Vector containing the values plotted along the Y axis
+#' @importFrom ggplot2 coord_fixed
 #' @examples
 #' library(ggplot2)
 #' 
@@ -15,7 +16,5 @@
 
 coord_square <- function (xvals, yvals)
 {
-    if(missing(xvals)) stop("Must provide xvals")
-    if(missing(yvals)) stop("Must provide yvals")
-    return(coord_fixed(ratio=ratio_square(xvals=xvals, yvals=yvals)))
+    coord_fixed(ratio = ratio_square(xvals = xvals, yvals = yvals))
 }

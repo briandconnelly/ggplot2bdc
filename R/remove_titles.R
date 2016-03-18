@@ -21,41 +21,45 @@
 #' or the information is conveyed elsewhere.
 #' @examples
 #' # Build a plot. Afterwards, remove the X axis title
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point()
-#' remove_title_x(plot=p_total)
+#' remove_title_x(plot = p_total)
 #' 
 #' # The same, but with pipes
 #' library(magrittr)
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point() %>% remove_title_x()
 #' 
 #' # While building a plot, set the theme to not include an X axis title
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point() +
 #'     hide_title_x()
 #' 
-remove_titles <- function(plot=last_plot()) plot + theme_no_titles()
+remove_titles <- function(plot = last_plot()) plot + theme_no_titles()
 
 
 #' @export
 #' @rdname remove_titles
-remove_title_x <- function(plot=last_plot()) plot + theme_no_title_x()
+remove_title_x <- function(plot = last_plot()) plot + theme_no_title_x()
 
 
 #' @export
 #' @rdname remove_titles
-remove_title_y <- function(plot=last_plot()) plot + theme_no_title_y()
+remove_title_y <- function(plot = last_plot()) plot + theme_no_title_y()
 
 
 #' @export
 #' @rdname remove_titles
-theme_no_title_x <- function() ggplot2::theme(axis.title.x = ggplot2::element_blank())
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 theme
+theme_no_title_x <- function() theme(axis.title.x = element_blank())
 
 
 #' @export
 #' @rdname remove_titles
-theme_no_title_y <- function() ggplot2::theme(axis.title.y = ggplot2::element_blank())
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 theme
+theme_no_title_y <- function() theme(axis.title.y = element_blank())
 
 
 #' @export

@@ -11,8 +11,8 @@
 #'     geom_point(shape=1)
 #' rescale_golden()
 
-rescale_golden <- function(plot=last_plot())
+rescale_golden <- function(plot = last_plot())
 {
-    gr <- (1 + sqrt(5))/2
-    return(rescale_plot(plot=plot, ratio=gr))
+    gr <- (1 + sqrt(5)) / 2
+    rescale_plot(plot = plot, ratio = gr)
 }

@@ -7,11 +7,11 @@
 #' @param plot A ggplot2 plot object. By defauly, the last plot displayed is
 #' used.
 #' @examples
-#' p <- ggplot(mtcars, aes(x=cyl, y=mpg)) +
-#'     geom_point(shape=1)
+#' p <- ggplot(mtcars, aes(x = cyl, y = mpg)) +
+#'     geom_point(shape = 1)
 #' rescale_square()
 
-rescale_square <- function(plot=last_plot())
+rescale_square <- function(plot = last_plot())
 {
-    return(rescale_plot(plot=plot, ratio=1)) 
+    rescale_plot(plot = plot, ratio = 1) 
 }

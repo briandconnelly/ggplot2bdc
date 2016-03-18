@@ -13,12 +13,14 @@ URL: https://github.com/briandconnelly/ggplot2bdc
 BugReports: https://github.com/briandconnelly/ggplot2bdc/issues
 ByteCompile: no
 NeedsCompilation: no
+LazyData: true
 VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0)
 Imports:
-    ggplot2
+    ggplot2,
+    grid
 Suggests:
     knitr
-Enhances:
-    ggplot2
+Enhances: ggplot2
+RoxygenNote: 5.0.1

@@ -18,41 +18,43 @@
 #' return a modified ggplot2 plot object.
 #' @examples
 #' # Build a plot. Afterwards, remove the X axis tick marks
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point()
-#' remove_ticks_x(plot=p_total)
+#' remove_ticks_x(plot = p_total)
 #' 
 #' # The same, but with pipes
 #' library(magrittr)
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point() %>% remove_ticks_x()
 #' 
 #' # While building a plot, set the theme to not include X axis tick marks
-#' p_total <- ggplot(data=msleep, aes(x=vore, y=sleep_total)) + 
+#' p_total <- ggplot(data = msleep, aes(x = vore, y = sleep_total)) + 
 #'     geom_point() +
 #'     hide_ticks_x()
 #' 
-remove_ticks <- function(plot=last_plot()) plot + theme_no_ticks()
+remove_ticks <- function(plot = last_plot()) plot + theme_no_ticks()
 
 
 #' @export
 #' @rdname remove_ticks
-remove_ticks_x <- function(plot=last_plot()) plot + theme_no_ticks_x()
+remove_ticks_x <- function(plot = last_plot()) plot + theme_no_ticks_x()
 
 
 #' @export
 #' @rdname remove_ticks
-remove_ticks_y <- function(plot=last_plot()) plot + theme_no_ticks_y()
+remove_ticks_y <- function(plot = last_plot()) plot + theme_no_ticks_y()
 
 
 #' @export
 #' @rdname remove_ticks
-theme_no_ticks_x <- function() ggplot2::theme(axis.ticks.x = ggplot2::element_blank())
+#' @importFrom ggplot2 theme
+theme_no_ticks_x <- function() theme(axis.ticks.x = element_blank())
 
 
 #' @export
 #' @rdname remove_ticks
-theme_no_ticks_y <- function() ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
+#' @importFrom ggplot2 theme
+theme_no_ticks_y <- function() theme(axis.ticks.y = element_blank())
 
 
 #' @export
@@ -60,4 +62,6 @@ theme_no_ticks_y <- function() ggplot2::theme(axis.ticks.y = ggplot2::element_bl
 #' @return \code{theme_no_ticks}, \code{theme_no_ticks_x}, and
 #' \code{theme_no_ticks_y} return settings for theme elements that result in no
 #' axis tick marks being displayed.
-theme_no_ticks <- function() theme_no_ticks_x() + theme_no_ticks_y() + ggplot2::theme(axis.ticks.margin = grid::unit(0.0, 'cm'))
+#' @importFrom ggplot2 theme
+#' @importFrom grid unit
+theme_no_ticks <- function() theme_no_ticks_x() + theme_no_ticks_y() + theme(axis.ticks.margin = unit(0.0, 'cm'))

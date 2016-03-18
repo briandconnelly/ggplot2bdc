@@ -15,11 +15,8 @@
 #' ratio <- ratio_golden(xvals=mtcars$hp, yvals=mtcars$mpg)
 #' 
 
-ratio_golden <- function (xvals, yvals, orientation="horizontal")
+ratio_golden <- function (xvals, yvals, orientation = "horizontal")
 {
-    if(missing(xvals)) stop("Must provide xvals")
-    if(missing(yvals)) stop("Must provide yvals")
-    
     gr <- (1+sqrt(5))/2
     
     if(orientation=="horizontal")

@@ -1,3 +1,36 @@
+# ggplot2bdc 0.2.0
+
+* Updated `theme_bdc_grey`
+    * Works properly with ggplot2
+    * Added support for subtitle and caption
+* Updated `theme_bdc_microtiter`
+    * Works properly with ggplot2
+    * Added support for subtitle and caption
+* Updated `theme_bdc_lattice_population`
+    * Works properly with ggplot2
+    * Added support for subtitle and caption
+    * Now based on `ggplot2::theme_void`
+* Updated `theme_bdc_simplefacets`
+    * Works properly with ggplot2
+    * Added support for subtitle and caption
+* Updated `theme_bdc_paneled`
+    * Works properly with ggplot2
+    * Added support for subtitle and caption
+* Added `rockpaperscissors` data set, a spatial simulation of rock, paper, scissors
+* Removed `theme_bdc_black`
+* Removed `theme_bdc_simple`
+* Simplified `span` implementation
+
+* TODO paneled:
+    * try without strip colors
+    * integrate colormod. panel color specified as argument, line/tick/strip colors calculated using darken()
+
+* TODO: linted everything
+* TODO: added tests for span
+* TODO: add data sets for microtiter?
+* TODO: Update datasets used in README
+* TODO: gganimage example for rockpaperscissors
+
 # ggplot2bdc 0.1.7
 
 * Added theme_bdc_lattice_population
