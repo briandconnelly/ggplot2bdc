@@ -21,6 +21,7 @@ Imports:
     ggplot2,
     grid
 Suggests:
-    knitr
+    knitr,
+    testthat
 Enhances: ggplot2
 RoxygenNote: 5.0.1

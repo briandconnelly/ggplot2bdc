@@ -20,19 +20,22 @@ theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
                 size = rel(1.2),
                 face = "bold",
                 hjust = 0,
-                margin = margin(b = (base_size / 2) * 1.2)
+                margin = margin(b = base_size * 0.6)
             ),
             plot.subtitle = element_text(
                 size = rel(0.8),
-                color = "grey50",
+                color = "grey40",
+                face = "italic",
                 hjust = 0,
-                margin = margin(b = base_size * 0.45)
+                margin = margin(b = base_size * 0.6)
             ),
             plot.caption = element_text(
-                size = rel(0.8),
-                color = "grey50",
-                hjust = 1,
-                margin = margin(b = base_size * 0.4, t = 0, r = 0, l = 0)
+                size = rel(0.7),
+                color = "grey40",
+                face = "plain",
+                hjust = 0,
+                margin = margin(b = base_size * 0.4, t = base_size * 0.4,
+                                r = 0, l = 0)
             ),
             plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
             strip.text.x = element_text(

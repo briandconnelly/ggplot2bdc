@@ -13,5 +13,6 @@ values. Only finite and non-NA values are considered.
 \examples{
 vals <- sample(1:100, 10)
 span(vals)
+
 }
 

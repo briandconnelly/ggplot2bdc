@@ -40,7 +40,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
         quarter_line <- base_size / 4
         line_size <- 0.5
         medgrey <- "grey50"
-        
+
         theme(
             line = element_line(colour = base_grey, size = line_size,
                                 linetype = 1, lineend = "square"),
@@ -50,7 +50,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
                                 colour = "black", size = base_size,
                                 lineheight = 0.9, hjust = 0.5, vjust = 0.5,
                                 angle = 0, margin = margin(), debug = FALSE),
-            
+
             axis.line = element_blank(),
             axis.text = element_text(size = rel(0.8), colour = medgrey),
             axis.text.x = element_text(
@@ -74,9 +74,9 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             ),
             axis.title.y = element_text(
                 angle = 90,
-                margin = margin(r = 0.8 * half_line, l = 0.8 * quarter_line),
+                margin = margin(r = 0.8 * half_line, l = 0.8 * quarter_line)
             ),
-            
+
             legend.background = element_rect(fill = "transparent", colour = NA),
             legend.margin = unit(0, units = "cm"),
             legend.key = element_rect(fill = "transparent", colour = NA),
@@ -93,7 +93,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             legend.direction = "horizontal",
             legend.justification = "left",
             legend.box = "vertical",
-            
+
             panel.background = element_rect(fill = "white", colour = base_grey),
             panel.border = element_blank(),
             panel.grid.major = element_line(colour = NA, size = line_size / 5),
@@ -114,8 +114,9 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             panel.margin.x = NULL,
             panel.margin.y = NULL,
             panel.ontop = FALSE,
-            
-            strip.background = element_rect(fill = base_grey, colour = base_grey),
+
+            strip.background = element_rect(fill = base_grey,
+                                            colour = base_grey),
             strip.text = element_text(size = rel(0.8)),
             strip.text.x = element_text(
                 margin = margin(t = quarter_line, b = quarter_line)
@@ -126,7 +127,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             ),
             strip.switch.pad.grid = unit(0.1, units = "cm"),
             strip.switch.pad.wrap = unit(0.1, units = "cm"),
-            
+
             plot.background = element_rect(colour = "transparent"),
             plot.title = element_text(
                 size = rel(1.2),
@@ -136,15 +137,16 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             ),
             plot.subtitle = element_text(
                 size = rel(0.8),
-                color = "grey50",
+                color = "grey40",
+                face = "italic",
                 hjust = 0,
-                margin = margin(b = (base_size / 2) * 1.2)                
+                margin = margin(b = (base_size / 2) * 1.2)
             ),
             plot.caption = element_text(
-                size = rel(0.8),
-                color = "grey50",
-                face = "italic",
-                hjust = 1,
+                size = rel(0.7),
+                color = "grey40",
+                face = "plain",
+                hjust = 0,
                 margin = margin(b = base_size * 0.4, t = base_size * 0.4,
                                 r = 0, l = 0)
             ),

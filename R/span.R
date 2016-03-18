@@ -7,8 +7,7 @@
 #' @examples
 #' vals <- sample(1:100, 10)
 #' span(vals)
-
-span <- function(n)
-{
+#'
+span <- function(n) {
     diff(range(n, na.rm = TRUE, finite = TRUE))
 }

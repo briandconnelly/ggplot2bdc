@@ -6,7 +6,7 @@
 \usage{
 theme_bdc_paneled(base_size = 12, base_family = "", grid.x = FALSE,
   grid.y = TRUE, gridmin.x = FALSE, gridmin.y = FALSE, ticks.x = TRUE,
-  ticks.y = TRUE, panelbg = "grey95", pmargin = base_size/2)
+  ticks.y = TRUE, pmargin = base_size/2)
 }
 \arguments{
 \item{base_size}{The base size for all text (default: 12)}
@@ -24,8 +24,6 @@ theme_bdc_paneled(base_size = 12, base_family = "", grid.x = FALSE,
 \item{ticks.x}{Show tick marks along the X axis (default: TRUE)}
 
 \item{ticks.y}{Show tick marks along th Y axis (default: TRUE)}
-
-\item{panelbg}{Background color for panels (default: grey95)}
 
 \item{pmargin}{Margin around the plot (default: 1/2 line)}
 }

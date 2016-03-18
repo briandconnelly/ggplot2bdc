@@ -12,12 +12,20 @@
 #' 
 theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
     theme_bdc_grey(base_size = base_size, base_family = base_family,
+                   grid.x = FALSE, grid.y = FALSE,
+                   gridmin.x = FALSE, gridmin.y = FALSE,
                    ticks.x = FALSE, ticks.y = FALSE,
-                   grid.x = FALSE, grid.y = FALSE) %+replace%
+                   pmargin = base_size / 2) %+replace%
         theme(
             panel.margin = unit(0, units = "pt"),
             axis.title = element_blank(),
             axis.text = element_text(size = rel(1.0), face = "bold"),
+            axis.text.y = element_text(
+                margin = margin(r = 0.4 * base_size, l = 0.4 * base_size)
+            ),
+            axis.text.x = element_text(
+                margin = margin(t = 0.4 * base_size, b = 0.4 * base_size)
+            ),
             axis.ticks.length = unit(0, "pt"),
             legend.position = "bottom",
             legend.direction = "horizontal",

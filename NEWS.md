@@ -20,12 +20,11 @@
 * Removed `theme_bdc_black`
 * Removed `theme_bdc_simple`
 * Simplified `span` implementation
+    * Added unit tests for span
 
-* TODO paneled:
-    * try without strip colors
-    * integrate colormod. panel color specified as argument, line/tick/strip colors calculated using darken()
 
-* TODO: linted everything
+* TODO: use ... for all arguments that get passed to _grey. Could also use inheritparams in the doc.
+* TODO: lint everything
 * TODO: added tests for span
 * TODO: add data sets for microtiter?
 * TODO: Update datasets used in README

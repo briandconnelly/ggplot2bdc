@@ -28,9 +28,9 @@ theme_bdc_simplefacets <- function(base_size = 12, base_family = "",
                            gridmin.x = grid.x, gridmin.y = grid.y,
                            ticks.x = TRUE, ticks.y = TRUE,
                            pmargin = base_size / 2) {
-    
-    quarter_line = base_size / 4
-    
+
+    quarter_line <- base_size / 4
+
     theme_bdc_grey(base_size = base_size, base_family = base_family,
                    grid.x = grid.x, grid.y = grid.y,
                    gridmin.x = gridmin.x, gridmin.y = gridmin.y,
