@@ -28,7 +28,6 @@
 * Removed `theme_bdc_simple`
 * Removed `theme_bdc_simplefacets`
 * Removed `coord_golden`, `coord_square`, `ratio_golden`, and `ratio_square`
-* TODO: add data sets for microtiter? - use data set from growth post?
 
 # ggplot2bdc 0.1.7
 

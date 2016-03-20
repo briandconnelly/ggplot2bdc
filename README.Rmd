@@ -26,6 +26,7 @@ ggplot2bdc is a collection of themes and other things that can be used when crea
     - Removing Plot Elements
         - `gg_remove_titles`, `gg_remove_title`, `gg_remove_subtitle`, `gg_remove_caption`, `gg_remove_title.x`, `gg_remove_title.y`
         - `gg_remove_ticks`, `gg_remove_ticks_x`, `gg_remove_ticks_y`
+        - `gg_remove_grid`, `gg_remove_grid_major`, `gg_remove_grid_minor`, `gg_remove_grid_x`, `gg_remove_grid_y`
 - Misc
     - `ggsave_golden`
     - `span`
