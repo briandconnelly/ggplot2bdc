@@ -10,16 +10,23 @@ when creating plots with [ggplot2](http://ggplot2.org/).
     -   `theme_bdc_microtiter`
     -   `theme_bdc_lattice_population`
 -   Modifying Plots
-    -   Rescaling
-        -   `gg_rescale`
-        -   `gg_rescale_golden`
-        -   `gg_rescale_square`
     -   Removing Plot Elements
         -   `gg_remove_titles`, `gg_remove_title`, `gg_remove_subtitle`,
             `gg_remove_caption`, `gg_remove_title.x`,
             `gg_remove_title.y`
         -   `gg_remove_ticks`, `gg_remove_ticks_x`, `gg_remove_ticks_y`
-        -   `gg_remove_legend`, `gg_remove_legend_title`, `gg_remove_legend_key`, `gg_remove_legend_text`, `gg_remove_legend_background`
+        -   `gg_remove_grid`, `gg_remove_grid_major`,
+            `gg_remove_grid_minor`, `gg_remove_grid_x`,
+            `gg_remove_grid_y`
+        -   `gg_remove_legend`, `gg_remove_legend_title`,
+            `gg_remove_legend_key`, `gg_remove_legend_text`,
+            `gg_remove_legend_background`
+        -   `gg_remove_background`, `gg_remove_background_canvas`,
+            `gg_remove_background_legend`, `gg_remove_background_facet`
+    -   Rescaling
+        -   `gg_rescale`
+        -   `gg_rescale_golden`
+        -   `gg_rescale_square`
 -   Misc
     -   `ggsave_golden`
     -   `span`
@@ -206,6 +213,11 @@ GIF showing the population for the first 10 time steps.
 ![](figure/lattice-anim.gif)
 
 ### Modifying Plots
+
+Although you can always change a plot's properties using ggplot2's
+`theme` function, it's often difficult to remember which elements
+control a plot's visual characteristics. These and other `gg_` functions
+make it a bit easier to quickly alter a plot.
 
 #### gg\_rescale\_golden
 
