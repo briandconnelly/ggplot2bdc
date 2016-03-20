@@ -19,6 +19,7 @@ when creating plots with [ggplot2](http://ggplot2.org/).
             `gg_remove_caption`, `gg_remove_title.x`,
             `gg_remove_title.y`
         -   `gg_remove_ticks`, `gg_remove_ticks_x`, `gg_remove_ticks_y`
+        -   `gg_remove_legend`, `gg_remove_legend_title`, `gg_remove_legend_key`, `gg_remove_legend_text`, `gg_remove_legend_background`
 -   Misc
     -   `ggsave_golden`
     -   `span`

@@ -5,7 +5,6 @@
 #' 
 #' @param plot A ggplot2 plot object. By default, the last plot displayed is
 #' used.
-#'
 #' @param major.x Whether or not to remove grid lines at major breakpoints along the X axis (default: \code{TRUE})
 #' @param major.y Whether or not to remove grid lines at major breakpoints along the Y axis (default: \code{TRUE})
 #' @param minor.x Whether or not to remove grid lines at minor breakpoints along the X axis (default: \code{TRUE})
