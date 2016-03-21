@@ -71,7 +71,7 @@ black text on a grey background.
         theme_bdc_grey()
     pUnemploy
 
-![](figure/theme_bdc_grey-1.png)
+![](figure/theme_bdc_grey-1.png)<!-- -->
 
 Subtle grid lines can be added to the panels with the `grid.x` and
 `grid.y` parameters. These also affect minor grid lines, which can
@@ -92,7 +92,7 @@ further be controlled with the `gridmin.x` and `gridmin.y` parameters.
         coord_equal(ratio = 0.5) +
         theme_bdc_grey(ticks.x = FALSE, grid.y = TRUE)
 
-![](figure/theme_bdc_grey_grid-1.png)
+![](figure/theme_bdc_grey_grid-1.png)<!-- -->
 
 Some people prefer to display categorical data without tick marks along
 the axis. These are included by default, but can be removed by setting
@@ -112,7 +112,7 @@ We can also use facets to divide the data by state:
         coord_equal(ratio = 0.5) +
         theme_bdc_grey(grid.y = TRUE)
 
-![](figure/theme_bdc_grey-facets1-1.png)
+![](figure/theme_bdc_grey-facets1-1.png)<!-- -->
 
     txcities <- txhousing %>%
         filter(city %in% c("Austin", "Dallas", "El Paso", "Fort Worth", "Houston",
@@ -130,7 +130,7 @@ We can also use facets to divide the data by state:
 
     pTX + theme_bdc_grey()
 
-![](figure/theme_bdc_grey-facets2-1.png)
+![](figure/theme_bdc_grey-facets2-1.png)<!-- -->
 
 #### theme\_bdc\_paneled
 
@@ -143,14 +143,14 @@ axis. This theme is best suited for plots with multiple facets.
 
     pTX + theme_bdc_paneled()
 
-![](figure/theme_bdc_paneled-1.png)
+![](figure/theme_bdc_paneled-1.png)<!-- -->
 
 #### theme\_bdc\_microtiter
 
 `theme_bdc_microtiter` is a specialized theme for use in creating
 figures that represent 96-well microtiter plates.
 
-    ggplot(data = platemap, aes(x = Column, y = Row)) +
+    pPlate <- ggplot(data = platemap, aes(x = Column, y = Row)) +
         geom_point(data = expand.grid(Column = seq(1,12), Row = seq(1,8)),
                    color = "grey90", fill = "white", shape = 21, size = 8) +
         geom_point(aes(shape = Environment, color = Strain), size = 9) +
@@ -158,9 +158,23 @@ figures that represent 96-well microtiter plates.
         scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
         scale_x_continuous(breaks = seq(1,12)) +
         labs(title = "Plate Layout for My Experiment", subtitle = "25 March 2016") +
+        guides(shape = guide_legend(override.aes = list(size = 3)),
+               color = guide_legend(override.aes = list(size = 3))) +
         theme_bdc_microtiter()
 
-![](figure/theme_bdc_microtiter-1.png)
+    pPlate
+
+![](figure/theme_bdc_microtiter-1.png)<!-- -->
+
+For a true microtiter plate experience, we can use
+`switch_axis_position` from
+[cowplot](https://cran.r-project.org/web/packages/cowplot/):
+
+    library(cowplot)
+
+    ggdraw(switch_axis_position(plot = pPlate, axis = "x"))
+
+![](figure/theme_bdc_microtiter-switch-1.png)<!-- -->
 
 For more information, see the [Plotting Microtiter Plate
 Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
@@ -177,7 +191,7 @@ display populations of individuals structured spatially in a lattice.
             scale_color_hue() +
             theme_bdc_lattice_population()
 
-![](figure/theme_bdc_lattice_population-1.png)
+![](figure/theme_bdc_lattice_population-1.png)<!-- -->
 
 We can also show multiple population states:
 
@@ -192,7 +206,7 @@ We can also show multiple population states:
              caption = "Data from simulation on a 50x50 lattice") +
         theme_bdc_lattice_population()
 
-![](figure/theme_bdc_lattice_population-facets-1.png)
+![](figure/theme_bdc_lattice_population-facets-1.png)<!-- -->
 
 This is also a great opportunity to create an animation. We can use
 [gganimate](https://github.com/dgrtwo/gganimate) to create an animated
@@ -231,11 +245,11 @@ is provided, the last plot that was displayed is used.
         labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
         theme_bdc_grey()
 
-![](figure/gg_rescale_golden-1.png)
+![](figure/gg_rescale_golden-1.png)<!-- -->
 
     gg_rescale_golden()
 
-![](figure/gg_rescale_golden2-1.png)
+![](figure/gg_rescale_golden2-1.png)<!-- -->
 
 #### gg\_rescale\_square
 
@@ -248,11 +262,11 @@ plot that was displayed is used.
         labs(x = "Date", y = "Thousands of Unemployed Persons") +
         theme_bdc_grey()
 
-![](figure/gg_rescale_square-1.png)
+![](figure/gg_rescale_square-1.png)<!-- -->
 
     gg_rescale_square()
 
-![](figure/gg_rescale_square2-1.png)
+![](figure/gg_rescale_square2-1.png)<!-- -->
 
 #### gg\_rescale
 
@@ -265,11 +279,11 @@ was displayed is used.
         labs(x = "Date", y = "Unemployed Persons (x1000)") +
         theme_bdc_grey()
 
-![](figure/gg_rescale-1.png)
+![](figure/gg_rescale-1.png)<!-- -->
 
     gg_rescale(ratio = 16 / 9)
 
-![](figure/gg_rescale-2.png)
+![](figure/gg_rescale-2.png)<!-- -->
 
 #### ggsave\_golden
 

@@ -160,7 +160,7 @@ platemap$Environment <- as.factor(platemap$Environment)
 ```
 
 ```{r theme_bdc_microtiter}
-ggplot(data = platemap, aes(x = Column, y = Row)) +
+pPlate <- ggplot(data = platemap, aes(x = Column, y = Row)) +
     geom_point(data = expand.grid(Column = seq(1,12), Row = seq(1,8)),
                color = "grey90", fill = "white", shape = 21, size = 8) +
     geom_point(aes(shape = Environment, color = Strain), size = 9) +
@@ -168,7 +168,19 @@ ggplot(data = platemap, aes(x = Column, y = Row)) +
     scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
     scale_x_continuous(breaks = seq(1,12)) +
     labs(title = "Plate Layout for My Experiment", subtitle = "25 March 2016") +
+    guides(shape = guide_legend(override.aes = list(size = 3)),
+           color = guide_legend(override.aes = list(size = 3))) +
     theme_bdc_microtiter()
+
+pPlate
+```
+
+For a true microtiter plate experience, we can use `switch_axis_position` from [cowplot](https://cran.r-project.org/web/packages/cowplot/):
+
+```{r theme_bdc_microtiter-switch}
+library(cowplot)
+
+ggdraw(switch_axis_position(plot = pPlate, axis = "x"))
 ```
 
 For more information, see the [Plotting Microtiter Plate Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).

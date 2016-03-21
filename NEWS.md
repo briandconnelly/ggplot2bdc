@@ -1,3 +1,8 @@
+# ggplot2bdc 0.2.1
+
+* Updated `theme_bdc_microtiter`
+    * Now compatible with cowplot::switch_axis_position
+
 # ggplot2bdc 0.2.0
 
 * Updated `theme_bdc_grey`

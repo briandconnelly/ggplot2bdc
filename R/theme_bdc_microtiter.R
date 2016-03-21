@@ -18,7 +18,9 @@ theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
                    pmargin = base_size / 2) %+replace%
         theme(
             panel.margin = unit(0, units = "pt"),
-            axis.title = element_blank(),
+            # This does not work with cowplot::switch_axis_position
+            #axis.title = element_blank(),
+            axis.title = element_text(size = 0),
             axis.text = element_text(size = rel(1.0), face = "bold"),
             axis.text.y = element_text(
                 margin = margin(r = 0.4 * base_size, l = 0.4 * base_size)
