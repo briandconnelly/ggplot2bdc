@@ -1,3 +1,7 @@
+# ggplot2bdc 0.2.2
+
+* Support for subtitles and captions only when development version is used
+
 # ggplot2bdc 0.2.1
 
 * Updated `theme_bdc_microtiter`
