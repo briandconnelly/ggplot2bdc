@@ -3,6 +3,7 @@ ggplot2bdc
 
 ggplot2bdc is a collection of themes and other things that can be used
 when creating plots with [ggplot2](http://ggplot2.org/).
+For those using the [development version of ggplot](https://github.com/hadley/ggplot2), subtitles and captions are supported.
 
 -   Themes
     -   `theme_bdc_grey`

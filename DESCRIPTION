@@ -1,8 +1,8 @@
 Package: ggplot2bdc
 Type: Package
 Title: Themes and other functions for working with ggplot2
-Version: 0.2.1
-Date: 2015-02-27
+Version: 0.2.2
+Date: 2016-06-28
 Authors@R: c(person(family="Connelly", given="Brian", email="bdc@bconnelly.net",
                     role=c("aut", "cre")))
 Maintainer: Brian Connelly <bdc@bconnelly.net>

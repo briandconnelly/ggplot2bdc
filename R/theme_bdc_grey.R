@@ -39,9 +39,9 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
         half_line <- base_size / 2
         quarter_line <- base_size / 4
         line_size <- 0.5
-        medgrey <- "grey50"
+        medgrey <- "grey40"
 
-        theme(
+        t <- theme(
             line = element_line(color = base_grey, size = line_size,
                                 linetype = 1, lineend = "square"),
             rect = element_rect(fill = "white", color = base_grey,
@@ -117,7 +117,7 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
 
             strip.background = element_rect(fill = "transparent", color = NA),
             strip.text = element_text(
-                color = "grey50",
+                color = "grey40",
                 size = rel(0.8),
                 face = "bold"
             ),
@@ -138,24 +138,34 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
                 hjust = 0,
                 margin = margin(b = half_line * 1.2)
             ),
-            plot.subtitle = element_text(
+            plot.margin = margin(pmargin, pmargin, pmargin, pmargin),
+            complete = TRUE
+        )
+        
+        if(gg_supports_theme_attribute("plot.subtitle")) {
+            
+            t <- t + theme(plot.subtitle = element_text(
                 size = rel(0.8),
                 color = "grey40",
                 face = "italic",
                 hjust = 0,
                 margin = margin(b = (base_size / 2) * 1.2)
-            ),
-            plot.caption = element_text(
+            ))
+        }
+        
+        if(gg_supports_theme_attribute("plot.caption")) {
+            t <- t + theme(plot.caption = element_text(
                 size = rel(0.7),
                 color = "grey40",
                 face = "plain",
                 hjust = 0,
                 margin = margin(b = base_size * 0.4, t = base_size * 0.4,
                                 r = 0, l = 0)
-            ),
-            plot.margin = margin(pmargin, pmargin, pmargin, pmargin),
-            complete = TRUE
-        )
+            ))
+            
+        }
+        
+        t
 }
 
 #' @export

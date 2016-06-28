@@ -13,7 +13,7 @@
 #'
 
 theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
-    theme_void(base_size = base_size, base_family = base_family) %+replace%
+    t <- theme_void(base_size = base_size, base_family = base_family) %+replace%
         theme(
             panel.margin = unit(0, "pt"),
             plot.title = element_text(
@@ -21,21 +21,6 @@ theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
                 face = "bold",
                 hjust = 0,
                 margin = margin(b = base_size * 0.6)
-            ),
-            plot.subtitle = element_text(
-                size = rel(0.8),
-                color = "grey40",
-                face = "italic",
-                hjust = 0,
-                margin = margin(b = base_size * 0.6)
-            ),
-            plot.caption = element_text(
-                size = rel(0.7),
-                color = "grey40",
-                face = "plain",
-                hjust = 0,
-                margin = margin(b = base_size * 0.4, t = base_size * 0.4,
-                                r = 0, l = 0)
             ),
             plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
             strip.text.x = element_text(
@@ -46,4 +31,27 @@ theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
                 margin = margin(l = 2, r = 2)
             )
         )
+    
+    if(gg_supports_theme_attribute("plot.caption")) {
+        t <- t + theme(plot.caption = element_text(
+            size = rel(0.7),
+            color = "grey40",
+            face = "plain",
+            hjust = 0,
+            margin = margin(b = base_size * 0.4, t = base_size * 0.4,
+                            r = 0, l = 0)
+        ))
+    }
+    
+    if(gg_supports_theme_attribute("plot.subtitle")) {
+        t <- t + theme(plot.subtitle = element_text(
+            size = rel(0.8),
+            color = "grey40",
+            face = "italic",
+            hjust = 0,
+            margin = margin(b = base_size * 0.6)
+        ))
+    }
+    
+    t
 }
