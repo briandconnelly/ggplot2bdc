@@ -11,7 +11,7 @@
 #' @return A list of ggplot theme parameters
 #' 
 theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
-    theme_bdc_grey(base_size = base_size, base_family = base_family,
+    t <- theme_bdc_grey(base_size = base_size, base_family = base_family,
                    grid.x = FALSE, grid.y = FALSE,
                    gridmin.x = FALSE, gridmin.y = FALSE,
                    ticks.x = FALSE, ticks.y = FALSE,
@@ -38,12 +38,17 @@ theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
                 face = "bold",
                 hjust = 0.5,
                 margin = margin(b = (base_size / 2) * 1.2)
-            ),
-            plot.subtitle = element_text(
-                size = rel(0.8),
-                color = "grey50",
-                hjust = 0.5,
-                margin = margin(b = (base_size / 2) * 1.2)
             )
         )
+
+    if (gg_supports_theme_attribute("plot.subtitle")) {
+        t <- t + theme(plot.subtitle = element_text(
+            size = rel(0.8),
+            color = "grey50",
+            hjust = 0.5,
+            margin = margin(b = (base_size / 2) * 1.2)
+        ))
+    }
+
+    t
 }

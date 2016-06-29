@@ -162,7 +162,6 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
                 margin = margin(b = base_size * 0.4, t = base_size * 0.4,
                                 r = 0, l = 0)
             ))
-            
         }
         
         t

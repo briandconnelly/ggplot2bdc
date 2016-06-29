@@ -1,3 +1,7 @@
+# ggplot2bdc 0.2.3
+
+* Fixed support for subtitles and captions in theme_bdc_microtiter (thanks @WadeDavis)
+
 # ggplot2bdc 0.2.2
 
 * Support for subtitles and captions only when development version is used
