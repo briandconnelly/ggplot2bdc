@@ -1,3 +1,13 @@
+# ggplot2bdc 0.3.0
+
+* Added support for the changes in ggplot2 2.2.0
+    * Now that `theme` uses named arguments, `gg_supports_theme_attribute` now examines `theme`'s formal arguments instead of looking in `theme_grey`
+    * Moved `panel.margin` and `legend.margin` to `panel.spacing` and `legend.spacing`
+    * Explicitly setting a few legend properties in `theme_bdc_grey`
+    * Updated `gg_rescale` to work with changed format of plot objects
+* ggplot2 2.2.0 is now required for ease of maintenance
+    * Removed checks for subtitle and caption support
+
 # ggplot2bdc 0.2.3
 
 * Fixed support for subtitles and captions in theme_bdc_microtiter (thanks @WadeDavis)

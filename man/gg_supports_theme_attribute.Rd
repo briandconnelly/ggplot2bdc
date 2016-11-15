@@ -20,4 +20,7 @@ Determine whether installed ggplot2 supports a given theme attribute
 gg_supports_theme_attribute("plot.caption")
 
 }
+\seealso{
+\code{\link[ggplot2]{theme}}
+}
 

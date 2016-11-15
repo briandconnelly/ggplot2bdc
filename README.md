@@ -2,8 +2,9 @@ ggplot2bdc
 ==========
 
 ggplot2bdc is a collection of themes and other things that can be used
-when creating plots with [ggplot2](http://ggplot2.org/).
-For those using the [development version of ggplot](https://github.com/hadley/ggplot2), subtitles and captions are supported.
+when creating plots with [ggplot2](http://ggplot2.org/). For those using
+the [development version of ggplot](https://github.com/hadley/ggplot2),
+subtitles and captions are supported.
 
 -   Themes
     -   `theme_bdc_grey`
@@ -105,8 +106,6 @@ We can also use facets to divide the data by state:
         facet_grid(. ~ state) +
         stat_summary(fun.y = "mean", geom = "line", aes(group = state)) +
         stat_summary(fun.y = "mean", geom = "point") +
-        scale_color_hue(name = "State") +
-        scale_shape_discrete(name = "State") +
         labs(x = NULL, y = "Percent",
              title = "Poverty in the Midwest",
              subtitle = "Poverty rates in rural and metro communities") +
@@ -156,8 +155,8 @@ figures that represent 96-well microtiter plates.
                    color = "grey90", fill = "white", shape = 21, size = 8) +
         geom_point(aes(shape = Environment, color = Strain), size = 9) +
         coord_fixed(ratio = (13/12)/(9/8), xlim = c(0.5, 12.5), ylim = c(0.6, 8.4)) +
-        scale_y_reverse(breaks = seq(1,8), labels = LETTERS[1:8]) +
-        scale_x_continuous(breaks = seq(1,12)) +
+        scale_y_reverse(breaks = seq(1, 8), labels = LETTERS[1:8]) +
+        scale_x_continuous(breaks = seq(1, 12), position = "top") +
         labs(title = "Plate Layout for My Experiment", subtitle = "25 March 2016") +
         guides(shape = guide_legend(override.aes = list(size = 3)),
                color = guide_legend(override.aes = list(size = 3))) +
@@ -166,16 +165,6 @@ figures that represent 96-well microtiter plates.
     pPlate
 
 ![](figure/theme_bdc_microtiter-1.png)
-
-For a true microtiter plate experience, we can use
-`switch_axis_position` from
-[cowplot](https://cran.r-project.org/web/packages/cowplot/):
-
-    library(cowplot)
-
-    ggdraw(switch_axis_position(plot = pPlate, axis = "x"))
-
-![](figure/theme_bdc_microtiter-switch-1.png)
 
 For more information, see the [Plotting Microtiter Plate
 Maps](http://bconnelly.net/2014/05/plotting-microtiter-plate-maps/).
@@ -241,7 +230,7 @@ plot object so that follow the golden ratio (horizontally). If no plot
 is provided, the last plot that was displayed is used.
 
     ggplot(mtcars, aes(x = hp, y = mpg)) +
-        geom_smooth() +
+        geom_smooth(method = "loess") +
         geom_point(shape = 1) +
         labs(x = "Horsepower", y = "Fuel Efficiency (mpg)") +
         theme_bdc_grey()

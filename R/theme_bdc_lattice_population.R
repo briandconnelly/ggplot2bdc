@@ -15,7 +15,7 @@
 theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
     t <- theme_void(base_size = base_size, base_family = base_family) %+replace%
         theme(
-            panel.margin = unit(0, "pt"),
+            panel.spacing = unit(0, "pt"),
             plot.title = element_text(
                 size = rel(1.2),
                 face = "bold",
@@ -29,29 +29,25 @@ theme_bdc_lattice_population <- function(base_size = 12, base_family = "") {
             strip.text.y = element_text(
                 angle = -90,
                 margin = margin(l = 2, r = 2)
-            )
+            ),
+            plot.caption = element_text(
+                size = rel(0.7),
+                color = "grey40",
+                face = "plain",
+                hjust = 0,
+                margin = margin(b = base_size * 0.4, t = base_size * 0.4,
+                                r = 0, l = 0)
+            ),
+            plot.subtitle = element_text(
+                size = rel(0.8),
+                color = "grey40",
+                face = "italic",
+                hjust = 0,
+                margin = margin(b = base_size * 0.6)
+            ),
+            legend.box.margin = margin(0, 0, 0, 0, unit = "pt"),
+            legend.box.spacing = unit(6, units = "pt")
         )
-    
-    if(gg_supports_theme_attribute("plot.caption")) {
-        t <- t + theme(plot.caption = element_text(
-            size = rel(0.7),
-            color = "grey40",
-            face = "plain",
-            hjust = 0,
-            margin = margin(b = base_size * 0.4, t = base_size * 0.4,
-                            r = 0, l = 0)
-        ))
-    }
-    
-    if(gg_supports_theme_attribute("plot.subtitle")) {
-        t <- t + theme(plot.subtitle = element_text(
-            size = rel(0.8),
-            color = "grey40",
-            face = "italic",
-            hjust = 0,
-            margin = margin(b = base_size * 0.6)
-        ))
-    }
-    
+
     t
 }

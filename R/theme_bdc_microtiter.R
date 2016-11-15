@@ -17,10 +17,8 @@ theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
                    ticks.x = FALSE, ticks.y = FALSE,
                    pmargin = base_size / 2) %+replace%
         theme(
-            panel.margin = unit(0, units = "pt"),
-            # This does not work with cowplot::switch_axis_position
-            #axis.title = element_blank(),
-            axis.title = element_text(size = 0),
+            panel.spacing = unit(0, units = "pt"),
+            axis.title = element_blank(),
             axis.text = element_text(size = rel(1.0), face = "bold"),
             axis.text.y = element_text(
                 margin = margin(r = 0.4 * base_size, l = 0.4 * base_size)
@@ -32,23 +30,20 @@ theme_bdc_microtiter <- function(base_size = 12, base_family = "") {
             legend.position = "bottom",
             legend.direction = "horizontal",
             legend.box = "vertical",
-            legend.margin = unit(6, "pt"),
+            legend.spacing = unit(6, "pt"),
             plot.title = element_text(
                 size = rel(1.2),
                 face = "bold",
                 hjust = 0.5,
                 margin = margin(b = (base_size / 2) * 1.2)
+            ),
+            plot.subtitle = element_text(
+                size = rel(0.8),
+                color = "grey50",
+                hjust = 0.5,
+                margin = margin(b = (base_size / 2) * 1.2)
             )
         )
-
-    if (gg_supports_theme_attribute("plot.subtitle")) {
-        t <- t + theme(plot.subtitle = element_text(
-            size = rel(0.8),
-            color = "grey50",
-            hjust = 0.5,
-            margin = margin(b = (base_size / 2) * 1.2)
-        ))
-    }
 
     t
 }

@@ -78,7 +78,8 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             ),
 
             legend.background = element_rect(fill = "transparent", color = NA),
-            legend.margin = unit(0, units = "cm"),
+            legend.margin = margin(0, 0, 0, 0),
+            legend.spacing = unit(0, units = "cm"),
             legend.key = element_rect(fill = "transparent", color = NA),
             legend.key.size = unit(0.5, units = "lines"),
             legend.key.height = unit(0.5, units = "lines"),
@@ -93,6 +94,10 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             legend.direction = "horizontal",
             legend.justification = "left",
             legend.box = "vertical",
+            legend.box.just = "left",
+            legend.box.margin = margin(0, 0, 0, 0, unit = "pt"),
+            legend.box.background = element_blank(),
+            legend.box.spacing = unit(6, units = "pt"),
 
             panel.background = element_rect(fill = "white", color = base_grey),
             panel.border = element_blank(),
@@ -110,9 +115,9 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
             panel.grid.minor.y = element_line(
                 color = ifelse(gridmin.y, base_grey, NA)
             ),
-            panel.margin = unit(quarter_line, units = "pt"),
-            panel.margin.x = NULL,
-            panel.margin.y = NULL,
+            panel.spacing = unit(quarter_line, units = "pt"),
+            panel.spacing.x = NULL,
+            panel.spacing.y = NULL,
             panel.ontop = FALSE,
 
             strip.background = element_rect(fill = "transparent", color = NA),
@@ -138,31 +143,24 @@ theme_bdc_grey <- function(base_size = 12, base_family = "",
                 hjust = 0,
                 margin = margin(b = half_line * 1.2)
             ),
-            plot.margin = margin(pmargin, pmargin, pmargin, pmargin),
-            complete = TRUE
-        )
-        
-        if(gg_supports_theme_attribute("plot.subtitle")) {
-            
-            t <- t + theme(plot.subtitle = element_text(
+            plot.subtitle = element_text(
                 size = rel(0.8),
                 color = "grey40",
                 face = "italic",
                 hjust = 0,
                 margin = margin(b = (base_size / 2) * 1.2)
-            ))
-        }
-        
-        if(gg_supports_theme_attribute("plot.caption")) {
-            t <- t + theme(plot.caption = element_text(
+            ),
+            plot.caption = element_text(
                 size = rel(0.7),
                 color = "grey40",
                 face = "plain",
                 hjust = 0,
                 margin = margin(b = base_size * 0.4, t = base_size * 0.4,
                                 r = 0, l = 0)
-            ))
-        }
+            ),
+            plot.margin = margin(pmargin, pmargin, pmargin, pmargin),
+            complete = TRUE
+        )
         
         t
 }
