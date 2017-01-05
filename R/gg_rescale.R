@@ -17,13 +17,7 @@
 #' gg_rescale(ratio = 1.67)
 #'
 gg_rescale <- function(plot = last_plot(), ratio) {
-    built <- ggplot_build(plot)
-
-    # This assumes that all of the panels have the same axis ranges
-    xrange <- unique(unlist(lapply(built$layout$panel_ranges, function(i) i$x.range)))
-    yrange <- unique(unlist(lapply(built$layout$panel_ranges, function(i) i$y.range)))
-
-    plot + coord_fixed(ratio = span(xrange) / span(yrange) / ratio)
+    plot + theme(aspect.ratio = 1 / ratio)
 }
 
 #' @export

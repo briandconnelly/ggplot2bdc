@@ -1,3 +1,8 @@
+# ggplot2bdc 0.3.1
+
+* Re-implemented `gg_rescale_` functions
+    * Now uses the theme's `aspect.ratio` instead of `coord_equal`
+
 # ggplot2bdc 0.3.0
 
 * Added support for the changes in ggplot2 2.2.0
