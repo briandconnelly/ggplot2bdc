@@ -30,6 +30,8 @@ For those using the [development version of ggplot](https://github.com/hadley/gg
         - `gg_rescale`
         - `gg_rescale_golden`
         - `gg_rescale_square`
+- Modifying Files Containing Plots
+    - `trim_whitespace`
 - Misc
     - `ggsave_golden`
     - `span`

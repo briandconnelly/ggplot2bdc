@@ -29,6 +29,8 @@ subtitles and captions are supported.
         -   `gg_rescale`
         -   `gg_rescale_golden`
         -   `gg_rescale_square`
+-   Modifying Files Containing Plots
+    -   `trim_whitespace`
 -   Misc
     -   `ggsave_golden`
     -   `span`

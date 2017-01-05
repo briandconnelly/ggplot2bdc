@@ -1,7 +1,7 @@
 Package: ggplot2bdc
 Type: Package
 Title: Themes and other helper functions for working with ggplot2 plots
-Version: 0.3.1
+Version: 0.3.2
 Date: 2017-01-05
 Authors@R: c(person(family="Connelly", given="Brian", email="bdc@bconnelly.net",
                     role=c("aut", "cre")))
@@ -19,7 +19,8 @@ Depends:
     R (>= 3.0.0)
 Imports:
     ggplot2 (>= 2.2.0),
-    grid
+    grid,
+    tools
 Suggests:
     cowplot,
     knitr,

@@ -1,4 +1,8 @@
-# ggplot2bdc 0.3.1
+# ggplot2bdc 0.3.2 (2017-01-05)
+
+* Added `trim_whitespace` for removing whitespace around an image
+
+# ggplot2bdc 0.3.1 (2017-01-05)
 
 * Re-implemented `gg_rescale_` functions
     * Now uses the theme's `aspect.ratio` instead of `coord_equal`
